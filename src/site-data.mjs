@@ -328,9 +328,9 @@ export const pages = [
             <article class="person-card">
               <div class="person-avatar" aria-hidden="true">CW</div>
               <div>
-                <span>Professor of Anthropology</span>
+                <span>Dean, Faculty of Society</span>
                 <h3>Chen Wei Hong</h3>
-                <p>Professor Chen leads teaching in anthropology, borderlands ethnography, oral history, and community-based field methods for the Borderlands Memory Project.</p>
+                <p>Dean Chen leads the Faculty of Society, guiding anthropology, borderlands ethnography, oral history, and community-based field methods for the Borderlands Memory Project.</p>
                 <a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a>
               </div>
             </article>
@@ -425,7 +425,7 @@ export const pages = [
               <article class="course-card" data-course-card data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography Oral History Chen Wei Hong field interviews ethics archives minority languages public history">
                 <div class="course-meta"><span>ANT-240</span><em>Core Exploration</em></div>
                 <h2>Borderlands Ethnography &amp; Oral History</h2>
-                <p>Professor Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
+                <p>Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
                 <div class="course-footer"><span>Culture &amp; Society</span><a href="/academics/">Explore Syllabus</a></div>
               </article>
               <article class="course-card" data-course-card data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio Public Dashboards reproducible notebooks geospatial interfaces uncertainty accessible visual explanation">
@@ -733,7 +733,7 @@ export const pages = [
               <h3>Borderlands Society and Heritage</h3>
               <p>Regional identity, minority languages, cultural memory, migration, media systems, and shared civic narratives.</p>
               <ul>
-                <li>Lead faculty: Chen Wei Hong, Professor of Anthropology</li>
+                <li>Lead faculty: Chen Wei Hong, Dean of the Faculty of Society</li>
                 <li>Digital archives and oral histories</li>
                 <li>Cross-border education and media studies</li>
                 <li>Public history exhibitions</li>
@@ -969,7 +969,7 @@ export const pages = [
             <article><span>Registrar</span><strong><a href="mailto:${site.emails.registrar}">${site.emails.registrar}</a></strong><p>Enrollment records, transcripts, certificates, student status letters, and timetable questions.</p></article>
             <article><span>Research Partnerships</span><strong><a href="mailto:${site.emails.research}">${site.emails.research}</a></strong><p>Project briefs, field station access, data-sharing questions, and partner proposals.</p></article>
             <article><span>Visitor Desk</span><strong><a href="mailto:${site.emails.general}">${site.emails.general}</a></strong><p>Campus visits, public events, media routing, delivery information, and accessibility needs.</p></article>
-            <article><span>Anthropology</span><strong><a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a></strong><p>Professor Chen Wei Hong's office supports anthropology advising, ethnographic methods, and heritage-fieldwork inquiries.</p></article>
+            <article><span>Faculty of Society</span><strong><a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a></strong><p>Dean Chen Wei Hong's office supports society faculty advising, ethnographic methods, and heritage-fieldwork inquiries.</p></article>
             <article><span>School of Economics</span><strong><a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a></strong><p>Dean Huang Yu Fei's office supports economics advising, applied finance studios, and industry partnership questions.</p></article>
           </div>
         </div>
