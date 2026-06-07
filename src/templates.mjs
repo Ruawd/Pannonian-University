@@ -1,12 +1,12 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260607-pages2";
+const assetVersion = "20260607-cleanurls";
 
 export function renderPage(page, pages) {
-  const canonicalPath = page.output === "index.html" ? "/" : `/${page.output}`;
+  const canonicalPath = page.href || "/";
   const canonical = `${baseUrl}${canonicalPath}`;
-  const heroPreload = page.id === "home" ? "\n  <link rel=\"preload\" href=\"/assets/img/pannonian-campus-hero.png\" as=\"image\">" : "";
+  const heroPreload = page.id === "home" ? "\n  <link rel=\"preload\" href=\"/assets/img/pannonian-campus-hero.jpg\" as=\"image\">" : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -20,7 +20,7 @@ export function renderPage(page, pages) {
   <meta property="og:description" content="${page.description}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="${baseUrl}/assets/img/pannonian-campus-hero.png">
+  <meta property="og:image" content="${baseUrl}/assets/img/pannonian-campus-hero.jpg">
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   ${heroPreload}
@@ -90,31 +90,31 @@ function renderFooter(pages) {
       <div>
         <h2>Admissions</h2>
         <nav aria-label="Footer admissions links">
-          <a href="/admissions.html">Undergraduate entry</a>
-          <a href="/admissions.html">Graduate entry</a>
-          <a href="/admissions.html">International applicants</a>
-          <a href="/admissions.html">Scholarships</a>
+          <a href="/admissions/">Undergraduate entry</a>
+          <a href="/admissions/">Graduate entry</a>
+          <a href="/admissions/">International applicants</a>
+          <a href="/admissions/">Scholarships</a>
           <a href="mailto:${site.emails.admissions}">Ask admissions</a>
         </nav>
       </div>
       <div>
         <h2>Academics</h2>
         <nav aria-label="Footer academic links">
-          <a href="/academics.html">Course Catalog</a>
-          <a href="/academics.html">Faculties</a>
-          <a href="/admissions.html">Academic Calendar</a>
-          <a href="/campus.html">Library Commons</a>
-          <a href="/campus.html">Student support</a>
+          <a href="/curriculum/">Course Catalog</a>
+          <a href="/academics/">Faculties</a>
+          <a href="/admissions/">Academic Calendar</a>
+          <a href="/campus/">Library Commons</a>
+          <a href="/campus/">Student support</a>
         </nav>
       </div>
       <div>
         <h2>Research &amp; Region</h2>
         <nav aria-label="Footer research links">
-          <a href="/research.html">Danube Water Futures</a>
-          <a href="/research.html">Climate-Smart Agriculture</a>
-          <a href="/research.html">Open Data Studio</a>
-          <a href="/research.html">Field Stations</a>
-          <a href="/contact.html">Partner with PU</a>
+          <a href="/research/">Danube Water Futures</a>
+          <a href="/research/">Climate-Smart Agriculture</a>
+          <a href="/research/">Open Data Studio</a>
+          <a href="/research/">Field Stations</a>
+          <a href="/contact/">Partner with PU</a>
         </nav>
       </div>
       <div>
@@ -147,7 +147,7 @@ function renderSocialIcon(label, path) {
 export function renderNotFound(pages) {
   const page = {
     id: "not-found",
-    href: "/404.html",
+    href: "/404/",
     output: "404.html",
     title: "Page not found | Pannonian University",
     description: "The requested Pannonian University page could not be found.",
@@ -159,7 +159,7 @@ export function renderNotFound(pages) {
           <p>Use the navigation above or return to the homepage.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="/" data-ripple>Return home</a>
-            <a class="button button-light" href="/contact.html" data-ripple>Contact PU</a>
+            <a class="button button-light" href="/contact/" data-ripple>Contact PU</a>
           </div>
         </div>
       </section>
@@ -171,8 +171,7 @@ export function renderNotFound(pages) {
 
 export function renderSitemap(pages) {
   const urls = pages.map((page) => {
-    const path = page.output === "index.html" ? "/" : `/${page.output}`;
-    return `  <url><loc>${baseUrl}${path}</loc></url>`;
+    return `  <url><loc>${baseUrl}${page.href}</loc></url>`;
   }).join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>

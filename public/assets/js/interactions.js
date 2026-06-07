@@ -4,11 +4,13 @@ export function setupInteractions() {
   setupMenu();
   setupRipples();
   setupRevealObserver();
+  setupCurriculumFilters();
 
   document.addEventListener("pu:page-ready", setupRevealObserver);
   document.addEventListener("pu:navigated", () => {
     updateNavIndicator();
     setupRevealObserver();
+    setupCurriculumFilters();
     closeMenu();
   });
 }
@@ -198,4 +200,62 @@ function setupRevealObserver() {
   }, { threshold: 0.16 });
 
   elements.forEach((element) => observer.observe(element));
+}
+
+function setupCurriculumFilters() {
+  const section = document.querySelector(".curriculum-section");
+  if (!section || section.dataset.filtersReady === "true") return;
+
+  section.dataset.filtersReady = "true";
+
+  const search = section.querySelector("[data-course-search]");
+  const buttons = [...section.querySelectorAll("[data-filter-type]")];
+  const cards = [...section.querySelectorAll("[data-course-card]")];
+  const count = section.querySelector("[data-result-count]");
+  const empty = section.querySelector("[data-course-empty]");
+  const state = { domain: "all", level: "all" };
+
+  buttons.forEach((button) => {
+    const active = button.classList.contains("is-active");
+    button.setAttribute("aria-pressed", String(active));
+
+    button.addEventListener("click", () => {
+      const type = button.dataset.filterType;
+      state[type] = button.dataset.filterValue || "all";
+
+      buttons
+        .filter((item) => item.dataset.filterType === type)
+        .forEach((item) => {
+          const isActive = item.dataset.filterValue === state[type];
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-pressed", String(isActive));
+        });
+
+      applyFilters();
+    });
+  });
+
+  search?.addEventListener("input", applyFilters);
+  applyFilters();
+
+  function applyFilters() {
+    const query = (search?.value || "").trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const domain = card.dataset.domain || "";
+      const level = card.dataset.level || "";
+      const searchable = (card.dataset.search || card.textContent || "").toLowerCase();
+      const domainMatches = state.domain === "all" || domain === state.domain || domain === "all";
+      const levelMatches = state.level === "all" || level === state.level;
+      const queryMatches = !query || searchable.includes(query);
+      const isVisible = domainMatches && levelMatches && queryMatches;
+
+      card.hidden = !isVisible;
+      visibleCount += isVisible ? 1 : 0;
+    });
+
+    if (count) count.textContent = String(visibleCount);
+    if (empty) empty.hidden = visibleCount > 0;
+  }
 }

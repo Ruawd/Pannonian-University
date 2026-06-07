@@ -93,6 +93,15 @@ textarea {
   transform: translateY(0);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .container {
   width: min(100% - 2rem, var(--max));
   margin-inline: auto;
@@ -1081,6 +1090,273 @@ h3 {
   box-shadow: 0 0 0 5px rgba(31, 111, 100, 0.12);
 }
 
+.curriculum-section {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.64), rgba(232, 236, 230, 0.78)),
+    var(--paper);
+}
+
+.curriculum-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.curriculum-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 1.25rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.curriculum-search,
+.filter-panel,
+.course-card,
+.result-count,
+.course-empty {
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 10px 28px rgba(32, 35, 38, 0.06);
+}
+
+.curriculum-search {
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.82rem 0.95rem;
+}
+
+.curriculum-search svg,
+.filter-panel h2 svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curriculum-search svg {
+  color: var(--teal-dark);
+}
+
+.curriculum-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  outline: none;
+}
+
+.curriculum-search input::placeholder {
+  color: rgba(89, 96, 93, 0.72);
+}
+
+.filter-panel {
+  padding: 1.1rem;
+}
+
+.filter-panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.filter-panel h2 svg {
+  color: var(--brick);
+}
+
+.filter-group + .filter-group {
+  margin-top: 1.2rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(143, 58, 47, 0.12);
+}
+
+.filter-group h3 {
+  margin-bottom: 0.55rem;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.filter-group button {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  padding: 0.66rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 180ms var(--ease), color 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease);
+}
+
+.filter-group button + button {
+  margin-top: 0.25rem;
+}
+
+.filter-group button:hover {
+  background: rgba(31, 111, 100, 0.08);
+  color: var(--teal-dark);
+}
+
+.filter-group button:active {
+  transform: scale(0.99);
+}
+
+.filter-group button.is-active {
+  border-color: rgba(143, 58, 47, 0.22);
+  background: rgba(143, 58, 47, 0.1);
+  color: var(--brick-dark);
+}
+
+.curriculum-results {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.result-count {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.9rem 1.05rem;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.result-count strong {
+  color: var(--brick);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.course-card {
+  position: relative;
+  min-height: 258px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+}
+
+.course-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brick), var(--teal), var(--wheat));
+  opacity: 0.88;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(31, 111, 100, 0.35);
+  box-shadow: var(--shadow);
+}
+
+.course-meta,
+.course-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.course-meta span,
+.course-meta em {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.62rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.course-meta span {
+  background: rgba(143, 58, 47, 0.1);
+  color: var(--brick-dark);
+}
+
+.course-meta em {
+  background: rgba(31, 111, 100, 0.1);
+  color: var(--teal-dark);
+  font-style: normal;
+}
+
+.course-card h2 {
+  margin: 1.05rem 0 0.7rem;
+  font-size: 1.34rem;
+}
+
+.course-card p {
+  margin-bottom: auto;
+  color: var(--muted);
+}
+
+.course-footer {
+  margin-top: 1.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(143, 58, 47, 0.12);
+}
+
+.course-footer span {
+  margin: 0;
+  color: var(--brick);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.course-footer a {
+  color: var(--teal-dark);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.course-footer a:hover {
+  text-decoration: underline;
+}
+
+.course-empty {
+  margin: 0;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-weight: 800;
+}
+
 .admissions-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1481,6 +1757,7 @@ h3 {
   .overview-grid,
   .split-grid,
   .media-split,
+  .curriculum-layout,
   .research-layout,
   .visual-research-grid,
   .campus-grid,
@@ -1513,6 +1790,10 @@ h3 {
   }
 
   .research-lead {
+    position: static;
+  }
+
+  .curriculum-sidebar {
     position: static;
   }
 
@@ -1590,6 +1871,7 @@ h3 {
   .admissions-grid,
   .fact-grid,
   .research-image-row,
+  .course-grid,
   .module-grid,
   .evidence-grid,
   .cluster-grid,
@@ -1616,6 +1898,11 @@ h3 {
 
   .footer-bottom {
     display: grid;
+  }
+
+  .result-count {
+    display: grid;
+    justify-content: stretch;
   }
 
   .footer-bottom nav {

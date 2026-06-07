@@ -1,5 +1,16 @@
 const parser = new DOMParser();
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const directoryIndex = "index.html";
+const cleanPagePaths = new Set(["/", "/academics/", "/curriculum/", "/admissions/", "/research/", "/campus/", "/contact/"]);
+const legacyPagePaths = new Map([
+  ["/index.html", "/"],
+  ["/academics.html", "/academics/"],
+  ["/curriculum.html", "/curriculum/"],
+  ["/admissions.html", "/admissions/"],
+  ["/research.html", "/research/"],
+  ["/campus.html", "/campus/"],
+  ["/contact.html", "/contact/"]
+]);
 
 export function setupPageTransitions() {
   document.addEventListener("click", handleLinkClick);
@@ -64,7 +75,7 @@ function shouldHandle(link, event) {
   if (url.hash && stripHash(url.href) === stripHash(window.location.href)) return false;
 
   const pathname = normalizePath(url.pathname);
-  return pathname === "/" || pathname.endsWith(".html");
+  return cleanPagePaths.has(pathname);
 }
 
 function stripHash(value) {
@@ -74,7 +85,9 @@ function stripHash(value) {
 }
 
 function normalizePath(pathname) {
-  if (pathname === "/index.html") return "/";
+  if (legacyPagePaths.has(pathname)) return legacyPagePaths.get(pathname);
+  if (pathname.endsWith(`/${directoryIndex}`)) return pathname.slice(0, -directoryIndex.length);
+  if (cleanPagePaths.has(`${pathname}/`)) return `${pathname}/`;
   return pathname;
 }
 

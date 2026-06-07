@@ -12,11 +12,12 @@ export const site = {
     research: "research@pu.edu.rs"
   },
   nav: [
-    { label: "Academics", href: "/academics.html" },
-    { label: "Admissions", href: "/admissions.html" },
-    { label: "Research", href: "/research.html" },
-    { label: "Campus", href: "/campus.html" },
-    { label: "Contact", href: "/contact.html" }
+    { label: "Academics", href: "/academics/" },
+    { label: "Curriculum", href: "/curriculum/" },
+    { label: "Admissions", href: "/admissions/" },
+    { label: "Research", href: "/research/" },
+    { label: "Campus", href: "/campus/" },
+    { label: "Contact", href: "/contact/" }
   ],
   stats: [
     { value: "6", label: "faculties" },
@@ -35,15 +36,15 @@ export const pages = [
     description: "Pannonian University is a modern European university in Serbia focused on regional resilience, intelligent systems, civic leadership, and applied research.",
     body: `
       <section class="hero hero-home" aria-label="Pannonian University campus">
-        <img class="hero-media" src="/assets/img/pannonian-campus-hero.png" width="1672" height="941" alt="Modern university campus in the Pannonian plain near Novi Sad">
+        <img class="hero-media" src="/assets/img/pannonian-campus-hero.jpg" width="1672" height="941" alt="Modern university campus in the Pannonian plain near Novi Sad">
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="container hero-content">
           <p class="eyebrow">Novi Sad, Serbia</p>
           <h1>Pannonian University</h1>
           <p class="hero-lead">A European university for resilient regions, intelligent systems, and civic leadership across the Pannonian plain.</p>
           <div class="hero-actions" aria-label="Primary actions">
-            <a class="button button-primary" href="/admissions.html" data-ripple>Apply to PU</a>
-            <a class="button button-ghost" href="/academics.html" data-ripple>Explore programs</a>
+            <a class="button button-primary" href="/admissions/" data-ripple>Apply to PU</a>
+            <a class="button button-ghost" href="/academics/" data-ripple>Explore programs</a>
           </div>
         </div>
       </section>
@@ -123,22 +124,22 @@ export const pages = [
           </div>
           <div class="research-image-row">
             <figure class="image-card">
-              <img src="/assets/img/research-fieldwork.png" width="1672" height="941" alt="Researchers collecting soil samples in a Pannonian crop field">
+              <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Researchers collecting soil samples in a Pannonian crop field">
               <figcaption>Field teams combine soil sampling, drone imagery, and irrigation-channel observations.</figcaption>
             </figure>
             <figure class="image-card">
-              <img src="/assets/img/research-data-studio.png" width="1672" height="941" alt="Researchers reviewing geospatial maps and river basin models in a data studio">
+              <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Researchers reviewing geospatial maps and river basin models in a data studio">
               <figcaption>The Open Data Studio turns field evidence into maps, models, and public briefs.</figcaption>
             </figure>
           </div>
-          <a class="text-link" href="/research.html">Explore PU research themes</a>
+          <a class="text-link" href="/research/">Explore PU research themes</a>
         </div>
       </section>
 
       <section class="section" data-reveal>
         <div class="container media-split">
           <figure class="image-card">
-            <img src="/assets/img/academic-studio.png" width="1672" height="941" alt="Students and faculty working in an interdisciplinary project studio">
+            <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Students and faculty working in an interdisciplinary project studio">
             <figcaption>Project studios bring students from engineering, life sciences, policy, and media into the same room.</figcaption>
           </figure>
           <div class="media-copy">
@@ -172,8 +173,8 @@ export const pages = [
   },
   {
     id: "academics",
-    href: "/academics.html",
-    output: "academics.html",
+    href: "/academics/",
+    output: "academics/index.html",
     title: "Academics | Pannonian University",
     description: "Explore faculties, degree pathways, academic advising, and interdisciplinary learning at Pannonian University.",
     body: `
@@ -249,7 +250,7 @@ export const pages = [
             </div>
           </div>
           <figure class="image-card">
-            <img src="/assets/img/academic-studio.png" width="1672" height="941" alt="Pannonian University students reviewing prototypes and regional datasets in a project studio">
+            <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Pannonian University students reviewing prototypes and regional datasets in a project studio">
             <figcaption>Academic studios connect coursework to public questions, technical prototypes, and field evidence.</figcaption>
           </figure>
         </div>
@@ -348,9 +349,114 @@ export const pages = [
     `
   },
   {
+    id: "curriculum",
+    href: "/curriculum/",
+    output: "curriculum/index.html",
+    title: "Curriculum | Pannonian University",
+    description: "Explore Pannonian University course modules by domain, level, and syllabus focus.",
+    body: `
+      <section class="page-masthead">
+        <div class="container">
+          <p class="eyebrow">Curriculum</p>
+          <h1>Course modules organized by domain, level, and applied syllabus.</h1>
+          <p>PU's curriculum is built as a searchable module catalog. Students combine foundation courses, core explorations, lab crucibles, and partner studios into a coherent faculty pathway.</p>
+        </div>
+      </section>
+
+      <section class="section curriculum-section" data-reveal>
+        <div class="container curriculum-layout">
+          <aside class="curriculum-sidebar" aria-label="Curriculum filters">
+            <label class="curriculum-search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"></path></svg>
+              <span class="sr-only">Filter course modules</span>
+              <input data-course-search type="search" placeholder="Filter by keyword or code..." aria-label="Filter by keyword or code">
+            </label>
+            <div class="filter-panel">
+              <h2>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16M18 4v16M3 8h6M15 8h6M3 16h6M15 16h6"></path></svg>
+                Refine Modules
+              </h2>
+              <div class="filter-group">
+                <h3>Direction Domain</h3>
+                <button class="is-active" type="button" data-filter-type="domain" data-filter-value="all">All Domains</button>
+                <button type="button" data-filter-type="domain" data-filter-value="danube-systems">Danube Systems</button>
+                <button type="button" data-filter-type="domain" data-filter-value="climate-land">Climate &amp; Land</button>
+                <button type="button" data-filter-type="domain" data-filter-value="public-data">Public Data</button>
+                <button type="button" data-filter-type="domain" data-filter-value="culture-society">Culture &amp; Society</button>
+                <button type="button" data-filter-type="domain" data-filter-value="economics">Economics</button>
+              </div>
+              <div class="filter-group">
+                <h3>Academic Stage</h3>
+                <button class="is-active" type="button" data-filter-type="level" data-filter-value="all">All Stages</button>
+                <button type="button" data-filter-type="level" data-filter-value="foundation">Foundation</button>
+                <button type="button" data-filter-type="level" data-filter-value="core-exploration">Core Exploration</button>
+                <button type="button" data-filter-type="level" data-filter-value="lab-crucible">Lab Crucible</button>
+                <button type="button" data-filter-type="level" data-filter-value="partner-studio">Partner Studio</button>
+              </div>
+            </div>
+          </aside>
+          <div class="curriculum-results">
+            <p class="result-count">Filtered Result Count: <strong data-result-count>8</strong> Course Modules</p>
+            <div class="course-grid">
+              <article class="course-card" data-course-card data-domain="danube-systems" data-level="foundation" data-search="PU-101 Regional Evidence Pannonian Systems Danube foundation geography institutions datasets civic questions">
+                <div class="course-meta"><span>PU-101</span><em>Foundation</em></div>
+                <h2>Regional Evidence &amp; Pannonian Systems</h2>
+                <p>Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region.</p>
+                <div class="course-footer"><span>Danube Systems</span><a href="/academics/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="climate-land" data-level="core-exploration" data-search="AGT-202 Remote Sensing Climate Smart Agriculture crop vigor field stress irrigation UAV imagery">
+                <div class="course-meta"><span>AGT-202</span><em>Core Exploration</em></div>
+                <h2>Remote Sensing for Climate-Smart Agriculture</h2>
+                <p>Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions.</p>
+                <div class="course-footer"><span>Climate &amp; Land</span><a href="/research/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="danube-systems" data-level="lab-crucible" data-search="WAT-310 Groundwater Quality Irrigation Risk sampling salinity aquifer mapping">
+                <div class="course-meta"><span>WAT-310</span><em>Lab Crucible</em></div>
+                <h2>Groundwater Quality &amp; Irrigation Risk</h2>
+                <p>Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards.</p>
+                <div class="course-footer"><span>Danube Systems</span><a href="/research/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="economics" data-level="core-exploration" data-search="ECO-220 Regional Economics Responsible Growth Huang Yu Fei logistics public finance circular bioeconomy cross-border industry">
+                <div class="course-meta"><span>ECO-220</span><em>Core Exploration</em></div>
+                <h2>Regional Economics &amp; Responsible Growth</h2>
+                <p>Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry.</p>
+                <div class="course-footer"><span>Economics</span><a href="/academics/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography Oral History Chen Wei Hong field interviews ethics archives minority languages public history">
+                <div class="course-meta"><span>ANT-240</span><em>Core Exploration</em></div>
+                <h2>Borderlands Ethnography &amp; Oral History</h2>
+                <p>Professor Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
+                <div class="course-footer"><span>Culture &amp; Society</span><a href="/academics/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio Public Dashboards reproducible notebooks geospatial interfaces uncertainty accessible visual explanation">
+                <div class="course-meta"><span>DAT-330</span><em>Lab Crucible</em></div>
+                <h2>Open Data Studio for Public Dashboards</h2>
+                <p>Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation.</p>
+                <div class="course-footer"><span>Public Data</span><a href="/research/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="public-data" data-level="partner-studio" data-search="POL-360 Municipal Resilience Policy Clinic heat flood water service access planning">
+                <div class="course-meta"><span>POL-360</span><em>Partner Studio</em></div>
+                <h2>Municipal Resilience Policy Clinic</h2>
+                <p>Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning.</p>
+                <div class="course-footer"><span>Public Data</span><a href="/contact/">Explore Syllabus</a></div>
+              </article>
+              <article class="course-card" data-course-card data-domain="all" data-level="partner-studio" data-search="CAP-404 Capstone Evidence Dossier portfolio research question methods limitations dataset prototype partner response">
+                <div class="course-meta"><span>CAP-404</span><em>Partner Studio</em></div>
+                <h2>Capstone Evidence Dossier</h2>
+                <p>A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response.</p>
+                <div class="course-footer"><span>All Domains</span><a href="/admissions/">Explore Syllabus</a></div>
+              </article>
+            </div>
+            <p class="course-empty" data-course-empty hidden>No modules match those filters yet.</p>
+          </div>
+        </div>
+      </section>
+    `
+  },
+  {
     id: "admissions",
-    href: "/admissions.html",
-    output: "admissions.html",
+    href: "/admissions/",
+    output: "admissions/index.html",
     title: "Admissions | Pannonian University",
     description: "Admissions information for undergraduate, graduate, and international applicants to Pannonian University.",
     body: `
@@ -361,7 +467,7 @@ export const pages = [
           <p>Our admissions team helps applicants choose programs, prepare documents, and understand study options in Serbia.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="mailto:${site.emails.admissions}" data-ripple>Email admissions</a>
-            <a class="button button-light" href="/academics.html" data-ripple>Compare faculties</a>
+            <a class="button button-light" href="/academics/" data-ripple>Compare faculties</a>
           </div>
         </div>
       </section>
@@ -409,7 +515,7 @@ export const pages = [
       <section class="section" data-reveal>
         <div class="container media-split">
           <figure class="image-card">
-            <img src="/assets/img/library-commons.png" width="1672" height="940" alt="Students studying and meeting advisors in the Pannonian University library commons">
+            <img src="/assets/img/library-commons.jpg" width="1672" height="940" alt="Students studying and meeting advisors in the Pannonian University library commons">
             <figcaption>Applicants can meet advisors online or on campus before selecting a faculty pathway.</figcaption>
           </figure>
           <div class="media-copy">
@@ -443,8 +549,8 @@ export const pages = [
   },
   {
     id: "research",
-    href: "/research.html",
-    output: "research.html",
+    href: "/research/",
+    output: "research/index.html",
     title: "Research | Pannonian University",
     description: "Research centers, institutes, and applied projects at Pannonian University.",
     body: `
@@ -492,7 +598,7 @@ export const pages = [
       <section class="section visual-research-section" data-reveal>
         <div class="container visual-research-grid">
           <figure class="research-photo large">
-            <img src="/assets/img/research-fieldwork.png" width="1672" height="941" alt="Pannonian University researchers collecting soil and crop data in a Vojvodina field">
+            <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Pannonian University researchers collecting soil and crop data in a Vojvodina field">
             <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
           </figure>
           <div class="observatory-panel" aria-label="Pannonian Observatory research dashboard">
@@ -533,7 +639,7 @@ export const pages = [
             </div>
           </div>
           <figure class="research-photo">
-            <img src="/assets/img/research-data-studio.png" width="1672" height="941" alt="Pannonian University research team reviewing river basin and climate dashboards">
+            <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Pannonian University research team reviewing river basin and climate dashboards">
             <figcaption>Data studio reviews connect field samples, satellite imagery, and municipal planning questions.</figcaption>
           </figure>
         </div>
@@ -706,8 +812,8 @@ export const pages = [
   },
   {
     id: "campus",
-    href: "/campus.html",
-    output: "campus.html",
+    href: "/campus/",
+    output: "campus/index.html",
     title: "Campus | Pannonian University",
     description: "Campus life, student services, housing, and the Novi Sad setting of Pannonian University.",
     body: `
@@ -760,7 +866,7 @@ export const pages = [
             </div>
           </div>
           <figure class="image-card">
-            <img src="/assets/img/library-commons.png" width="1672" height="940" alt="Pannonian University library commons with students studying and meeting">
+            <img src="/assets/img/library-commons.jpg" width="1672" height="940" alt="Pannonian University library commons with students studying and meeting">
             <figcaption>The library commons supports advising, research help, and student collaboration throughout the week.</figcaption>
           </figure>
         </div>
@@ -784,8 +890,8 @@ export const pages = [
   },
   {
     id: "contact",
-    href: "/contact.html",
-    output: "contact.html",
+    href: "/contact/",
+    output: "contact/index.html",
     title: "Contact | Pannonian University",
     description: "Contact information, official email addresses, and visitor details for Pannonian University.",
     body: `
