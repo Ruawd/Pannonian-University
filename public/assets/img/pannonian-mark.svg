@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Pannonian University circular seal</title>
+  <desc id="desc">A transparent-edge circular seal with a PU monogram, book, river, wheat, and university name.</desc>
+  <defs>
+    <path id="seal-top" d="M30 128a98 98 0 0 1 196 0"/>
+    <path id="seal-bottom" d="M226 128a98 98 0 0 1-196 0"/>
+  </defs>
+  <circle cx="128" cy="128" r="126" fill="#8f3a2f"/>
+  <circle cx="128" cy="128" r="118" fill="none" stroke="#d8b660" stroke-width="5"/>
+  <circle cx="128" cy="128" r="94" fill="#1f6f64"/>
+  <circle cx="128" cy="128" r="84" fill="none" stroke="#d8b660" stroke-width="4"/>
+  <text fill="#f7f2ea" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" letter-spacing="2">
+    <textPath href="#seal-top" startOffset="50%" text-anchor="middle">PANNONIAN UNIVERSITY</textPath>
+  </text>
+  <text fill="#f7f2ea" font-family="Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="2">
+    <textPath href="#seal-bottom" startOffset="50%" text-anchor="middle">NOVI SAD SERBIA</textPath>
+  </text>
+  <g fill="#d8b660">
+    <circle cx="42" cy="128" r="4"/>
+    <circle cx="214" cy="128" r="4"/>
+    <path d="M74 74c3 13 11 24 24 33-13-2-24-8-33-20 1-5 4-9 9-13Z"/>
+    <path d="M182 74c-3 13-11 24-24 33 13-2 24-8 33-20-1-5-4-9-9-13Z"/>
+    <circle cx="128" cy="76" r="6"/>
+  </g>
+  <g fill="none" stroke="#d8b660" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M74 151c14-10 31-13 54-3 23-10 40-7 54 3" stroke-width="8"/>
+    <path d="M76 151v-37c16-5 34-4 52 8 18-12 36-13 52-8v37" stroke-width="7"/>
+    <path d="M128 122v51" stroke-width="5"/>
+    <path d="M91 173c25-8 49-8 74 0" stroke-width="5"/>
+    <path d="M83 184c30-10 60-10 90 0" stroke-width="4" opacity=".78"/>
+  </g>
+  <g fill="#f7f2ea">
+    <path d="M86 82c-6 16-5 31 4 45-14-9-22-21-23-36 5-4 11-7 19-9Z"/>
+    <path d="M170 82c6 16 5 31-4 45 14-9 22-21 23-36-5-4-11-7-19-9Z"/>
+  </g>
+  <text x="128" y="118" text-anchor="middle" fill="#f7f2ea" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700" letter-spacing="0">PU</text>
+  <circle cx="128" cy="128" r="124" fill="none" stroke="#64261f" stroke-width="3"/>
+</svg>

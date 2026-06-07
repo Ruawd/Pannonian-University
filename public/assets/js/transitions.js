@@ -1,0 +1,108 @@
+const parser = new DOMParser();
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+export function setupPageTransitions() {
+  document.addEventListener("click", handleLinkClick);
+  window.addEventListener("popstate", () => navigate(new URL(window.location.href), { history: "replace" }));
+}
+
+async function handleLinkClick(event) {
+  const link = event.target.closest("a[href]");
+  if (!link || !shouldHandle(link, event)) return;
+
+  event.preventDefault();
+  await navigate(new URL(link.href));
+}
+
+async function navigate(url, options = {}) {
+  try {
+    const response = await fetch(url.href, { headers: { "X-PU-Navigation": "1" } });
+    if (!response.ok) {
+      window.location.href = url.href;
+      return;
+    }
+
+    const nextDocument = parser.parseFromString(await response.text(), "text/html");
+    const nextMain = nextDocument.querySelector("main");
+    if (!nextMain) {
+      window.location.href = url.href;
+      return;
+    }
+
+    const swap = () => {
+      document.title = nextDocument.title;
+      syncMeta(nextDocument);
+      document.body.dataset.page = nextDocument.body.dataset.page || "";
+      document.querySelector("main").replaceWith(nextMain);
+      updateActiveNavigation(url);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      document.dispatchEvent(new CustomEvent("pu:navigated", { detail: { url: url.href } }));
+    };
+
+    if (document.startViewTransition && !reducedMotion.matches) {
+      await document.startViewTransition(swap).finished;
+    } else {
+      swap();
+    }
+
+    if (options.history !== "replace") {
+      history.pushState({}, "", url.href);
+    }
+  } catch {
+    window.location.href = url.href;
+  }
+}
+
+function shouldHandle(link, event) {
+  if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return false;
+  if (link.target && link.target !== "_self") return false;
+  if (link.hasAttribute("download")) return false;
+  if (link.protocol === "mailto:" || link.protocol === "tel:") return false;
+
+  const url = new URL(link.href);
+  if (url.origin !== window.location.origin) return false;
+  if (url.hash && stripHash(url.href) === stripHash(window.location.href)) return false;
+
+  const pathname = normalizePath(url.pathname);
+  return pathname === "/" || pathname.endsWith(".html");
+}
+
+function stripHash(value) {
+  const url = new URL(value);
+  url.hash = "";
+  return url.href;
+}
+
+function normalizePath(pathname) {
+  if (pathname === "/index.html") return "/";
+  return pathname;
+}
+
+function updateActiveNavigation(url) {
+  const activePath = normalizePath(url.pathname);
+
+  document.querySelectorAll("[data-nav-link]").forEach((link) => {
+    const linkPath = normalizePath(new URL(link.href).pathname);
+    if (linkPath === activePath) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+function syncMeta(nextDocument) {
+  const selectors = [
+    "meta[name='description']",
+    "meta[property='og:title']",
+    "meta[property='og:description']",
+    "meta[property='og:url']",
+    "link[rel='canonical']"
+  ];
+
+  for (const selector of selectors) {
+    const current = document.head.querySelector(selector);
+    const next = nextDocument.head.querySelector(selector);
+    if (current && next) current.replaceWith(next);
+  }
+}
