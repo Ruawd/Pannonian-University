@@ -27,6 +27,8 @@ async function handleLinkClick(event) {
 
 async function navigate(url, options = {}) {
   try {
+    const direction = getNavigationDirection(url);
+    document.documentElement.dataset.navDirection = direction;
     const response = await fetch(url.href, { headers: { "X-PU-Navigation": "1" } });
     if (!response.ok) {
       window.location.href = url.href;
@@ -59,7 +61,12 @@ async function navigate(url, options = {}) {
     if (options.history !== "replace") {
       history.pushState({}, "", url.href);
     }
+
+    window.setTimeout(() => {
+      delete document.documentElement.dataset.navDirection;
+    }, 420);
   } catch {
+    delete document.documentElement.dataset.navDirection;
     window.location.href = url.href;
   }
 }
@@ -102,6 +109,17 @@ function updateActiveNavigation(url) {
       link.removeAttribute("aria-current");
     }
   });
+}
+
+function getNavigationDirection(url) {
+  const order = ["/", "/academics/", "/curriculum/", "/admissions/", "/research/", "/campus/", "/contact/"];
+  const current = normalizePath(window.location.pathname);
+  const next = normalizePath(url.pathname);
+  const currentIndex = order.indexOf(current);
+  const nextIndex = order.indexOf(next);
+
+  if (currentIndex === -1 || nextIndex === -1 || currentIndex === nextIndex) return "neutral";
+  return nextIndex > currentIndex ? "forward" : "back";
 }
 
 function syncMeta(nextDocument) {

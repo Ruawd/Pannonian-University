@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-explorers">
-  <script type="module" src="/assets/js/app.js?v=20260607-explorers"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-completeux">
+  <script type="module" src="/assets/js/app.js?v=20260608-completeux"></script>
 </head>
 <body data-page="campus">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,6 +50,113 @@
           <p class="eyebrow">Campus</p>
           <h1>A compact campus connected to Novi Sad and the Pannonian plain.</h1>
           <p>PU is planned around walkable courtyards, labs, studios, library spaces, sports facilities, and public events.</p>
+        </div>
+      </section>
+
+      
+      <section class="section campus-guide-section" data-reveal>
+        <div class="container campus-guide" data-campus-guide>
+          <div class="section-heading">
+            <p class="eyebrow">Campus guide</p>
+            <h2>Inspect the places students use every week.</h2>
+            <p>Tap a location to see hours, services, and the office that can help before you arrive.</p>
+          </div>
+          <div class="campus-guide-layout">
+            <div class="campus-map-board" role="tablist" aria-label="Campus locations">
+              <span class="campus-path path-main" aria-hidden="true"></span>
+              <span class="campus-path path-cross" aria-hidden="true"></span>
+              <span class="campus-building building-a" aria-hidden="true"></span>
+              <span class="campus-building building-b" aria-hidden="true"></span>
+              <span class="campus-building building-c" aria-hidden="true"></span>
+              
+              <button class="campus-pin is-active" type="button" role="tab" aria-selected="true" aria-controls="campus-place-commons" data-campus-trigger="commons" style="--pin-x: 42%; --pin-y: 44%">
+                <span>Library Commons</span>
+              </button>
+              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-water-lab" data-campus-trigger="water-lab" style="--pin-x: 66%; --pin-y: 36%">
+                <span>Water Lab</span>
+              </button>
+              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-studio" data-campus-trigger="studio" style="--pin-x: 58%; --pin-y: 66%">
+                <span>Studio Court</span>
+              </button>
+              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-wellbeing" data-campus-trigger="wellbeing" style="--pin-x: 25%; --pin-y: 62%">
+                <span>Wellbeing</span>
+              </button>
+              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-visitor" data-campus-trigger="visitor" style="--pin-x: 31%; --pin-y: 28%">
+                <span>Visitor Desk</span>
+              </button>
+            </div>
+            <div class="campus-place-list" role="tablist" aria-label="Campus place list">
+              
+              <button class="campus-place-button is-active" type="button" role="tab" aria-selected="true" aria-controls="campus-place-commons" data-campus-trigger="commons" data-ripple>
+                <span>08:00-22:00</span>
+                <strong>Library Commons</strong>
+              </button>
+              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-water-lab" data-campus-trigger="water-lab" data-ripple>
+                <span>By lab schedule</span>
+                <strong>Water Lab</strong>
+              </button>
+              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-studio" data-campus-trigger="studio" data-ripple>
+                <span>09:00-20:00</span>
+                <strong>Studio Court</strong>
+              </button>
+              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-wellbeing" data-campus-trigger="wellbeing" data-ripple>
+                <span>09:00-17:00</span>
+                <strong>Wellbeing</strong>
+              </button>
+              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-visitor" data-campus-trigger="visitor" data-ripple>
+                <span>09:00-15:00</span>
+                <strong>Visitor Desk</strong>
+              </button>
+            </div>
+            <div class="campus-place-detail">
+              
+              <article id="campus-place-commons" class="campus-place-panel is-active" role="tabpanel" data-campus-panel="commons">
+                <span>08:00-22:00</span>
+                <h3>Library Commons and Advising Hub</h3>
+                <p>Quiet reading rooms, data workstations, writing support, media suites, and faculty advising appointments.</p>
+                <ul>
+                  <li>Research consultations</li><li>Writing center</li><li>Late study rooms</li>
+                </ul>
+                <a href="mailto:info@pu.edu.rs">info@pu.edu.rs</a>
+              </article>
+              <article id="campus-place-water-lab" class="campus-place-panel" role="tabpanel" data-campus-panel="water-lab" hidden>
+                <span>By lab schedule</span>
+                <h3>Water Futures Lab</h3>
+                <p>Field sample processing, irrigation-quality protocols, basin dashboard reviews, and hydrology methods support.</p>
+                <ul>
+                  <li>Water sampling</li><li>Methods clinic</li><li>Partner briefings</li>
+                </ul>
+                <a href="mailto:research@pu.edu.rs">research@pu.edu.rs</a>
+              </article>
+              <article id="campus-place-studio" class="campus-place-panel" role="tabpanel" data-campus-panel="studio" hidden>
+                <span>09:00-20:00</span>
+                <h3>Student Studio Court</h3>
+                <p>Project rooms for team dossiers, design critiques, municipal partner meetings, and public data sprint work.</p>
+                <ul>
+                  <li>Team rooms</li><li>Prototype reviews</li><li>Partner clinics</li>
+                </ul>
+                <a href="mailto:registrar@pu.edu.rs">registrar@pu.edu.rs</a>
+              </article>
+              <article id="campus-place-wellbeing" class="campus-place-panel" role="tabpanel" data-campus-panel="wellbeing" hidden>
+                <span>09:00-17:00</span>
+                <h3>Wellbeing and Sports Desk</h3>
+                <p>Counseling referral, sports participation, nutrition support, accessibility routing, and peer wellbeing workshops.</p>
+                <ul>
+                  <li>Counseling referral</li><li>Sports access</li><li>Accessibility support</li>
+                </ul>
+                <a href="mailto:info@pu.edu.rs">info@pu.edu.rs</a>
+              </article>
+              <article id="campus-place-visitor" class="campus-place-panel" role="tabpanel" data-campus-panel="visitor" hidden>
+                <span>09:00-15:00</span>
+                <h3>Visitor and Admissions Desk</h3>
+                <p>Campus tours, applicant check-ins, open day routing, public event questions, and international arrival guidance.</p>
+                <ul>
+                  <li>Admissions tours</li><li>Public events</li><li>Arrival support</li>
+                </ul>
+                <a href="mailto:admissions@pu.edu.rs">admissions@pu.edu.rs</a>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 

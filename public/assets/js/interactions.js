@@ -6,11 +6,13 @@ export function setupInteractions() {
   setupMenu();
   setupRipples();
   setupRevealObserver();
+  setupCommandCenters();
   setupSystemsConsole();
   setupCohortShowcases();
   setupFacultyExplorers();
   setupAdmissionsSteppers();
   setupResearchMaps();
+  setupCampusGuides();
   setupCurriculumFilters();
   setupSyllabusDrawer();
 
@@ -19,11 +21,13 @@ export function setupInteractions() {
     document.body.classList.remove("syllabus-open");
     updateNavIndicator();
     setupRevealObserver();
+    setupCommandCenters();
     setupSystemsConsole();
     setupCohortShowcases();
     setupFacultyExplorers();
     setupAdmissionsSteppers();
     setupResearchMaps();
+    setupCampusGuides();
     setupCurriculumFilters();
     setupSyllabusDrawer();
     closeMenu();
@@ -246,6 +250,16 @@ function setupSystemsConsole() {
   });
 }
 
+function setupCommandCenters() {
+  setupPanelSwitchers({
+    rootSelector: "[data-command-center]:not([data-switcher-ready='true'])",
+    triggerSelector: "[data-command-trigger]",
+    panelSelector: "[data-command-panel]",
+    getTriggerId: (trigger) => trigger.dataset.commandTrigger,
+    getPanelId: (panel) => panel.dataset.commandPanel
+  });
+}
+
 function setupCohortShowcases() {
   const showcases = [...document.querySelectorAll("[data-cohort-showcase]:not([data-cohort-ready='true'])")];
 
@@ -302,6 +316,16 @@ function setupResearchMaps() {
     panelSelector: "[data-research-panel]",
     getTriggerId: (trigger) => trigger.dataset.researchTrigger,
     getPanelId: (panel) => panel.dataset.researchPanel
+  });
+}
+
+function setupCampusGuides() {
+  setupPanelSwitchers({
+    rootSelector: "[data-campus-guide]:not([data-switcher-ready='true'])",
+    triggerSelector: "[data-campus-trigger]",
+    panelSelector: "[data-campus-panel]",
+    getTriggerId: (trigger) => trigger.dataset.campusTrigger,
+    getPanelId: (panel) => panel.dataset.campusPanel
   });
 }
 
@@ -614,6 +638,7 @@ function setupSyllabusDrawer() {
   const scrollArea = shell.querySelector(".syllabus-scroll");
   const panels = [...shell.querySelectorAll("[data-syllabus-panel]")];
   const openers = [...document.querySelectorAll("[data-syllabus-open]")];
+  const jumpers = [...shell.querySelectorAll("[data-syllabus-jump]")];
   const closers = [...shell.querySelectorAll("[data-syllabus-close]")];
   let activeOpener = null;
   let closeTimer = 0;
@@ -627,6 +652,12 @@ function setupSyllabusDrawer() {
 
   closers.forEach((closer) => {
     closer.addEventListener("click", closeSyllabus);
+  });
+
+  jumpers.forEach((jumper) => {
+    jumper.addEventListener("click", () => {
+      openSyllabus(jumper.dataset.syllabusJump, activeOpener);
+    });
   });
 
   shell.addEventListener("keydown", (event) => {

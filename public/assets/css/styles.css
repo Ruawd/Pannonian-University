@@ -499,6 +499,255 @@ h3 {
   font-weight: 700;
 }
 
+.command-center-section {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.82), rgba(232, 236, 230, 0.54)),
+    var(--surface);
+}
+
+.command-center {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(220px, 0.58fr) minmax(0, 0.92fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.command-center-copy {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.35rem 0;
+}
+
+.command-center-copy h2 {
+  max-width: 600px;
+  margin-bottom: 0.85rem;
+  font-size: 2.3rem;
+}
+
+.command-center-copy p {
+  max-width: 620px;
+  color: var(--muted);
+}
+
+.command-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 1.35rem;
+}
+
+.command-metrics div {
+  min-height: 86px;
+  display: grid;
+  align-content: center;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.72);
+  padding: 0.9rem;
+}
+
+.command-metrics span,
+.command-panel > span,
+.bulletin-card > span,
+.campus-place-panel > span {
+  color: var(--brick);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.command-metrics strong {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.command-switch {
+  display: grid;
+  gap: 0.72rem;
+  align-content: center;
+}
+
+.command-button,
+.campus-place-button {
+  position: relative;
+  min-height: 92px;
+  overflow: hidden;
+  display: grid;
+  gap: 0.26rem;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.78);
+  color: var(--muted);
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(32, 35, 38, 0.04);
+  transition:
+    transform 180ms var(--ease-spring),
+    border-color 180ms var(--ease),
+    background 180ms var(--ease),
+    box-shadow 180ms var(--ease);
+}
+
+.command-button:hover,
+.command-button.is-active,
+.campus-place-button:hover,
+.campus-place-button.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(143, 58, 47, 0.42);
+  background: var(--surface);
+  box-shadow: 0 14px 34px rgba(32, 35, 38, 0.09);
+}
+
+.command-button::before,
+.campus-place-button::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--brick), var(--teal));
+  opacity: 0;
+  transition: opacity 180ms var(--ease);
+}
+
+.command-button.is-active::before,
+.campus-place-button.is-active::before {
+  opacity: 1;
+}
+
+.command-button span,
+.campus-place-button span {
+  color: var(--brick);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.command-button strong,
+.campus-place-button strong {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 1.16;
+}
+
+.command-panel-frame,
+.campus-place-detail {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(232, 236, 230, 0.58), rgba(255, 253, 248, 0.84)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.command-panel,
+.campus-place-panel {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.55rem;
+}
+
+.command-panel.is-active,
+.campus-place-panel.is-active {
+  animation: inspectorIn 320ms var(--ease-spring) both;
+}
+
+.command-panel h3,
+.campus-place-panel h3 {
+  margin: 0.7rem 0 0.75rem;
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1;
+}
+
+.command-panel p,
+.campus-place-panel p {
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.command-panel a,
+.campus-place-panel a,
+.bulletin-card a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  justify-content: center;
+  margin-top: auto;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--surface);
+  padding: 0.66rem 0.9rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 180ms var(--ease-spring), background 180ms var(--ease);
+}
+
+.command-panel a:hover,
+.campus-place-panel a:hover,
+.bulletin-card a:hover {
+  background: var(--brick-dark);
+  transform: translateY(-1px);
+}
+
+.bulletin-section {
+  background:
+    linear-gradient(180deg, rgba(247, 242, 234, 0.66), rgba(255, 253, 248, 0.72)),
+    var(--paper);
+}
+
+.bulletin-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.bulletin-card {
+  min-height: 286px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1.25rem;
+  box-shadow: 0 10px 28px rgba(32, 35, 38, 0.06);
+  transition: transform 220ms var(--ease-spring), border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+
+.bulletin-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brick), var(--teal), var(--wheat));
+}
+
+.bulletin-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(31, 111, 100, 0.28);
+  box-shadow: var(--shadow);
+}
+
+.bulletin-card h3 {
+  margin: 0.75rem 0 0.7rem;
+  font-size: 1.22rem;
+  line-height: 1.22;
+}
+
+.bulletin-card p {
+  color: var(--muted);
+}
+
 .section-heading {
   max-width: 760px;
   margin-bottom: 2rem;
@@ -1055,6 +1304,43 @@ h3 {
   color: var(--teal-dark);
   font-weight: 900;
   overflow-wrap: anywhere;
+}
+
+.profile-inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 0 0 1.35rem;
+}
+
+.profile-inspector-grid div {
+  min-height: 116px;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.72);
+  padding: 0.95rem;
+}
+
+.profile-inspector-grid span {
+  display: block;
+  margin-bottom: 0.38rem;
+  color: var(--brick);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.profile-inspector-grid strong {
+  display: block;
+  color: var(--ink);
+  line-height: 1.28;
+}
+
+.profile-inspector-grid p {
+  margin: 0.38rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.48;
 }
 
 .faculty-explorer-section {
@@ -2255,6 +2541,64 @@ h3 {
   line-height: 0.98;
 }
 
+.syllabus-jumpbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.7rem;
+  margin: 1.15rem 0 1.35rem;
+}
+
+.syllabus-jumpbar button,
+.syllabus-jumpbar a {
+  min-height: 48px;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  padding: 0.62rem 0.85rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 180ms var(--ease-spring), border-color 180ms var(--ease), background 180ms var(--ease);
+}
+
+.syllabus-jumpbar button {
+  display: grid;
+  gap: 0.12rem;
+  background: rgba(255, 253, 248, 0.76);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.syllabus-jumpbar button:last-child {
+  text-align: right;
+}
+
+.syllabus-jumpbar button span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+}
+
+.syllabus-jumpbar button strong {
+  color: var(--teal-dark);
+  font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, monospace;
+  font-size: 0.94rem;
+}
+
+.syllabus-jumpbar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal);
+  color: var(--surface);
+  white-space: nowrap;
+}
+
+.syllabus-jumpbar button:hover,
+.syllabus-jumpbar a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(31, 111, 100, 0.28);
+}
+
 .syllabus-facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2365,6 +2709,101 @@ h3 {
   border-radius: var(--radius);
   background: rgba(31, 111, 100, 0.06);
   padding: 1rem;
+}
+
+.syllabus-readiness {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 1rem;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(216, 182, 96, 0.12), rgba(31, 111, 100, 0.07)),
+    rgba(255, 253, 248, 0.74);
+  padding: 1rem;
+}
+
+.syllabus-readiness > div {
+  min-width: 0;
+}
+
+.syllabus-readiness strong {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.syllabus-readiness i {
+  position: relative;
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(143, 58, 47, 0.12);
+}
+
+.syllabus-readiness i::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--level, 58%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), var(--wheat), var(--brick));
+  transform-origin: left center;
+  animation: levelIn 520ms var(--ease-spring) both;
+}
+
+.syllabus-readiness p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.46rem;
+  align-content: start;
+}
+
+.syllabus-readiness p span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(31, 111, 100, 0.1);
+  color: var(--teal-dark);
+  padding: 0.28rem 0.68rem;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.syllabus-related {
+  border-top: 1px solid rgba(143, 58, 47, 0.1);
+  padding-top: 1.2rem;
+}
+
+.syllabus-related > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.syllabus-related a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.78);
+  color: var(--teal-dark);
+  padding: 0.55rem 0.72rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 180ms var(--ease-spring), border-color 180ms var(--ease), background 180ms var(--ease);
+}
+
+.syllabus-related a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(31, 111, 100, 0.28);
+  background: var(--surface);
 }
 
 .syllabus-actionbar {
@@ -2714,6 +3153,206 @@ h3 {
 
 .research-node-meta {
   margin-bottom: 1rem;
+}
+
+.campus-guide-section {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.7), rgba(232, 236, 230, 0.56)),
+    var(--surface);
+}
+
+.campus-guide {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.campus-guide-layout {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.14fr) minmax(220px, 0.66fr) minmax(0, 0.92fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.campus-map-board {
+  min-height: 540px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, rgba(143, 58, 47, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(31, 111, 100, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 70% 18%, rgba(216, 182, 96, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(232, 236, 230, 0.9), rgba(255, 253, 248, 0.78));
+  background-size: 42px 42px, 42px 42px, auto, auto;
+  box-shadow: var(--shadow);
+}
+
+.campus-map-board::before {
+  content: "PU Campus Spine";
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 2;
+  color: rgba(32, 35, 38, 0.64);
+  font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, monospace;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.campus-path,
+.campus-building {
+  position: absolute;
+  display: block;
+}
+
+.campus-path {
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(31, 111, 100, 0.38);
+  box-shadow: 0 0 0 8px rgba(31, 111, 100, 0.08);
+}
+
+.path-main {
+  width: 76%;
+  left: 12%;
+  top: 55%;
+  transform: rotate(-13deg);
+}
+
+.path-cross {
+  width: 52%;
+  left: 24%;
+  top: 42%;
+  transform: rotate(50deg);
+  background: rgba(216, 182, 96, 0.68);
+}
+
+.campus-building {
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: 18px 8px 18px 8px;
+  background: rgba(255, 253, 248, 0.72);
+  box-shadow: 0 16px 34px rgba(32, 35, 38, 0.08);
+}
+
+.building-a {
+  width: 28%;
+  height: 20%;
+  left: 19%;
+  top: 21%;
+  transform: rotate(-5deg);
+}
+
+.building-b {
+  width: 30%;
+  height: 23%;
+  right: 15%;
+  top: 25%;
+  transform: rotate(7deg);
+  background: rgba(216, 182, 96, 0.18);
+}
+
+.building-c {
+  width: 34%;
+  height: 22%;
+  left: 34%;
+  bottom: 15%;
+  transform: rotate(-2deg);
+  background: rgba(143, 58, 47, 0.08);
+}
+
+.campus-pin {
+  position: absolute;
+  left: var(--pin-x);
+  top: var(--pin-y);
+  z-index: 3;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.campus-pin::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 8px rgba(31, 111, 100, 0.16), 0 10px 24px rgba(32, 35, 38, 0.16);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 220ms var(--ease-spring), background 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+
+.campus-pin span {
+  position: absolute;
+  left: 50%;
+  bottom: calc(50% + 18px);
+  width: max-content;
+  max-width: 170px;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.94);
+  color: var(--ink);
+  padding: 0.38rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease-spring);
+  pointer-events: none;
+}
+
+.campus-pin:hover::before,
+.campus-pin.is-active::before {
+  background: var(--brick);
+  transform: translate(-50%, -50%) scale(1.18);
+  box-shadow: 0 0 0 11px rgba(143, 58, 47, 0.18), 0 14px 30px rgba(32, 35, 38, 0.18);
+}
+
+.campus-pin:hover span,
+.campus-pin.is-active span {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.campus-place-list {
+  display: grid;
+  gap: 0.72rem;
+  align-content: start;
+}
+
+.campus-place-panel ul {
+  display: grid;
+  gap: 0.58rem;
+  margin: 1.1rem 0 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.campus-place-panel li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.campus-place-panel li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62rem;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: var(--teal);
 }
 
 .text-link {
@@ -3111,6 +3750,50 @@ h3 {
   }
 }
 
+@keyframes pageOutForward {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-26px, 0, 0);
+  }
+}
+
+@keyframes pageInForward {
+  from {
+    opacity: 0;
+    transform: translate3d(34px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pageOutBack {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(26px, 0, 0);
+  }
+}
+
+@keyframes pageInBack {
+  from {
+    opacity: 0;
+    transform: translate3d(-34px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @view-transition {
   navigation: auto;
 }
@@ -3121,6 +3804,22 @@ h3 {
 
 ::view-transition-new(root) {
   animation: pageIn 360ms var(--ease) both;
+}
+
+html[data-nav-direction="forward"]::view-transition-old(root) {
+  animation: pageOutForward 180ms var(--ease-exit) both;
+}
+
+html[data-nav-direction="forward"]::view-transition-new(root) {
+  animation: pageInForward 360ms var(--ease-spring) both;
+}
+
+html[data-nav-direction="back"]::view-transition-old(root) {
+  animation: pageOutBack 180ms var(--ease-exit) both;
+}
+
+html[data-nav-direction="back"]::view-transition-new(root) {
+  animation: pageInBack 360ms var(--ease-spring) both;
 }
 
 ::view-transition-group(site-header),
@@ -3147,11 +3846,13 @@ h3 {
   .split-grid,
   .media-split,
   .systems-console,
+  .command-center,
   .cohort-showcase,
   .faculty-explorer,
   .admissions-stepper,
   .curriculum-layout,
   .research-map-layout,
+  .campus-guide-layout,
   .research-layout,
   .visual-research-grid,
   .campus-grid,
@@ -3161,6 +3862,7 @@ h3 {
   }
 
   .stat-grid,
+  .bulletin-grid,
   .admissions-grid,
   .fact-grid,
   .module-grid,
@@ -3180,12 +3882,15 @@ h3 {
   }
 
   .faculty-rail,
+  .command-switch,
   .admissions-flow,
-  .research-node-list {
+  .research-node-list,
+  .campus-place-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .research-map-board {
+  .research-map-board,
+  .campus-map-board {
     min-height: 480px;
   }
 
@@ -3224,6 +3929,14 @@ h3 {
   }
 
   .cohort-list {
+    align-content: start;
+  }
+
+  .command-center-copy {
+    padding: 0;
+  }
+
+  .command-switch {
     align-content: start;
   }
 }
@@ -3296,16 +4009,21 @@ h3 {
   .stat-grid,
   .admissions-grid,
   .fact-grid,
-  .research-image-row,
-  .console-metrics,
-  .faculty-rail,
-  .faculty-inspector-grid,
-  .faculty-lab-list,
-  .admissions-flow,
-  .research-node-list,
-  .research-node-meta,
-  .course-grid,
-  .module-grid,
+    .research-image-row,
+    .console-metrics,
+    .command-metrics,
+    .command-switch,
+    .bulletin-grid,
+    .faculty-rail,
+    .profile-inspector-grid,
+    .faculty-inspector-grid,
+    .faculty-lab-list,
+    .admissions-flow,
+    .research-node-list,
+    .research-node-meta,
+    .campus-place-list,
+    .course-grid,
+    .module-grid,
   .evidence-grid,
   .cluster-grid,
   .infrastructure-grid,
@@ -3335,12 +4053,15 @@ h3 {
 
   .console-screen,
   .console-panel,
+  .command-panel-frame,
+  .command-panel,
   .cohort-detail-shell,
   .cohort-detail {
     min-height: auto;
   }
 
   .console-panel,
+  .command-panel,
   .cohort-detail {
     padding: 1.15rem;
   }
@@ -3393,8 +4114,23 @@ h3 {
     min-height: 430px;
   }
 
-  .research-pin span {
+  .campus-map-board {
+    min-height: 390px;
+  }
+
+  .research-pin span,
+  .campus-pin span {
     display: none;
+  }
+
+  .command-center-copy h2,
+  .command-panel h3,
+  .campus-place-panel h3 {
+    font-size: 2rem;
+  }
+
+  .bulletin-card {
+    min-height: auto;
   }
 
   .syllabus-shell {
@@ -3425,6 +4161,19 @@ h3 {
   .syllabus-header h2 {
     max-width: 13ch;
     font-size: 2.15rem;
+  }
+
+  .syllabus-jumpbar,
+  .syllabus-readiness {
+    grid-template-columns: 1fr;
+  }
+
+  .syllabus-jumpbar button:last-child {
+    text-align: left;
+  }
+
+  .syllabus-jumpbar a {
+    width: 100%;
   }
 
   .syllabus-facts {
@@ -3492,9 +4241,12 @@ h3 {
 
   .syllabus-drawer,
   .syllabus-panel,
+  .command-panel,
   .faculty-detail,
   .admissions-detail-panel,
-  .research-node-panel {
+  .research-node-panel,
+  .campus-place-panel,
+  .syllabus-readiness i::after {
     opacity: 1;
     transform: none;
   }

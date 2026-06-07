@@ -1,5 +1,7 @@
 import { academicFaculties } from "./academics-data.mjs";
 import { admissionsSteps } from "./admissions-data.mjs";
+import { commandCenterItems, universityNotices } from "./bulletin-data.mjs";
+import { campusPlaces } from "./campus-data.mjs";
 import { curriculumCourses } from "./curriculum-data.mjs";
 import { researchMapNodes } from "./research-map-data.mjs";
 
@@ -85,14 +87,52 @@ function renderSyllabusDrawer() {
               </button>
             </div>
             <div class="syllabus-scroll">
-              ${curriculumCourses.map(renderSyllabusPanel).join("")}
+              ${curriculumCourses.map((course, index) => renderSyllabusPanel(course, index)).join("")}
             </div>
           </aside>
         </div>`;
 }
 
-function renderSyllabusPanel(course) {
+function getCourseIntensity(course) {
+  const intensity = {
+    foundation: 42,
+    "core-exploration": 66,
+    "lab-crucible": 84,
+    "partner-studio": 76
+  };
+
+  return intensity[course.level] || 58;
+}
+
+function getCoursePrerequisites(course) {
+  if (course.level === "foundation") return ["No prior PU module required", "Regional reading pack"];
+  if (course.level === "core-exploration") return ["PU-101 or equivalent", "Methods readiness"];
+  if (course.level === "lab-crucible") return ["Foundation studio", "Safety or data protocol clearance"];
+  return ["Faculty advisor approval", "Partner brief orientation"];
+}
+
+function renderSyllabusPanel(course, index) {
   const mailSubject = encodeURIComponent(`Syllabus enquiry: ${course.code} ${course.title}`);
+  const previous = curriculumCourses[(index - 1 + curriculumCourses.length) % curriculumCourses.length];
+  const next = curriculumCourses[(index + 1) % curriculumCourses.length];
+  const intensity = getCourseIntensity(course);
+  const prerequisites = getCoursePrerequisites(course);
+  const syllabusText = encodeURIComponent([
+    `${course.code} ${course.title}`,
+    `Credits: ${course.credits}`,
+    `Level: ${course.levelLabel}`,
+    `Lab: ${course.lab}`,
+    "",
+    course.summary,
+    "",
+    "Research Connection:",
+    course.researchTie,
+    "",
+    "Weekly Syllabus:",
+    ...course.weeks.map(([title, detail], weekIndex) => `${weekIndex + 1}. ${title} - ${detail}`),
+    "",
+    `Assessment: ${course.assessment}`
+  ].join("\n"));
 
   return `
               <article class="syllabus-panel" data-syllabus-panel="${html(course.id)}" hidden>
@@ -104,6 +144,18 @@ function renderSyllabusPanel(course) {
                   <p class="eyebrow">${html(course.domainLabel)}</p>
                   <h2 id="syllabus-title-${html(course.id)}">${html(course.title)}</h2>
                 </header>
+
+                <div class="syllabus-jumpbar" aria-label="Browse adjacent modules">
+                  <button type="button" data-syllabus-jump="${html(previous.id)}">
+                    <span>Previous</span>
+                    <strong>${html(previous.code)}</strong>
+                  </button>
+                  <a href="data:text/plain;charset=utf-8,${syllabusText}" download="${html(course.code.toLowerCase())}-syllabus.txt">Download Syllabus</a>
+                  <button type="button" data-syllabus-jump="${html(next.id)}">
+                    <span>Next</span>
+                    <strong>${html(next.code)}</strong>
+                  </button>
+                </div>
 
                 <dl class="syllabus-facts">
                   <div>
@@ -123,6 +175,18 @@ function renderSyllabusPanel(course) {
                     <dd>${html(course.lab)}</dd>
                   </div>
                 </dl>
+
+                <section class="syllabus-block syllabus-readiness">
+                  <div>
+                    <h3>Studio Intensity</h3>
+                    <strong>${intensity}/100</strong>
+                    <i style="--level: ${intensity}%"></i>
+                  </div>
+                  <div>
+                    <h3>Prerequisites</h3>
+                    <p>${prerequisites.map((item) => `<span>${html(item)}</span>`).join("")}</p>
+                  </div>
+                </section>
 
                 <section class="syllabus-block">
                   <h3>Research Connection</h3>
@@ -153,6 +217,15 @@ function renderSyllabusPanel(course) {
                 <section class="syllabus-block syllabus-assessment">
                   <h3>Assessment Pattern</h3>
                   <p>${html(course.assessment)}</p>
+                </section>
+
+                <section class="syllabus-block syllabus-related">
+                  <h3>Related PU Evidence</h3>
+                  <div>
+                    <a href="/research/">Research map</a>
+                    <a href="/academics/">Faculty inspector</a>
+                    <a href="mailto:${site.emails.research}?subject=${mailSubject}">Ask research office</a>
+                  </div>
                 </section>
 
                 <div class="syllabus-actionbar">
@@ -314,6 +387,110 @@ function renderResearchMap() {
       </section>`;
 }
 
+function renderCommandCenter() {
+  const first = commandCenterItems[0]?.id || "";
+
+  return `
+      <section class="section command-center-section" data-reveal>
+        <div class="container command-center" data-command-center>
+          <div class="command-center-copy">
+            <p class="eyebrow">Academic command center</p>
+            <h2>Live university signals in one operating view.</h2>
+            <p>Admissions, fieldwork, research weeks, and campus notices are presented as the same operational rhythm students actually experience.</p>
+            <div class="command-metrics">
+              <div><span>Next review</span><strong>15 Mar</strong></div>
+              <div><span>Active studios</span><strong>14</strong></div>
+              <div><span>Open labs</span><strong>07</strong></div>
+            </div>
+          </div>
+          <div class="command-switch" role="tablist" aria-label="University command center items">
+            ${commandCenterItems.map((item) => `
+            <button class="command-button${item.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${item.id === first}" aria-controls="command-${html(item.id)}" data-command-trigger="${html(item.id)}" data-ripple>
+              <span>${html(item.label)}</span>
+              <strong>${html(item.date)}</strong>
+            </button>`).join("")}
+          </div>
+          <div class="command-panel-frame">
+            ${commandCenterItems.map((item) => `
+            <article id="command-${html(item.id)}" class="command-panel${item.id === first ? " is-active" : ""}" role="tabpanel" data-command-panel="${html(item.id)}"${item.id === first ? "" : " hidden"}>
+              <span>${html(item.metric)}</span>
+              <h3>${html(item.title)}</h3>
+              <p>${html(item.summary)}</p>
+              <a href="${html(item.href)}">${html(item.action)}</a>
+            </article>`).join("")}
+          </div>
+        </div>
+      </section>`;
+}
+
+function renderUniversityNotices() {
+  return `
+      <section class="section bulletin-section" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">University notices</p>
+            <h2>Current events, deadlines, and public academic signals.</h2>
+          </div>
+          <div class="bulletin-grid">
+            ${universityNotices.map((notice) => `
+            <article class="bulletin-card">
+              <span>${html(notice.type)} / ${html(notice.date)}</span>
+              <h3>${html(notice.title)}</h3>
+              <p>${html(notice.summary)}</p>
+              <a href="${html(notice.href)}">Read notice</a>
+            </article>`).join("")}
+          </div>
+        </div>
+      </section>`;
+}
+
+function renderCampusGuide() {
+  const first = campusPlaces[0]?.id || "";
+
+  return `
+      <section class="section campus-guide-section" data-reveal>
+        <div class="container campus-guide" data-campus-guide>
+          <div class="section-heading">
+            <p class="eyebrow">Campus guide</p>
+            <h2>Inspect the places students use every week.</h2>
+            <p>Tap a location to see hours, services, and the office that can help before you arrive.</p>
+          </div>
+          <div class="campus-guide-layout">
+            <div class="campus-map-board" role="tablist" aria-label="Campus locations">
+              <span class="campus-path path-main" aria-hidden="true"></span>
+              <span class="campus-path path-cross" aria-hidden="true"></span>
+              <span class="campus-building building-a" aria-hidden="true"></span>
+              <span class="campus-building building-b" aria-hidden="true"></span>
+              <span class="campus-building building-c" aria-hidden="true"></span>
+              ${campusPlaces.map((place) => `
+              <button class="campus-pin${place.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${place.id === first}" aria-controls="campus-place-${html(place.id)}" data-campus-trigger="${html(place.id)}" style="--pin-x: ${html(place.x)}; --pin-y: ${html(place.y)}">
+                <span>${html(place.label)}</span>
+              </button>`).join("")}
+            </div>
+            <div class="campus-place-list" role="tablist" aria-label="Campus place list">
+              ${campusPlaces.map((place) => `
+              <button class="campus-place-button${place.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${place.id === first}" aria-controls="campus-place-${html(place.id)}" data-campus-trigger="${html(place.id)}" data-ripple>
+                <span>${html(place.hours)}</span>
+                <strong>${html(place.label)}</strong>
+              </button>`).join("")}
+            </div>
+            <div class="campus-place-detail">
+              ${campusPlaces.map((place) => `
+              <article id="campus-place-${html(place.id)}" class="campus-place-panel${place.id === first ? " is-active" : ""}" role="tabpanel" data-campus-panel="${html(place.id)}"${place.id === first ? "" : " hidden"}>
+                <span>${html(place.hours)}</span>
+                <h3>${html(place.title)}</h3>
+                <p>${html(place.summary)}</p>
+                <ul>
+                  ${place.services.map((service) => `<li>${html(service)}</li>`).join("")}
+                </ul>
+                <a href="mailto:${html(place.contact)}">${html(place.contact)}</a>
+              </article>`).join("")}
+            </div>
+          </div>
+        </div>
+      </section>`;
+}
+
 export const pages = [
   {
     id: "home",
@@ -353,6 +530,8 @@ export const pages = [
           </div>
         </div>
       </section>
+
+      ${renderCommandCenter()}
 
       <section class="section section-programs" data-reveal>
         <div class="container">
@@ -506,6 +685,8 @@ export const pages = [
           </div>
         </div>
       </section>
+
+      ${renderUniversityNotices()}
 
       <section class="section split-band" data-reveal>
         <div class="container split-grid">
@@ -711,6 +892,11 @@ export const pages = [
                     <p>Dean, Faculty of Society</p>
                   </div>
                 </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Wed 14:00-16:00</strong></div>
+                  <div><span>Course</span><strong>ANT-240 Borderlands Ethnography</strong></div>
+                  <div><span>Research Output</span><strong>Public history exhibit scripts</strong></div>
+                </div>
                 <div class="cohort-project">
                   <span>Active project profile</span>
                   <strong>Borderlands Memory Project</strong>
@@ -726,6 +912,11 @@ export const pages = [
                     <h3>Huang Yu Fei</h3>
                     <p>Dean, School of Economics</p>
                   </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Tue 10:00-12:00</strong></div>
+                  <div><span>Course</span><strong>ECO-220 Responsible Growth</strong></div>
+                  <div><span>Research Output</span><strong>Policy scenario memos</strong></div>
                 </div>
                 <div class="cohort-project">
                   <span>Active project profile</span>
@@ -743,6 +934,11 @@ export const pages = [
                     <p>Director, Water Futures Lab</p>
                   </div>
                 </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Thu 13:00-15:00</strong></div>
+                  <div><span>Course</span><strong>WAT-310 Groundwater Risk</strong></div>
+                  <div><span>Research Output</span><strong>Sample-chain dashboards</strong></div>
+                </div>
                 <div class="cohort-project">
                   <span>Active project profile</span>
                   <strong>Danube Water Futures</strong>
@@ -758,6 +954,11 @@ export const pages = [
                     <h3>Luka Petrovic</h3>
                     <p>Chair, Open Data Studio</p>
                   </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Fri 11:00-13:00</strong></div>
+                  <div><span>Course</span><strong>DAT-330 Open Data Studio</strong></div>
+                  <div><span>Research Output</span><strong>Accessible public dashboards</strong></div>
                 </div>
                 <div class="cohort-project">
                   <span>Active project profile</span>
@@ -1181,6 +1382,8 @@ export const pages = [
           <p>PU is planned around walkable courtyards, labs, studios, library spaces, sports facilities, and public events.</p>
         </div>
       </section>
+
+      ${renderCampusGuide()}
 
       <section class="section" data-reveal>
         <div class="container campus-grid">
