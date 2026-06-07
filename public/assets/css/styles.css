@@ -17,6 +17,8 @@
   --nav-height: 74px;
   --max: 1180px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -1515,6 +1517,11 @@ h3 {
   border-top: 1px solid rgba(143, 58, 47, 0.12);
 }
 
+.filter-group {
+  position: relative;
+  isolation: isolate;
+}
+
 .filter-group h3 {
   margin-bottom: 0.55rem;
   color: var(--muted);
@@ -1528,6 +1535,8 @@ h3 {
 .filter-group button {
   width: 100%;
   min-height: 44px;
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   border: 1px solid transparent;
@@ -1538,7 +1547,11 @@ h3 {
   text-align: left;
   cursor: pointer;
   font-weight: 800;
-  transition: transform 180ms var(--ease), color 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease);
+  transition:
+    transform 180ms var(--ease-spring),
+    color 180ms var(--ease),
+    background 180ms var(--ease),
+    border-color 180ms var(--ease);
 }
 
 .filter-group button + button {
@@ -1555,9 +1568,32 @@ h3 {
 }
 
 .filter-group button.is-active {
-  border-color: rgba(143, 58, 47, 0.22);
-  background: rgba(143, 58, 47, 0.1);
+  border-color: transparent;
+  background: transparent;
   color: var(--brick-dark);
+}
+
+.filter-active-indicator {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: var(--filter-indicator-height, 44px);
+  border: 1px solid rgba(143, 58, 47, 0.22);
+  border-radius: var(--radius);
+  background: rgba(143, 58, 47, 0.1);
+  box-shadow: 0 8px 20px rgba(143, 58, 47, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, var(--filter-indicator-y, 0px), 0);
+  transition:
+    transform 340ms var(--ease-spring),
+    opacity 140ms var(--ease);
+}
+
+.filter-group.has-filter-indicator .filter-active-indicator {
+  opacity: 1;
 }
 
 .curriculum-results {
@@ -1599,6 +1635,7 @@ h3 {
   position: relative;
   min-height: 258px;
   overflow: hidden;
+  contain: layout paint;
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
@@ -1608,7 +1645,6 @@ h3 {
   transition:
     opacity 220ms var(--ease),
     transform 220ms var(--ease),
-    filter 220ms var(--ease),
     border-color 220ms var(--ease),
     box-shadow 220ms var(--ease);
 }
@@ -1661,7 +1697,7 @@ h3 {
 }
 
 .course-card.is-entering {
-  animation: courseCardIn 220ms var(--ease) both;
+  animation: courseCardIn 300ms var(--ease-spring) both;
   animation-delay: var(--course-delay, 0ms);
 }
 
@@ -1669,6 +1705,7 @@ h3 {
 .course-card.is-moving:hover {
   box-shadow: var(--shadow);
   pointer-events: none;
+  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
 }
 
 .course-card-ghost {
@@ -1677,7 +1714,8 @@ h3 {
   margin: 0;
   pointer-events: none;
   transform-origin: center top;
-  transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+  contain: layout paint;
+  transition: opacity 210ms var(--ease-exit), transform 210ms var(--ease-exit);
   will-change: opacity, transform;
 }
 
@@ -2136,7 +2174,7 @@ h3 {
 @keyframes courseCardIn {
   from {
     opacity: 0;
-    transform: translate3d(0, 10px, 0) scale(0.992);
+    transform: translate3d(0, 18px, 0) scale(0.985);
   }
   to {
     opacity: 1;

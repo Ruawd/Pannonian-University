@@ -285,19 +285,26 @@ function setupCurriculumFilters() {
   section.dataset.filtersReady = "true";
 
   const search = section.querySelector("[data-course-search]");
+  const groups = [...section.querySelectorAll(".filter-group")];
   const buttons = [...section.querySelectorAll("[data-filter-type]")];
   const cards = [...section.querySelectorAll("[data-course-card]")];
   const count = section.querySelector("[data-result-count]");
   const countShell = count?.closest(".result-count");
   const empty = section.querySelector("[data-course-empty]");
   const state = { domain: "all", level: "all" };
-  const animationTimers = new WeakMap();
+  const animationStates = new WeakMap();
   let countPulseTimer = 0;
   let flipFrame = 0;
 
   cards.forEach((card, index) => {
     card.style.setProperty("--course-delay", `${index * 24}ms`);
   });
+
+  groups.forEach(setupFilterGroupIndicator);
+  requestAnimationFrame(() => groups.forEach(updateFilterGroupIndicator));
+  window.addEventListener("resize", debounce(() => {
+    groups.forEach(updateFilterGroupIndicator);
+  }, 120), { passive: true });
 
   buttons.forEach((button) => {
     const active = button.classList.contains("is-active");
@@ -315,6 +322,7 @@ function setupCurriculumFilters() {
           item.setAttribute("aria-pressed", String(isActive));
         });
 
+      updateFilterGroupIndicator(button.closest(".filter-group"));
       applyFilters({ animate: true });
     });
   });
@@ -402,14 +410,15 @@ function setupCurriculumFilters() {
   }
 
   function clearCourseCardAnimation(card) {
-    const timer = animationTimers.get(card);
-    if (timer) {
-      window.clearTimeout(timer);
-      animationTimers.delete(card);
+    const state = animationStates.get(card);
+    if (state) {
+      window.clearTimeout(state.timer);
+      state.animation?.cancel();
+      animationStates.delete(card);
     }
 
+    card.getAnimations().forEach((animation) => animation.cancel());
     card.classList.remove("is-entering", "is-moving");
-    card.style.transition = "";
     card.style.transform = "";
     card.style.opacity = "";
     card.style.willChange = "";
@@ -424,32 +433,51 @@ function setupCurriculumFilters() {
     }
 
     card.classList.add("is-moving");
-    card.style.transition = "none";
-    card.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
     card.style.willChange = "transform";
-    void card.offsetWidth;
 
-    window.requestAnimationFrame(() => {
-      card.style.transition = "transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1)";
-      card.style.transform = "translate3d(0, 0, 0)";
-      const timer = window.setTimeout(() => {
-        card.classList.remove("is-moving");
-        card.style.transition = "";
-        card.style.transform = "";
-        card.style.willChange = "";
-        animationTimers.delete(card);
-      }, 300);
-      animationTimers.set(card, timer);
-    });
+    const animation = card.animate(
+      [
+        { transform: `translate3d(${deltaX}px, ${deltaY}px, 0)` },
+        { transform: "translate3d(0, 0, 0)" }
+      ],
+      {
+        duration: 360,
+        easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+        fill: "both"
+      }
+    );
+    const state = { animation, timer: 0 };
+    const finish = () => {
+      if (animationStates.get(card) !== state) return;
+
+      window.clearTimeout(state.timer);
+      animation.cancel();
+      card.classList.remove("is-moving");
+      card.style.willChange = "";
+      animationStates.delete(card);
+    };
+
+    state.timer = window.setTimeout(finish, 430);
+    animationStates.set(card, state);
+    animation.finished.catch(() => {}).finally(finish);
   }
 
   function animateCourseEnter(card) {
     card.classList.add("is-entering");
-    const timer = window.setTimeout(() => {
+    card.style.willChange = "opacity, transform";
+
+    const state = { animation: null, timer: 0 };
+    const finish = () => {
+      if (animationStates.get(card) !== state) return;
+
+      window.clearTimeout(state.timer);
       card.classList.remove("is-entering");
-      animationTimers.delete(card);
-    }, 360);
-    animationTimers.set(card, timer);
+      card.style.willChange = "";
+      animationStates.delete(card);
+    };
+
+    state.timer = window.setTimeout(finish, 390);
+    animationStates.set(card, state);
   }
 
   function createCourseGhost(card, rect) {
@@ -458,6 +486,11 @@ function setupCurriculumFilters() {
     const ghost = card.cloneNode(true);
     ghost.hidden = false;
     ghost.setAttribute("aria-hidden", "true");
+    ghost.removeAttribute("data-course-card");
+    ghost.inert = true;
+    ghost.querySelectorAll("a, button, input, select, textarea, [tabindex]").forEach((element) => {
+      element.setAttribute("tabindex", "-1");
+    });
     ghost.classList.remove("is-entering", "is-moving");
     ghost.classList.add("course-card-ghost");
     ghost.style.left = `${rect.left}px`;
@@ -471,4 +504,31 @@ function setupCurriculumFilters() {
     });
     window.setTimeout(() => ghost.remove(), 230);
   }
+}
+
+function setupFilterGroupIndicator(group) {
+  if (!group || group.querySelector(".filter-active-indicator")) return;
+
+  const indicator = document.createElement("span");
+  indicator.className = "filter-active-indicator";
+  indicator.setAttribute("aria-hidden", "true");
+  group.prepend(indicator);
+  updateFilterGroupIndicator(group);
+}
+
+function updateFilterGroupIndicator(group) {
+  if (!group) return;
+
+  const indicator = group.querySelector(".filter-active-indicator");
+  const activeButton = group.querySelector("[data-filter-type].is-active");
+  if (!indicator || !activeButton) {
+    group.classList.remove("has-filter-indicator");
+    return;
+  }
+
+  const groupRect = group.getBoundingClientRect();
+  const buttonRect = activeButton.getBoundingClientRect();
+  group.style.setProperty("--filter-indicator-y", `${buttonRect.top - groupRect.top}px`);
+  group.style.setProperty("--filter-indicator-height", `${buttonRect.height}px`);
+  group.classList.add("has-filter-indicator");
 }
