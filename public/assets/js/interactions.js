@@ -291,11 +291,12 @@ function setupCurriculumFilters() {
   const countShell = count?.closest(".result-count");
   const empty = section.querySelector("[data-course-empty]");
   const state = { domain: "all", level: "all" };
-  const hideTimers = new WeakMap();
+  const animationTimers = new WeakMap();
   let countPulseTimer = 0;
+  let flipFrame = 0;
 
   cards.forEach((card, index) => {
-    card.style.setProperty("--course-delay", `${index * 45}ms`);
+    card.style.setProperty("--course-delay", `${index * 24}ms`);
   });
 
   buttons.forEach((button) => {
@@ -323,7 +324,25 @@ function setupCurriculumFilters() {
 
   function applyFilters({ animate }) {
     const query = (search?.value || "").trim().toLowerCase();
+    const shouldAnimate = animate && !reducedMotion.matches;
+    const firstRects = new Map();
+    const matches = new Map();
+    const visibleCards = [];
     let visibleCount = 0;
+
+    if (flipFrame) {
+      window.cancelAnimationFrame(flipFrame);
+      flipFrame = 0;
+    }
+
+    if (shouldAnimate) {
+      cards.forEach((card) => {
+        if (!card.hidden) firstRects.set(card, card.getBoundingClientRect());
+        clearCourseCardAnimation(card);
+      });
+    } else {
+      cards.forEach(clearCourseCardAnimation);
+    }
 
     cards.forEach((card) => {
       const domain = card.dataset.domain || "";
@@ -335,12 +354,41 @@ function setupCurriculumFilters() {
       const isVisible = domainMatches && levelMatches && queryMatches;
 
       if (isVisible) {
-        revealCourseCard(card, visibleCount, animate);
+        visibleCards.push(card);
         visibleCount += 1;
-      } else {
-        hideCourseCard(card, animate);
+      } else if (shouldAnimate && !card.hidden) {
+        createCourseGhost(card, firstRects.get(card));
       }
+
+      matches.set(card, isVisible);
     });
+
+    cards.forEach((card) => {
+      card.hidden = !matches.get(card);
+    });
+
+    if (shouldAnimate) {
+      flipFrame = window.requestAnimationFrame(() => {
+        flipFrame = 0;
+        visibleCards.forEach((card, index) => {
+          const firstRect = firstRects.get(card);
+          const lastRect = card.getBoundingClientRect();
+          card.style.setProperty("--course-delay", `${Math.min(index, 5) * 24}ms`);
+
+          if (firstRect) {
+            animateCourseMove(card, firstRect, lastRect);
+          } else {
+            animateCourseEnter(card);
+          }
+        });
+      });
+    }
+
+    if (!shouldAnimate) {
+      visibleCards.forEach((card, index) => {
+        card.style.setProperty("--course-delay", `${Math.min(index, 5) * 24}ms`);
+      });
+    }
 
     if (count && count.textContent !== String(visibleCount)) {
       count.textContent = String(visibleCount);
@@ -348,49 +396,79 @@ function setupCurriculumFilters() {
       void countShell?.offsetWidth;
       countShell?.classList.add("is-updating");
       window.clearTimeout(countPulseTimer);
-      countPulseTimer = window.setTimeout(() => countShell?.classList.remove("is-updating"), 260);
+      countPulseTimer = window.setTimeout(() => countShell?.classList.remove("is-updating"), 220);
     }
     if (empty) empty.hidden = visibleCount > 0;
   }
 
-  function revealCourseCard(card, visibleIndex, animate) {
-    const timer = hideTimers.get(card);
+  function clearCourseCardAnimation(card) {
+    const timer = animationTimers.get(card);
     if (timer) {
       window.clearTimeout(timer);
-      hideTimers.delete(card);
+      animationTimers.delete(card);
     }
 
-    card.style.setProperty("--course-delay", `${Math.min(visibleIndex, 5) * 46}ms`);
-    card.classList.remove("is-exiting");
-
-    if (card.hidden) {
-      card.hidden = false;
-      if (animate && !reducedMotion.matches) {
-        card.classList.add("is-entering");
-        window.setTimeout(() => card.classList.remove("is-entering"), 760);
-      }
-    }
+    card.classList.remove("is-entering", "is-moving");
+    card.style.transition = "";
+    card.style.transform = "";
+    card.style.opacity = "";
+    card.style.willChange = "";
   }
 
-  function hideCourseCard(card, animate) {
-    const timer = hideTimers.get(card);
-    if (timer) window.clearTimeout(timer);
+  function animateCourseMove(card, firstRect, lastRect) {
+    const deltaX = firstRect.left - lastRect.left;
+    const deltaY = firstRect.top - lastRect.top;
 
-    card.classList.remove("is-entering");
-
-    if (card.hidden) return;
-    if (!animate || reducedMotion.matches) {
-      card.hidden = true;
-      card.classList.remove("is-exiting");
+    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
       return;
     }
 
-    card.classList.add("is-exiting");
-    const hideTimer = window.setTimeout(() => {
-      card.hidden = true;
-      card.classList.remove("is-exiting");
-      hideTimers.delete(card);
-    }, 220);
-    hideTimers.set(card, hideTimer);
+    card.classList.add("is-moving");
+    card.style.transition = "none";
+    card.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
+    card.style.willChange = "transform";
+    void card.offsetWidth;
+
+    window.requestAnimationFrame(() => {
+      card.style.transition = "transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1)";
+      card.style.transform = "translate3d(0, 0, 0)";
+      const timer = window.setTimeout(() => {
+        card.classList.remove("is-moving");
+        card.style.transition = "";
+        card.style.transform = "";
+        card.style.willChange = "";
+        animationTimers.delete(card);
+      }, 300);
+      animationTimers.set(card, timer);
+    });
+  }
+
+  function animateCourseEnter(card) {
+    card.classList.add("is-entering");
+    const timer = window.setTimeout(() => {
+      card.classList.remove("is-entering");
+      animationTimers.delete(card);
+    }, 360);
+    animationTimers.set(card, timer);
+  }
+
+  function createCourseGhost(card, rect) {
+    if (!rect) return;
+
+    const ghost = card.cloneNode(true);
+    ghost.hidden = false;
+    ghost.setAttribute("aria-hidden", "true");
+    ghost.classList.remove("is-entering", "is-moving");
+    ghost.classList.add("course-card-ghost");
+    ghost.style.left = `${rect.left}px`;
+    ghost.style.top = `${rect.top}px`;
+    ghost.style.width = `${rect.width}px`;
+    ghost.style.height = `${rect.height}px`;
+    document.body.append(ghost);
+
+    window.requestAnimationFrame(() => {
+      ghost.classList.add("is-leaving");
+    });
+    window.setTimeout(() => ghost.remove(), 230);
   }
 }

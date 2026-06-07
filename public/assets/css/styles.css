@@ -1660,23 +1660,30 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-.curriculum-section.is-visible .course-card:not([hidden]) {
-  animation: courseCardIn 420ms var(--ease) both;
-  animation-delay: var(--course-delay, 0ms);
-}
-
 .course-card.is-entering {
-  animation: courseCardIn 380ms var(--ease) both;
+  animation: courseCardIn 220ms var(--ease) both;
   animation-delay: var(--course-delay, 0ms);
 }
 
-.course-card.is-exiting,
-.course-card.is-exiting:hover {
-  opacity: 0;
-  filter: blur(2px);
-  transform: translateY(16px) scale(0.985);
+.course-card.is-moving,
+.course-card.is-moving:hover {
+  box-shadow: var(--shadow);
   pointer-events: none;
-  box-shadow: 0 8px 18px rgba(32, 35, 38, 0.04);
+}
+
+.course-card-ghost {
+  position: fixed;
+  z-index: 80;
+  margin: 0;
+  pointer-events: none;
+  transform-origin: center top;
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+  will-change: opacity, transform;
+}
+
+.course-card-ghost.is-leaving {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0) scale(0.985);
 }
 
 .course-meta,
@@ -2129,13 +2136,11 @@ h3 {
 @keyframes courseCardIn {
   from {
     opacity: 0;
-    filter: blur(2px);
-    transform: translateY(18px) scale(0.985);
+    transform: translate3d(0, 10px, 0) scale(0.992);
   }
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -2425,10 +2430,12 @@ h3 {
 
   .course-card,
   .course-card.is-entering,
-  .course-card.is-exiting,
-  .curriculum-section.is-visible .course-card:not([hidden]) {
+  .course-card.is-moving {
     opacity: 1;
-    filter: none;
     transform: none;
+  }
+
+  .course-card-ghost {
+    display: none;
   }
 }
