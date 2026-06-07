@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-syllabusdrawer">
-  <script type="module" src="/assets/js/app.js?v=20260607-syllabusdrawer"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-explorers">
+  <script type="module" src="/assets/js/app.js?v=20260607-explorers"></script>
 </head>
 <body data-page="admissions">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -57,28 +57,88 @@
         </div>
       </section>
 
-      <section class="section" data-reveal>
-        <div class="container admissions-grid">
-          <article class="admission-step">
-            <span>01</span>
-            <h2>Choose your pathway</h2>
-            <p>Review faculty pages, entry requirements, language options, and scholarship availability.</p>
-          </article>
-          <article class="admission-step">
-            <span>02</span>
-            <h2>Prepare documents</h2>
-            <p>Submit transcripts, identification, language evidence, a statement of purpose, and program-specific materials.</p>
-          </article>
-          <article class="admission-step">
-            <span>03</span>
-            <h2>Faculty review</h2>
-            <p>Applications are reviewed by the relevant faculty, with interviews arranged for selected programs.</p>
-          </article>
-          <article class="admission-step">
-            <span>04</span>
-            <h2>Enroll and activate PU email</h2>
-            <p>Accepted students receive enrollment instructions and their official <strong>pu.edu.rs</strong> email account.</p>
-          </article>
+      
+      <section class="section admissions-stepper-section" data-reveal>
+        <div class="container admissions-stepper" data-admissions-stepper>
+          <div class="section-copy">
+            <p class="eyebrow">Application desk</p>
+            <h2>A clearer route from first inquiry to activated PU email.</h2>
+            <p>Each step below shows the owner, the work required, and the exact next signal applicants should prepare.</p>
+          </div>
+          <div class="admissions-flow" role="tablist" aria-label="Admissions application steps">
+            
+            <button class="admissions-flow-step is-active" type="button" role="tab" aria-selected="true" aria-controls="admission-program" data-admissions-trigger="program" data-ripple>
+              <span>01</span>
+              <strong>Choose Program</strong>
+              <small>Compare faculty homes, course language, studio options, and scholarship routes.</small>
+            </button>
+            <button class="admissions-flow-step" type="button" role="tab" aria-selected="false" aria-controls="admission-documents" data-admissions-trigger="documents" data-ripple>
+              <span>02</span>
+              <strong>Prepare Documents</strong>
+              <small>Gather transcripts, ID, translations, language evidence, and a short statement.</small>
+            </button>
+            <button class="admissions-flow-step" type="button" role="tab" aria-selected="false" aria-controls="admission-review" data-admissions-trigger="review" data-ripple>
+              <span>03</span>
+              <strong>Faculty Review</strong>
+              <small>Faculty checks readiness, fit, studio capacity, and interview needs.</small>
+            </button>
+            <button class="admissions-flow-step" type="button" role="tab" aria-selected="false" aria-controls="admission-arrival" data-admissions-trigger="arrival" data-ripple>
+              <span>04</span>
+              <strong>Enroll and Activate</strong>
+              <small>Confirm seat, receive enrollment guidance, and activate your PU email.</small>
+            </button>
+          </div>
+          <div class="admissions-step-detail">
+            
+            <article id="admission-program" class="admissions-detail-panel is-active" role="tabpanel" data-admissions-panel="program">
+              <span>01 / Application Stage</span>
+              <h3>Choose Program</h3>
+              <p>Applicants begin with an advising conversation or program comparison. PU admissions helps map your interests to a faculty home, concentration, and likely first-year studio.</p>
+              <ul>
+                <li>Select 1-2 faculty pathways</li><li>Check Serbian or English language route</li><li>Note scholarship interest</li>
+              </ul>
+              <div class="admissions-owner">
+                <div><span>Owner</span><strong>Admissions advisor</strong></div>
+                <a href="mailto:admissions@pu.edu.rs">admissions@pu.edu.rs</a>
+              </div>
+            </article>
+            <article id="admission-documents" class="admissions-detail-panel" role="tabpanel" data-admissions-panel="documents" hidden>
+              <span>02 / Application Stage</span>
+              <h3>Prepare Documents</h3>
+              <p>Your applicant file should show academic readiness and sustained work. Graduate applicants add a research or professional proposal aligned with a PU lab.</p>
+              <ul>
+                <li>Academic transcripts</li><li>Identity document</li><li>Statement of purpose</li><li>Language evidence</li>
+              </ul>
+              <div class="admissions-owner">
+                <div><span>Owner</span><strong>Applicant services</strong></div>
+                <a href="mailto:admissions@pu.edu.rs">admissions@pu.edu.rs</a>
+              </div>
+            </article>
+            <article id="admission-review" class="admissions-detail-panel" role="tabpanel" data-admissions-panel="review" hidden>
+              <span>03 / Application Stage</span>
+              <h3>Faculty Review</h3>
+              <p>The relevant faculty reviews your file. Some programs request a short online interview, portfolio discussion, or research-fit conversation.</p>
+              <ul>
+                <li>Faculty file review</li><li>Interview if requested</li><li>Scholarship recommendation</li><li>Offer decision</li>
+              </ul>
+              <div class="admissions-owner">
+                <div><span>Owner</span><strong>Faculty admissions board</strong></div>
+                <a href="mailto:registrar@pu.edu.rs">registrar@pu.edu.rs</a>
+              </div>
+            </article>
+            <article id="admission-arrival" class="admissions-detail-panel" role="tabpanel" data-admissions-panel="arrival" hidden>
+              <span>04 / Application Stage</span>
+              <h3>Enroll and Activate</h3>
+              <p>Accepted students receive enrollment records, advisor assignment, orientation dates, housing guidance, and their official pu.edu.rs account.</p>
+              <ul>
+                <li>Confirm enrollment</li><li>Activate university email</li><li>Register modules</li><li>Attend orientation</li>
+              </ul>
+              <div class="admissions-owner">
+                <div><span>Owner</span><strong>Registrar</strong></div>
+                <a href="mailto:registrar@pu.edu.rs">registrar@pu.edu.rs</a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

@@ -8,6 +8,9 @@ export function setupInteractions() {
   setupRevealObserver();
   setupSystemsConsole();
   setupCohortShowcases();
+  setupFacultyExplorers();
+  setupAdmissionsSteppers();
+  setupResearchMaps();
   setupCurriculumFilters();
   setupSyllabusDrawer();
 
@@ -18,6 +21,9 @@ export function setupInteractions() {
     setupRevealObserver();
     setupSystemsConsole();
     setupCohortShowcases();
+    setupFacultyExplorers();
+    setupAdmissionsSteppers();
+    setupResearchMaps();
     setupCurriculumFilters();
     setupSyllabusDrawer();
     closeMenu();
@@ -262,6 +268,68 @@ function setupCohortShowcases() {
 
       panels.forEach((panel) => {
         const active = panel.dataset.cohortDetail === id;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      });
+    }
+  });
+}
+
+function setupFacultyExplorers() {
+  setupPanelSwitchers({
+    rootSelector: "[data-faculty-explorer]:not([data-switcher-ready='true'])",
+    triggerSelector: "[data-faculty-trigger]",
+    panelSelector: "[data-faculty-panel]",
+    getTriggerId: (trigger) => trigger.dataset.facultyTrigger,
+    getPanelId: (panel) => panel.dataset.facultyPanel
+  });
+}
+
+function setupAdmissionsSteppers() {
+  setupPanelSwitchers({
+    rootSelector: "[data-admissions-stepper]:not([data-switcher-ready='true'])",
+    triggerSelector: "[data-admissions-trigger]",
+    panelSelector: "[data-admissions-panel]",
+    getTriggerId: (trigger) => trigger.dataset.admissionsTrigger,
+    getPanelId: (panel) => panel.dataset.admissionsPanel
+  });
+}
+
+function setupResearchMaps() {
+  setupPanelSwitchers({
+    rootSelector: "[data-research-map]:not([data-switcher-ready='true'])",
+    triggerSelector: "[data-research-trigger]",
+    panelSelector: "[data-research-panel]",
+    getTriggerId: (trigger) => trigger.dataset.researchTrigger,
+    getPanelId: (panel) => panel.dataset.researchPanel
+  });
+}
+
+function setupPanelSwitchers({ rootSelector, triggerSelector, panelSelector, getTriggerId, getPanelId }) {
+  const roots = [...document.querySelectorAll(rootSelector)];
+
+  roots.forEach((root) => {
+    root.dataset.switcherReady = "true";
+    const triggers = [...root.querySelectorAll(triggerSelector)];
+    const panels = [...root.querySelectorAll(panelSelector)];
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => activate(getTriggerId(trigger)));
+      trigger.addEventListener("keydown", (event) => handleRovingKeys(event, triggers, index));
+    });
+
+    const initial = triggers.find((trigger) => trigger.classList.contains("is-active")) || triggers[0];
+    if (initial) activate(getTriggerId(initial), { skipFocus: true });
+
+    function activate(id) {
+      triggers.forEach((trigger) => {
+        const active = getTriggerId(trigger) === id;
+        trigger.classList.toggle("is-active", active);
+        trigger.setAttribute("aria-selected", String(active));
+      });
+
+      panels.forEach((panel) => {
+        const active = getPanelId(panel) === id;
         panel.hidden = !active;
         panel.classList.toggle("is-active", active);
       });

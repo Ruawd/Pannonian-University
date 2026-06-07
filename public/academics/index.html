@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-syllabusdrawer">
-  <script type="module" src="/assets/js/app.js?v=20260607-syllabusdrawer"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-explorers">
+  <script type="module" src="/assets/js/app.js?v=20260607-explorers"></script>
 </head>
 <body data-page="academics">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,6 +50,234 @@
           <p class="eyebrow">Academics</p>
           <h1>Faculties that connect theory, fieldwork, and regional purpose.</h1>
           <p>PU programs are designed around strong disciplinary foundations and project studios where students work with civic, scientific, and industry partners.</p>
+        </div>
+      </section>
+
+      
+      <section class="section faculty-explorer-section" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Faculty inspector</p>
+            <h2>Choose a faculty home, then inspect its studios, programs, and advising route.</h2>
+          </div>
+          <div class="faculty-explorer" data-faculty-explorer>
+            <div class="faculty-rail" role="tablist" aria-label="Academic faculties">
+              
+              <button class="faculty-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="faculty-engineering" data-faculty-trigger="engineering" data-ripple>
+                <span>Engineering</span>
+                <strong>Faculty of Engineering and Computing</strong>
+                <small>9 degree pathways</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-land" data-faculty-trigger="land" data-ripple>
+                <span>Life Sciences</span>
+                <strong>Faculty of Life and Environmental Sciences</strong>
+                <small>7 field modules</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-economics" data-faculty-trigger="economics" data-ripple>
+                <span>Economics</span>
+                <strong>School of Economics</strong>
+                <small>4 policy studios</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-society" data-faculty-trigger="society" data-ripple>
+                <span>Society</span>
+                <strong>Faculty of Society</strong>
+                <small>18 oral histories</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-health" data-faculty-trigger="health" data-ripple>
+                <span>Health</span>
+                <strong>Faculty of Health and Human Performance</strong>
+                <small>6 practicum tracks</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-graduate" data-faculty-trigger="graduate" data-ripple>
+                <span>Graduate</span>
+                <strong>Graduate School</strong>
+                <small>11 doctoral clusters</small>
+              </button>
+            </div>
+            <div class="faculty-detail-frame">
+              
+              <article id="faculty-engineering" class="faculty-detail is-active" role="tabpanel" data-faculty-panel="engineering">
+                <div class="faculty-detail-top">
+                  <span>Engineering</span>
+                  <strong>9 degree pathways</strong>
+                </div>
+                <h3>Faculty of Engineering and Computing</h3>
+                <p>Engineering, software systems, robotics, energy, transport, and civic infrastructure.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Dr. Marko Ilic</strong>
+                    <p>Intelligent Infrastructure Studio</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>DAT-330 Open Data Studio for Public Dashboards</strong>
+                    <p>Students prototype public dashboards, low-cost sensor rigs, and field-ready decision tools with municipal partners.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="Faculty of Engineering and Computing programs">
+                  <span>Software Systems</span><span>Civil and Water Infrastructure</span><span>Robotics and Sensing</span><span>Energy Systems</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Human-Centered AI Group</strong></div><div><span>Lab</span><strong>Systems Prototyping Lab</strong></div><div><span>Lab</span><strong>Infrastructure Simulation Suite</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>software engineer, data analyst, infrastructure planner, product designer</p>
+                  <a href="mailto:engineering@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+              <article id="faculty-land" class="faculty-detail" role="tabpanel" data-faculty-panel="land" hidden>
+                <div class="faculty-detail-top">
+                  <span>Life Sciences</span>
+                  <strong>7 field modules</strong>
+                </div>
+                <h3>Faculty of Life and Environmental Sciences</h3>
+                <p>Agronomy, ecology, food systems, remote sensing, climate adaptation, and water resilience.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Prof. Milena Kovac</strong>
+                    <p>Water Futures Lab</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>AGT-202 Remote Sensing for Climate-Smart Agriculture</strong>
+                    <p>Field teams compare satellite imagery, UAV flights, soil readings, and irrigation notes before writing farm-facing briefs.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="Faculty of Life and Environmental Sciences programs">
+                  <span>Climate-Smart Agriculture</span><span>Environmental Biology</span><span>Food Systems</span><span>Water Quality</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>AgriTech Remote Sensing Lab</strong></div><div><span>Lab</span><strong>Water Futures Lab</strong></div><div><span>Lab</span><strong>Wetland Habitat Observatory</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>agronomist, environmental analyst, water specialist, conservation officer</p>
+                  <a href="mailto:lifesciences@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+              <article id="faculty-economics" class="faculty-detail" role="tabpanel" data-faculty-panel="economics" hidden>
+                <div class="faculty-detail-top">
+                  <span>Economics</span>
+                  <strong>4 policy studios</strong>
+                </div>
+                <h3>School of Economics</h3>
+                <p>Regional finance, logistics, entrepreneurship, circular bioeconomy, and responsible growth.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Huang Yu Fei</strong>
+                    <p>Regional Growth Observatory</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>ECO-220 Regional Economics and Responsible Growth</strong>
+                    <p>Students read logistics routes, balance sheets, municipal budgets, and climate-risk scenarios in the same project cycle.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="School of Economics programs">
+                  <span>Regional Economics</span><span>Public Finance</span><span>Logistics and Trade</span><span>Sustainable Enterprise</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Responsible Growth Studio</strong></div><div><span>Lab</span><strong>Danube Corridor Finance Desk</strong></div><div><span>Lab</span><strong>Circular Bioeconomy Clinic</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>policy analyst, finance associate, logistics planner, development consultant</p>
+                  <a href="mailto:economics@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+              <article id="faculty-society" class="faculty-detail" role="tabpanel" data-faculty-panel="society" hidden>
+                <div class="faculty-detail-top">
+                  <span>Society</span>
+                  <strong>18 oral histories</strong>
+                </div>
+                <h3>Faculty of Society</h3>
+                <p>Anthropology, public policy, media, languages, law, archives, and borderlands heritage.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Chen Wei Hong</strong>
+                    <p>Borderlands Memory Project</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>ANT-240 Borderlands Ethnography and Oral History</strong>
+                    <p>Students practice field interviews, public history, service design, and ethics review with multilingual communities.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="Faculty of Society programs">
+                  <span>Borderlands Anthropology</span><span>Public Policy</span><span>Media and Communication</span><span>Regional Languages</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Borderlands Oral History Archive</strong></div><div><span>Lab</span><strong>Public Service Design Clinic</strong></div><div><span>Lab</span><strong>Heritage Media Studio</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>researcher, policy officer, archivist, civic media producer</p>
+                  <a href="mailto:society@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+              <article id="faculty-health" class="faculty-detail" role="tabpanel" data-faculty-panel="health" hidden>
+                <div class="faculty-detail-top">
+                  <span>Health</span>
+                  <strong>6 practicum tracks</strong>
+                </div>
+                <h3>Faculty of Health and Human Performance</h3>
+                <p>Public health, nutrition, sports science, psychology, and community wellbeing.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Dr. Ana Stojanovic</strong>
+                    <p>Community Wellbeing Clinic</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>POL-360 Municipal Resilience Policy Clinic</strong>
+                    <p>Student teams map service access, heat risk, nutrition support, and wellbeing resources for partner communities.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="Faculty of Health and Human Performance programs">
+                  <span>Public Health</span><span>Nutrition</span><span>Sports Science</span><span>Community Psychology</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Wellbeing Clinic</strong></div><div><span>Lab</span><strong>Human Performance Lab</strong></div><div><span>Lab</span><strong>Nutrition Field Kitchen</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>health coordinator, wellbeing advisor, sports scientist, public service planner</p>
+                  <a href="mailto:health@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+              <article id="faculty-graduate" class="faculty-detail" role="tabpanel" data-faculty-panel="graduate" hidden>
+                <div class="faculty-detail-top">
+                  <span>Graduate</span>
+                  <strong>11 doctoral clusters</strong>
+                </div>
+                <h3>Graduate School</h3>
+                <p>Master's and doctoral training with methods, ethics, publication, and mobility support.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Dr. Jelena Maric</strong>
+                    <p>Applied Research Commons</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>CAP-404 Capstone Evidence Dossier</strong>
+                    <p>Graduate candidates turn fieldwork, datasets, partner questions, and prototypes into defensible public research dossiers.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="Graduate School programs">
+                  <span>Applied Research Methods</span><span>Doctoral Colloquium</span><span>European Mobility</span><span>Publication Workshop</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Research Methods Studio</strong></div><div><span>Lab</span><strong>Ethics Review Desk</strong></div><div><span>Lab</span><strong>Grant Writing Clinic</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>doctoral researcher, research manager, policy fellow, university lecturer</p>
+                  <a href="mailto:graduate@pu.edu.rs">Contact faculty office</a>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 

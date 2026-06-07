@@ -1,7 +1,7 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260607-syllabusdrawer";
+const assetVersion = "20260607-explorers";
 
 export function renderPage(page, pages) {
   const canonicalPath = page.href || "/";

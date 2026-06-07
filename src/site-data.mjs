@@ -1,4 +1,7 @@
+import { academicFaculties } from "./academics-data.mjs";
+import { admissionsSteps } from "./admissions-data.mjs";
 import { curriculumCourses } from "./curriculum-data.mjs";
+import { researchMapNodes } from "./research-map-data.mjs";
 
 export const site = {
   name: "Pannonian University",
@@ -160,6 +163,155 @@ function renderSyllabusPanel(course) {
                   <a class="syllabus-enroll" href="mailto:${site.emails.registrar}?subject=${mailSubject}">Enroll in Module</a>
                 </div>
               </article>`;
+}
+
+function renderAcademicExplorer() {
+  const first = academicFaculties[0]?.id || "";
+
+  return `
+      <section class="section faculty-explorer-section" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Faculty inspector</p>
+            <h2>Choose a faculty home, then inspect its studios, programs, and advising route.</h2>
+          </div>
+          <div class="faculty-explorer" data-faculty-explorer>
+            <div class="faculty-rail" role="tablist" aria-label="Academic faculties">
+              ${academicFaculties.map((faculty) => `
+              <button class="faculty-tab${faculty.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${faculty.id === first}" aria-controls="faculty-${html(faculty.id)}" data-faculty-trigger="${html(faculty.id)}" data-ripple>
+                <span>${html(faculty.label)}</span>
+                <strong>${html(faculty.name)}</strong>
+                <small>${html(faculty.metric)}</small>
+              </button>`).join("")}
+            </div>
+            <div class="faculty-detail-frame">
+              ${academicFaculties.map((faculty) => `
+              <article id="faculty-${html(faculty.id)}" class="faculty-detail${faculty.id === first ? " is-active" : ""}" role="tabpanel" data-faculty-panel="${html(faculty.id)}"${faculty.id === first ? "" : " hidden"}>
+                <div class="faculty-detail-top">
+                  <span>${html(faculty.label)}</span>
+                  <strong>${html(faculty.metric)}</strong>
+                </div>
+                <h3>${html(faculty.name)}</h3>
+                <p>${html(faculty.short)}</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>${html(faculty.dean)}</strong>
+                    <p>${html(faculty.office)}</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>${html(faculty.featuredCourse)}</strong>
+                    <p>${html(faculty.studio)}</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="${html(faculty.name)} programs">
+                  ${faculty.programs.map((program) => `<span>${html(program)}</span>`).join("")}
+                </div>
+                <div class="faculty-lab-list">
+                  ${faculty.labs.map((lab) => `<div><span>Lab</span><strong>${html(lab)}</strong></div>`).join("")}
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>${html(faculty.careers)}</p>
+                  <a href="mailto:${html(faculty.email)}">Contact faculty office</a>
+                </div>
+              </article>`).join("")}
+            </div>
+          </div>
+        </div>
+      </section>`;
+}
+
+function renderAdmissionsStepper() {
+  const first = admissionsSteps[0]?.id || "";
+
+  return `
+      <section class="section admissions-stepper-section" data-reveal>
+        <div class="container admissions-stepper" data-admissions-stepper>
+          <div class="section-copy">
+            <p class="eyebrow">Application desk</p>
+            <h2>A clearer route from first inquiry to activated PU email.</h2>
+            <p>Each step below shows the owner, the work required, and the exact next signal applicants should prepare.</p>
+          </div>
+          <div class="admissions-flow" role="tablist" aria-label="Admissions application steps">
+            ${admissionsSteps.map((step) => `
+            <button class="admissions-flow-step${step.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${step.id === first}" aria-controls="admission-${html(step.id)}" data-admissions-trigger="${html(step.id)}" data-ripple>
+              <span>${html(step.number)}</span>
+              <strong>${html(step.title)}</strong>
+              <small>${html(step.short)}</small>
+            </button>`).join("")}
+          </div>
+          <div class="admissions-step-detail">
+            ${admissionsSteps.map((step) => `
+            <article id="admission-${html(step.id)}" class="admissions-detail-panel${step.id === first ? " is-active" : ""}" role="tabpanel" data-admissions-panel="${html(step.id)}"${step.id === first ? "" : " hidden"}>
+              <span>${html(step.number)} / Application Stage</span>
+              <h3>${html(step.title)}</h3>
+              <p>${html(step.detail)}</p>
+              <ul>
+                ${step.checklist.map((item) => `<li>${html(item)}</li>`).join("")}
+              </ul>
+              <div class="admissions-owner">
+                <div><span>Owner</span><strong>${html(step.owner)}</strong></div>
+                <a href="mailto:${html(step.email)}">${html(step.email)}</a>
+              </div>
+            </article>`).join("")}
+          </div>
+        </div>
+      </section>`;
+}
+
+function renderResearchMap() {
+  const first = researchMapNodes[0]?.id || "";
+
+  return `
+      <section class="section research-map-section" data-reveal>
+        <div class="container research-map-console" data-research-map>
+          <div class="section-heading">
+            <p class="eyebrow">Interactive research map</p>
+            <h2>Five research nodes across the Pannonian evidence network.</h2>
+            <p>Select a node to see the lead lab, current evidence signal, and the outputs students and faculty are building.</p>
+          </div>
+          <div class="research-map-layout">
+            <div class="research-map-board" role="tablist" aria-label="Pannonian research network">
+              <div class="research-map-shape" aria-hidden="true">
+                <span class="research-river river-main"></span>
+                <span class="research-river river-branch"></span>
+                <span class="research-land land-a"></span>
+                <span class="research-land land-b"></span>
+              </div>
+              ${researchMapNodes.map((node) => `
+              <button class="research-pin${node.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${node.id === first}" aria-controls="research-node-${html(node.id)}" data-research-trigger="${html(node.id)}" style="--pin-x: ${html(node.x)}; --pin-y: ${html(node.y)}">
+                <span>${html(node.label)}</span>
+              </button>`).join("")}
+            </div>
+            <div class="research-node-list" role="tablist" aria-label="Research nodes">
+              ${researchMapNodes.map((node) => `
+              <button class="research-node-button${node.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${node.id === first}" aria-controls="research-node-${html(node.id)}" data-research-trigger="${html(node.id)}" data-ripple>
+                <span>${html(node.region)}</span>
+                <strong>${html(node.label)}</strong>
+              </button>`).join("")}
+            </div>
+            <div class="research-node-detail">
+              ${researchMapNodes.map((node) => `
+              <article id="research-node-${html(node.id)}" class="research-node-panel${node.id === first ? " is-active" : ""}" role="tabpanel" data-research-panel="${html(node.id)}"${node.id === first ? "" : " hidden"}>
+                <div class="research-node-kicker">
+                  <span>${html(node.status)}</span>
+                  <strong>${html(node.metric)}</strong>
+                </div>
+                <h3>${html(node.label)}</h3>
+                <p>${html(node.summary)}</p>
+                <div class="research-node-meta">
+                  <div><span>Region</span><strong>${html(node.region)}</strong></div>
+                  <div><span>Lead Lab</span><strong>${html(node.lead)}</strong></div>
+                </div>
+                <ul>
+                  ${node.outputs.map((output) => `<li>${html(output)}</li>`).join("")}
+                </ul>
+              </article>`).join("")}
+            </div>
+          </div>
+        </div>
+      </section>`;
 }
 
 export const pages = [
@@ -385,6 +537,8 @@ export const pages = [
           <p>PU programs are designed around strong disciplinary foundations and project studios where students work with civic, scientific, and industry partners.</p>
         </div>
       </section>
+
+      ${renderAcademicExplorer()}
 
       <section class="section" data-reveal>
         <div class="container feature-grid three">
@@ -696,30 +850,7 @@ export const pages = [
         </div>
       </section>
 
-      <section class="section" data-reveal>
-        <div class="container admissions-grid">
-          <article class="admission-step">
-            <span>01</span>
-            <h2>Choose your pathway</h2>
-            <p>Review faculty pages, entry requirements, language options, and scholarship availability.</p>
-          </article>
-          <article class="admission-step">
-            <span>02</span>
-            <h2>Prepare documents</h2>
-            <p>Submit transcripts, identification, language evidence, a statement of purpose, and program-specific materials.</p>
-          </article>
-          <article class="admission-step">
-            <span>03</span>
-            <h2>Faculty review</h2>
-            <p>Applications are reviewed by the relevant faculty, with interviews arranged for selected programs.</p>
-          </article>
-          <article class="admission-step">
-            <span>04</span>
-            <h2>Enroll and activate PU email</h2>
-            <p>Accepted students receive enrollment instructions and their official <strong>${site.domain}</strong> email account.</p>
-          </article>
-        </div>
-      </section>
+      ${renderAdmissionsStepper()}
 
       <section class="section deadline-band" data-reveal>
         <div class="container split-grid">
@@ -818,6 +949,8 @@ export const pages = [
           </div>
         </div>
       </section>
+
+      ${renderResearchMap()}
 
       <section class="section visual-research-section" data-reveal>
         <div class="container visual-research-grid">
