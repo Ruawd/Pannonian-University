@@ -4,12 +4,16 @@ export function setupInteractions() {
   setupMenu();
   setupRipples();
   setupRevealObserver();
+  setupSystemsConsole();
+  setupCohortShowcases();
   setupCurriculumFilters();
 
   document.addEventListener("pu:page-ready", setupRevealObserver);
   document.addEventListener("pu:navigated", () => {
     updateNavIndicator();
     setupRevealObserver();
+    setupSystemsConsole();
+    setupCohortShowcases();
     setupCurriculumFilters();
     closeMenu();
   });
@@ -200,6 +204,76 @@ function setupRevealObserver() {
   }, { threshold: 0.16 });
 
   elements.forEach((element) => observer.observe(element));
+}
+
+function setupSystemsConsole() {
+  const consoles = [...document.querySelectorAll("[data-systems-console]:not([data-console-ready='true'])")];
+
+  consoles.forEach((consoleElement) => {
+    consoleElement.dataset.consoleReady = "true";
+    const triggers = [...consoleElement.querySelectorAll("[data-console-trigger]")];
+    const panels = [...consoleElement.querySelectorAll("[data-console-panel]")];
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => activate(trigger.dataset.consoleTrigger));
+      trigger.addEventListener("keydown", (event) => handleRovingKeys(event, triggers, index));
+    });
+
+    function activate(id) {
+      triggers.forEach((trigger) => {
+        const active = trigger.dataset.consoleTrigger === id;
+        trigger.classList.toggle("is-active", active);
+        trigger.setAttribute("aria-selected", String(active));
+      });
+
+      panels.forEach((panel) => {
+        const active = panel.dataset.consolePanel === id;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      });
+    }
+  });
+}
+
+function setupCohortShowcases() {
+  const showcases = [...document.querySelectorAll("[data-cohort-showcase]:not([data-cohort-ready='true'])")];
+
+  showcases.forEach((showcase) => {
+    showcase.dataset.cohortReady = "true";
+    const triggers = [...showcase.querySelectorAll("[data-cohort-trigger]")];
+    const panels = [...showcase.querySelectorAll("[data-cohort-detail]")];
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => activate(trigger.dataset.cohortTrigger));
+      trigger.addEventListener("keydown", (event) => handleRovingKeys(event, triggers, index));
+    });
+
+    function activate(id) {
+      triggers.forEach((trigger) => {
+        const active = trigger.dataset.cohortTrigger === id;
+        trigger.classList.toggle("is-active", active);
+        trigger.setAttribute("aria-selected", String(active));
+      });
+
+      panels.forEach((panel) => {
+        const active = panel.dataset.cohortDetail === id;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      });
+    }
+  });
+}
+
+function handleRovingKeys(event, items, index) {
+  const nextKeys = ["ArrowRight", "ArrowDown"];
+  const previousKeys = ["ArrowLeft", "ArrowUp"];
+  if (!nextKeys.includes(event.key) && !previousKeys.includes(event.key)) return;
+
+  event.preventDefault();
+  const direction = nextKeys.includes(event.key) ? 1 : -1;
+  const nextIndex = (index + direction + items.length) % items.length;
+  items[nextIndex].focus();
+  items[nextIndex].click();
 }
 
 function setupCurriculumFilters() {

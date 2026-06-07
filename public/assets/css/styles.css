@@ -539,6 +539,163 @@ h3 {
   color: var(--muted);
 }
 
+.systems-console-section {
+  background:
+    linear-gradient(135deg, rgba(31, 111, 100, 0.09), rgba(216, 182, 96, 0.12)),
+    var(--surface);
+  border-block: 1px solid rgba(143, 58, 47, 0.12);
+}
+
+.systems-console {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.console-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.6rem;
+}
+
+.console-tabs button {
+  min-height: 44px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(143, 58, 47, 0.18);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  padding: 0.68rem 0.9rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 180ms var(--ease), color 180ms var(--ease), background 180ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+
+.console-tabs button:hover,
+.console-tabs button.is-active {
+  border-color: rgba(31, 111, 100, 0.36);
+  background: rgba(31, 111, 100, 0.1);
+  color: var(--teal-dark);
+  box-shadow: 0 12px 28px rgba(32, 35, 38, 0.07);
+}
+
+.console-tabs button:active {
+  transform: scale(0.98);
+}
+
+.console-screen {
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, rgba(31, 111, 100, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(143, 58, 47, 0.06) 1px, transparent 1px),
+    var(--surface);
+  background-size: 32px 32px;
+  box-shadow: var(--shadow);
+}
+
+.console-panel {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: 1.55rem;
+}
+
+.console-panel.is-active {
+  animation: panelIn 320ms var(--ease) both;
+}
+
+.console-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.console-header span,
+.console-metrics span {
+  color: var(--brick);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.console-header strong {
+  color: var(--teal-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.console-panel p {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.console-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.console-metrics div {
+  padding: 1rem;
+  border: 1px solid rgba(31, 111, 100, 0.13);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.78);
+}
+
+.console-metrics strong {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.console-bars {
+  display: grid;
+  gap: 0.78rem;
+  margin-top: auto;
+}
+
+.console-bars i {
+  position: relative;
+  min-height: 44px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius);
+  background: rgba(31, 111, 100, 0.08);
+}
+
+.console-bars i::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--level);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(143, 58, 47, 0.25), rgba(31, 111, 100, 0.28), rgba(216, 182, 96, 0.38));
+  transform-origin: left center;
+  animation: levelIn 520ms var(--ease) both;
+}
+
+.console-bars span {
+  position: relative;
+  padding-inline: 0.85rem;
+  color: var(--teal-dark);
+  font-style: normal;
+  font-weight: 900;
+}
+
 .split-band,
 .deadline-band,
 .map-band,
@@ -721,6 +878,177 @@ h3 {
 .person-card a {
   display: inline-flex;
   margin-top: 0.85rem;
+  color: var(--teal-dark);
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.cohort-section {
+  background: var(--paper);
+}
+
+.cohort-showcase {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: 1.35rem;
+  align-items: stretch;
+}
+
+.cohort-list {
+  display: grid;
+  gap: 0.8rem;
+  align-content: center;
+}
+
+.cohort-item {
+  min-height: 96px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.4rem 0.9rem;
+  align-items: center;
+  border: 1px solid rgba(143, 58, 47, 0.13);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.78);
+  color: var(--muted);
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(32, 35, 38, 0.04);
+  transition: transform 180ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
+}
+
+.cohort-item strong {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.18rem;
+  line-height: 1.15;
+}
+
+.cohort-item span {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.cohort-item small {
+  justify-self: end;
+  color: rgba(89, 96, 93, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.74rem;
+}
+
+.cohort-item:hover,
+.cohort-item.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(143, 58, 47, 0.42);
+  background: var(--surface);
+  box-shadow: 0 14px 34px rgba(32, 35, 38, 0.09);
+}
+
+.cohort-item.is-active::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--brick), var(--teal));
+}
+
+.cohort-detail-shell {
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(232, 236, 230, 0.56), rgba(255, 253, 248, 0.78)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.cohort-detail {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.cohort-detail.is-active {
+  animation: detailIn 320ms var(--ease) both;
+}
+
+.cohort-quote {
+  position: relative;
+  max-width: 780px;
+  margin-bottom: 2rem;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.64rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.cohort-quote::after {
+  content: "\"";
+  position: absolute;
+  right: 0;
+  top: -0.5rem;
+  color: rgba(143, 58, 47, 0.14);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.cohort-person {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cohort-person h3 {
+  margin-bottom: 0.15rem;
+  font-size: 1.2rem;
+}
+
+.cohort-person p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cohort-project {
+  margin-top: auto;
+  padding: 1.2rem;
+  border: 1px solid rgba(143, 58, 47, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.74);
+}
+
+.cohort-project span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+  color: var(--brick);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cohort-project strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+}
+
+.cohort-project p {
+  margin-bottom: 0.85rem;
+  color: var(--muted);
+}
+
+.cohort-project a {
   color: var(--teal-dark);
   font-weight: 900;
   overflow-wrap: anywhere;
@@ -1704,6 +2032,37 @@ h3 {
   }
 }
 
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes detailIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes levelIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes pageOut {
   from {
     opacity: 1;
@@ -1761,6 +2120,8 @@ h3 {
   .overview-grid,
   .split-grid,
   .media-split,
+  .systems-console,
+  .cohort-showcase,
   .curriculum-layout,
   .research-layout,
   .visual-research-grid,
@@ -1803,6 +2164,10 @@ h3 {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .cohort-list {
+    align-content: start;
   }
 }
 
@@ -1875,6 +2240,7 @@ h3 {
   .admissions-grid,
   .fact-grid,
   .research-image-row,
+  .console-metrics,
   .course-grid,
   .module-grid,
   .evidence-grid,
@@ -1902,6 +2268,35 @@ h3 {
 
   .footer-bottom {
     display: grid;
+  }
+
+  .console-screen,
+  .console-panel,
+  .cohort-detail-shell,
+  .cohort-detail {
+    min-height: auto;
+  }
+
+  .console-panel,
+  .cohort-detail {
+    padding: 1.15rem;
+  }
+
+  .console-header strong {
+    font-size: 1.55rem;
+  }
+
+  .cohort-item {
+    grid-template-columns: 1fr;
+    min-height: 88px;
+  }
+
+  .cohort-item small {
+    justify-self: start;
+  }
+
+  .cohort-quote {
+    font-size: 1.24rem;
   }
 
   .result-count {

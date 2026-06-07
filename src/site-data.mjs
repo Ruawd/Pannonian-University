@@ -93,6 +93,71 @@ export const pages = [
         </div>
       </section>
 
+      <section class="section systems-console-section" data-reveal>
+        <div class="container systems-console" data-systems-console>
+          <div class="section-copy">
+            <p class="eyebrow">Regional systems console</p>
+            <h2>One university, three working lenses on the region.</h2>
+            <p>PU students learn to read the Pannonian plain as a connected system: water, land, data, communities, and public decisions moving together.</p>
+            <div class="console-tabs" role="tablist" aria-label="Regional systems lenses">
+              <button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="console-water" data-console-trigger="water" data-ripple>Water</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="console-land" data-console-trigger="land" data-ripple>Land</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="console-society" data-console-trigger="society" data-ripple>Society</button>
+            </div>
+          </div>
+          <div class="console-screen" aria-live="polite">
+            <article id="console-water" class="console-panel is-active" role="tabpanel" data-console-panel="water">
+              <div class="console-header">
+                <span>Danube water intelligence</span>
+                <strong>07 field stations</strong>
+              </div>
+              <p>Hydrology students combine channel observations, groundwater quality, precipitation anomalies, and irrigation risk notes into weekly basin briefs.</p>
+              <div class="console-metrics">
+                <div><span>Sampling rhythm</span><strong>Weekly</strong></div>
+                <div><span>Decision users</span><strong>Municipal + farm</strong></div>
+              </div>
+              <div class="console-bars" aria-label="Water program emphasis">
+                <i style="--level: 86%"><span>Groundwater</span></i>
+                <i style="--level: 68%"><span>Irrigation</span></i>
+                <i style="--level: 74%"><span>Wetlands</span></i>
+              </div>
+            </article>
+            <article id="console-land" class="console-panel" role="tabpanel" data-console-panel="land" hidden>
+              <div class="console-header">
+                <span>Climate-smart land studio</span>
+                <strong>12 partner plots</strong>
+              </div>
+              <p>Field teams compare soil moisture, crop vigor, drone imagery, and farm interviews so land-use recommendations stay evidence-led.</p>
+              <div class="console-metrics">
+                <div><span>Remote sensing</span><strong>UAV + satellite</strong></div>
+                <div><span>Studio output</span><strong>Farm briefs</strong></div>
+              </div>
+              <div class="console-bars" aria-label="Land program emphasis">
+                <i style="--level: 78%"><span>Crop stress</span></i>
+                <i style="--level: 82%"><span>Soil data</span></i>
+                <i style="--level: 64%"><span>Bioeconomy</span></i>
+              </div>
+            </article>
+            <article id="console-society" class="console-panel" role="tabpanel" data-console-panel="society" hidden>
+              <div class="console-header">
+                <span>Society and public memory</span>
+                <strong>18 oral histories</strong>
+              </div>
+              <p>The Faculty of Society connects borderlands ethnography, economics, public service design, and cultural memory into applied civic studios.</p>
+              <div class="console-metrics">
+                <div><span>Lead faculty</span><strong>Chen + Huang</strong></div>
+                <div><span>Public output</span><strong>Archives + briefs</strong></div>
+              </div>
+              <div class="console-bars" aria-label="Society program emphasis">
+                <i style="--level: 72%"><span>Heritage</span></i>
+                <i style="--level: 70%"><span>Economics</span></i>
+                <i style="--level: 80%"><span>Civic data</span></i>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section evidence-band" data-reveal>
         <div class="container">
           <div class="section-heading">
@@ -318,31 +383,101 @@ export const pages = [
         </div>
       </section>
 
-      <section class="section" data-reveal>
+      <section class="section cohort-section" data-reveal>
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow">Faculty leadership</p>
-            <h2>Academic leaders students meet in classrooms, studios, and public lectures.</h2>
+            <h2>Academic leaders students meet through studios, fieldwork, and public lectures.</h2>
           </div>
-          <div class="people-grid">
-            <article class="person-card">
-              <div class="person-avatar" aria-hidden="true">CW</div>
-              <div>
+          <div class="cohort-showcase" data-cohort-showcase>
+            <div class="cohort-list" role="tablist" aria-label="Faculty leadership profiles">
+              <button class="cohort-item is-active" type="button" role="tab" aria-selected="true" aria-controls="profile-chen" data-cohort-trigger="chen" data-ripple>
+                <strong>Chen Wei Hong</strong>
                 <span>Dean, Faculty of Society</span>
-                <h3>Chen Wei Hong</h3>
-                <p>Dean Chen leads the Faculty of Society, guiding anthropology, borderlands ethnography, oral history, and community-based field methods for the Borderlands Memory Project.</p>
-                <a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a>
-              </div>
-            </article>
-            <article class="person-card">
-              <div class="person-avatar" aria-hidden="true">HY</div>
-              <div>
+                <small>Office: Borderlands Memory</small>
+              </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-huang" data-cohort-trigger="huang" data-ripple>
+                <strong>Huang Yu Fei</strong>
                 <span>Dean, School of Economics</span>
-                <h3>Huang Yu Fei</h3>
-                <p>Dean Huang coordinates the economics curriculum, regional industry partnerships, applied finance studios, and public policy collaboration across the Danube corridor.</p>
-                <a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a>
-              </div>
-            </article>
+                <small>Office: Regional Growth</small>
+              </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-milena" data-cohort-trigger="milena" data-ripple>
+                <strong>Milena Kovac</strong>
+                <span>Director, Water Futures Lab</span>
+                <small>Office: Danube Basin</small>
+              </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-luka" data-cohort-trigger="luka" data-ripple>
+                <strong>Luka Petrovic</strong>
+                <span>Chair, Open Data Studio</span>
+                <small>Office: Public Dashboards</small>
+              </button>
+            </div>
+            <div class="cohort-detail-shell">
+              <article id="profile-chen" class="cohort-detail is-active" role="tabpanel" data-cohort-detail="chen">
+                <p class="cohort-quote">"Society is not a soft backdrop to technical work. It is where water policy, cultural memory, language, and public trust become visible."</p>
+                <div class="cohort-person">
+                  <div class="person-avatar" aria-hidden="true">CW</div>
+                  <div>
+                    <h3>Chen Wei Hong</h3>
+                    <p>Dean, Faculty of Society</p>
+                  </div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Borderlands Memory Project</strong>
+                  <p>Oral histories, public archives, field ethics, and heritage exhibitions with communities across the Pannonian borderlands.</p>
+                  <a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-huang" class="cohort-detail" role="tabpanel" data-cohort-detail="huang" hidden>
+                <p class="cohort-quote">"Regional economics works best when students can read a balance sheet, a logistics route, and a municipal budget in the same week."</p>
+                <div class="cohort-person">
+                  <div class="person-avatar" aria-hidden="true">HY</div>
+                  <div>
+                    <h3>Huang Yu Fei</h3>
+                    <p>Dean, School of Economics</p>
+                  </div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Responsible Growth Studio</strong>
+                  <p>Applied finance, circular bioeconomy, logistics evidence, and industry partnerships across the Danube corridor.</p>
+                  <a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-milena" class="cohort-detail" role="tabpanel" data-cohort-detail="milena" hidden>
+                <p class="cohort-quote">"A useful water model must leave the screen and meet a field notebook, a pump schedule, and a public question."</p>
+                <div class="cohort-person">
+                  <div class="person-avatar" aria-hidden="true">MK</div>
+                  <div>
+                    <h3>Milena Kovac</h3>
+                    <p>Director, Water Futures Lab</p>
+                  </div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Danube Water Futures</strong>
+                  <p>Groundwater sampling, irrigation risk interpretation, wetland monitoring, and basin dashboards for local decision makers.</p>
+                  <a href="mailto:milena.kovac@${site.domain}">milena.kovac@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-luka" class="cohort-detail" role="tabpanel" data-cohort-detail="luka" hidden>
+                <p class="cohort-quote">"Public dashboards need methods notes, uncertainty labels, and interfaces ordinary residents can actually read."</p>
+                <div class="cohort-person">
+                  <div class="person-avatar" aria-hidden="true">LP</div>
+                  <div>
+                    <h3>Luka Petrovic</h3>
+                    <p>Chair, Open Data Studio</p>
+                  </div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Civic Data Interface Lab</strong>
+                  <p>Accessible visual explanation, public service prototypes, data trusts, and reproducible notebooks for partner municipalities.</p>
+                  <a href="mailto:luka.petrovic@${site.domain}">luka.petrovic@${site.domain}</a>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>

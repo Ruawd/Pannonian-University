@@ -1,5 +1,5 @@
-import { setupPageTransitions } from "./transitions.js?v=20260607-filterfix";
-import { setupInteractions } from "./interactions.js?v=20260607-filterfix";
+import { setupPageTransitions } from "./transitions.js?v=20260607-showcase";
+import { setupInteractions } from "./interactions.js?v=20260607-showcase";
 
 setupInteractions();
 setupPageTransitions();
