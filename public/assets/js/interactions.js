@@ -1,3 +1,5 @@
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
 export function setupInteractions() {
   setupHeaderState();
   setupNavIndicator();
@@ -286,8 +288,15 @@ function setupCurriculumFilters() {
   const buttons = [...section.querySelectorAll("[data-filter-type]")];
   const cards = [...section.querySelectorAll("[data-course-card]")];
   const count = section.querySelector("[data-result-count]");
+  const countShell = count?.closest(".result-count");
   const empty = section.querySelector("[data-course-empty]");
   const state = { domain: "all", level: "all" };
+  const hideTimers = new WeakMap();
+  let countPulseTimer = 0;
+
+  cards.forEach((card, index) => {
+    card.style.setProperty("--course-delay", `${index * 45}ms`);
+  });
 
   buttons.forEach((button) => {
     const active = button.classList.contains("is-active");
@@ -305,14 +314,14 @@ function setupCurriculumFilters() {
           item.setAttribute("aria-pressed", String(isActive));
         });
 
-      applyFilters();
+      applyFilters({ animate: true });
     });
   });
 
-  search?.addEventListener("input", applyFilters);
-  applyFilters();
+  search?.addEventListener("input", debounce(() => applyFilters({ animate: true }), 90));
+  applyFilters({ animate: false });
 
-  function applyFilters() {
+  function applyFilters({ animate }) {
     const query = (search?.value || "").trim().toLowerCase();
     let visibleCount = 0;
 
@@ -325,11 +334,63 @@ function setupCurriculumFilters() {
       const queryMatches = !query || searchable.includes(query);
       const isVisible = domainMatches && levelMatches && queryMatches;
 
-      card.hidden = !isVisible;
-      visibleCount += isVisible ? 1 : 0;
+      if (isVisible) {
+        revealCourseCard(card, visibleCount, animate);
+        visibleCount += 1;
+      } else {
+        hideCourseCard(card, animate);
+      }
     });
 
-    if (count) count.textContent = String(visibleCount);
+    if (count && count.textContent !== String(visibleCount)) {
+      count.textContent = String(visibleCount);
+      countShell?.classList.remove("is-updating");
+      void countShell?.offsetWidth;
+      countShell?.classList.add("is-updating");
+      window.clearTimeout(countPulseTimer);
+      countPulseTimer = window.setTimeout(() => countShell?.classList.remove("is-updating"), 260);
+    }
     if (empty) empty.hidden = visibleCount > 0;
+  }
+
+  function revealCourseCard(card, visibleIndex, animate) {
+    const timer = hideTimers.get(card);
+    if (timer) {
+      window.clearTimeout(timer);
+      hideTimers.delete(card);
+    }
+
+    card.style.setProperty("--course-delay", `${Math.min(visibleIndex, 5) * 46}ms`);
+    card.classList.remove("is-exiting");
+
+    if (card.hidden) {
+      card.hidden = false;
+      if (animate && !reducedMotion.matches) {
+        card.classList.add("is-entering");
+        window.setTimeout(() => card.classList.remove("is-entering"), 760);
+      }
+    }
+  }
+
+  function hideCourseCard(card, animate) {
+    const timer = hideTimers.get(card);
+    if (timer) window.clearTimeout(timer);
+
+    card.classList.remove("is-entering");
+
+    if (card.hidden) return;
+    if (!animate || reducedMotion.matches) {
+      card.hidden = true;
+      card.classList.remove("is-exiting");
+      return;
+    }
+
+    card.classList.add("is-exiting");
+    const hideTimer = window.setTimeout(() => {
+      card.hidden = true;
+      card.classList.remove("is-exiting");
+      hideTimers.delete(card);
+    }, 220);
+    hideTimers.set(card, hideTimer);
   }
 }

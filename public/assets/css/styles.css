@@ -1585,6 +1585,10 @@ h3 {
   line-height: 1;
 }
 
+.result-count.is-updating strong {
+  animation: countPop 240ms var(--ease) both;
+}
+
 .course-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1598,7 +1602,47 @@ h3 {
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
-  transition: transform 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  will-change: opacity, transform;
+  transition:
+    opacity 220ms var(--ease),
+    transform 220ms var(--ease),
+    filter 220ms var(--ease),
+    border-color 220ms var(--ease),
+    box-shadow 220ms var(--ease);
+}
+
+.course-card:nth-child(1) {
+  --course-delay: 0ms;
+}
+
+.course-card:nth-child(2) {
+  --course-delay: 45ms;
+}
+
+.course-card:nth-child(3) {
+  --course-delay: 90ms;
+}
+
+.course-card:nth-child(4) {
+  --course-delay: 135ms;
+}
+
+.course-card:nth-child(5) {
+  --course-delay: 180ms;
+}
+
+.course-card:nth-child(6) {
+  --course-delay: 225ms;
+}
+
+.course-card:nth-child(7) {
+  --course-delay: 270ms;
+}
+
+.course-card:nth-child(8) {
+  --course-delay: 315ms;
 }
 
 .course-card::before {
@@ -1614,6 +1658,25 @@ h3 {
   transform: translateY(-4px);
   border-color: rgba(31, 111, 100, 0.35);
   box-shadow: var(--shadow);
+}
+
+.curriculum-section.is-visible .course-card:not([hidden]) {
+  animation: courseCardIn 420ms var(--ease) both;
+  animation-delay: var(--course-delay, 0ms);
+}
+
+.course-card.is-entering {
+  animation: courseCardIn 380ms var(--ease) both;
+  animation-delay: var(--course-delay, 0ms);
+}
+
+.course-card.is-exiting,
+.course-card.is-exiting:hover {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateY(16px) scale(0.985);
+  pointer-events: none;
+  box-shadow: 0 8px 18px rgba(32, 35, 38, 0.04);
 }
 
 .course-meta,
@@ -2063,6 +2126,31 @@ h3 {
   }
 }
 
+@keyframes courseCardIn {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes countPop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-2px) scale(1.14);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes pageOut {
   from {
     opacity: 1;
@@ -2332,6 +2420,15 @@ h3 {
 
   [data-reveal] {
     opacity: 1;
+    transform: none;
+  }
+
+  .course-card,
+  .course-card.is-entering,
+  .course-card.is-exiting,
+  .curriculum-section.is-visible .course-card:not([hidden]) {
+    opacity: 1;
+    filter: none;
     transform: none;
   }
 }

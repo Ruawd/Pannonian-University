@@ -1,5 +1,5 @@
-import { setupPageTransitions } from "./transitions.js?v=20260607-showcase";
-import { setupInteractions } from "./interactions.js?v=20260607-showcase";
+import { setupPageTransitions } from "./transitions.js?v=20260607-cardmotion";
+import { setupInteractions } from "./interactions.js?v=20260607-cardmotion";
 
 setupInteractions();
 setupPageTransitions();
