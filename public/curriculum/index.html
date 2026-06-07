@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-smoothfilters">
-  <script type="module" src="/assets/js/app.js?v=20260607-smoothfilters"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260607-syllabusdrawer">
+  <script type="module" src="/assets/js/app.js?v=20260607-syllabusdrawer"></script>
 </head>
 <body data-page="curriculum">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -88,59 +88,838 @@
           <div class="curriculum-results">
             <p class="result-count">Filtered Result Count: <strong data-result-count>8</strong> Course Modules</p>
             <div class="course-grid">
-              <article class="course-card" data-course-card data-domain="danube-systems" data-level="foundation" data-search="PU-101 Regional Evidence Pannonian Systems Danube foundation geography institutions datasets civic questions">
+              
+              <article class="course-card" data-course-card data-syllabus-card="pu-101" data-domain="danube-systems" data-level="foundation" data-search="PU-101 Regional Evidence &amp; Pannonian Systems Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region. Danube Systems Foundation Faculty of Regional Systems Danube Evidence Studio Connected to PU's Danube Basin Civic Atlas, a living research map of municipal services, agricultural zones, wetland risks, and public data gaps. Build a regional evidence brief from public datasets and field notes. Read Serbian Danube planning documents with clear limits and assumptions. Present a map-backed civic question to a faculty review panel.">
                 <div class="course-meta"><span>PU-101</span><em>Foundation</em></div>
                 <h2>Regional Evidence &amp; Pannonian Systems</h2>
                 <p>Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region.</p>
-                <div class="course-footer"><span>Danube Systems</span><a href="/academics/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Danube Systems</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="pu-101" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="climate-land" data-level="core-exploration" data-search="AGT-202 Remote Sensing Climate Smart Agriculture crop vigor field stress irrigation UAV imagery">
+              <article class="course-card" data-course-card data-syllabus-card="agt-202" data-domain="climate-land" data-level="core-exploration" data-search="AGT-202 Remote Sensing for Climate-Smart Agriculture Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions. Climate &amp; Land Core Exploration Faculty of Climate and Land AgriTech Remote Sensing Lab Uses PU field plots near Novi Sad to compare Sentinel-2 vegetation indices, UAV imagery, and farmer-reported irrigation stress. Process remote sensing imagery into an agronomic interpretation. Compare satellite and UAV signals without overstating precision. Translate climate risk evidence into farm and policy recommendations.">
                 <div class="course-meta"><span>AGT-202</span><em>Core Exploration</em></div>
                 <h2>Remote Sensing for Climate-Smart Agriculture</h2>
                 <p>Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions.</p>
-                <div class="course-footer"><span>Climate &amp; Land</span><a href="/research/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Climate &amp; Land</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="agt-202" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="danube-systems" data-level="lab-crucible" data-search="WAT-310 Groundwater Quality Irrigation Risk sampling salinity aquifer mapping">
+              <article class="course-card" data-course-card data-syllabus-card="wat-310" data-domain="danube-systems" data-level="lab-crucible" data-search="WAT-310 Groundwater Quality &amp; Irrigation Risk Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards. Danube Systems Lab Crucible Faculty of Environmental Engineering Water Futures Lab Feeds the Water Futures Lab's groundwater risk archive for irrigation communities along the Danube and Tisa corridors. Execute a defensible water sampling chain from field site to lab record. Interpret salinity, nitrate, and conductivity indicators for irrigation risk. Prepare public communication that is accurate without being alarmist.">
                 <div class="course-meta"><span>WAT-310</span><em>Lab Crucible</em></div>
                 <h2>Groundwater Quality &amp; Irrigation Risk</h2>
                 <p>Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards.</p>
-                <div class="course-footer"><span>Danube Systems</span><a href="/research/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Danube Systems</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="wat-310" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="economics" data-level="core-exploration" data-search="ECO-220 Regional Economics Responsible Growth Huang Yu Fei logistics public finance circular bioeconomy cross-border industry">
+              <article class="course-card" data-course-card data-syllabus-card="eco-220" data-domain="economics" data-level="core-exploration" data-search="ECO-220 Regional Economics &amp; Responsible Growth Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry. Economics Core Exploration School of Economics Regional Growth Observatory Supports the Regional Growth Observatory's work on logistics corridors, municipal finance stress, and circular bioeconomy investment. Model regional growth tradeoffs using transparent assumptions. Evaluate public finance and logistics constraints in cross-border industry. Write an investment memo that weighs growth, resilience, and social risk.">
                 <div class="course-meta"><span>ECO-220</span><em>Core Exploration</em></div>
                 <h2>Regional Economics &amp; Responsible Growth</h2>
                 <p>Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry.</p>
-                <div class="course-footer"><span>Economics</span><a href="/academics/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Economics</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="eco-220" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography Oral History Chen Wei Hong field interviews ethics archives minority languages public history">
+              <article class="course-card" data-course-card data-syllabus-card="ant-240" data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography &amp; Oral History Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history. Culture &amp; Society Core Exploration School of Society Borderlands Oral History Archive Contributes to PU's Borderlands Oral History Archive, preserving multilingual accounts of migration, labor, farming, and everyday civic life. Design an ethical interview protocol for sensitive regional histories. Connect oral testimony with archive material and public interpretation. Produce a respectful public history object with participant consent.">
                 <div class="course-meta"><span>ANT-240</span><em>Core Exploration</em></div>
                 <h2>Borderlands Ethnography &amp; Oral History</h2>
                 <p>Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
-                <div class="course-footer"><span>Culture &amp; Society</span><a href="/academics/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Culture &amp; Society</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="ant-240" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio Public Dashboards reproducible notebooks geospatial interfaces uncertainty accessible visual explanation">
+              <article class="course-card" data-course-card data-syllabus-card="dat-330" data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio for Public Dashboards Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation. Public Data Lab Crucible Faculty of Digital Civic Systems Civic Data Interface Lab Builds directly on PU's Civic Data Interface Lab research into accessible dashboards for municipal water, heat, and service access. Build a reproducible data pipeline with source notes and limitations. Design an accessible public dashboard for non-specialist residents. Test visual explanations with real users and revise based on evidence.">
                 <div class="course-meta"><span>DAT-330</span><em>Lab Crucible</em></div>
                 <h2>Open Data Studio for Public Dashboards</h2>
                 <p>Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation.</p>
-                <div class="course-footer"><span>Public Data</span><a href="/research/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Public Data</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="dat-330" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="public-data" data-level="partner-studio" data-search="POL-360 Municipal Resilience Policy Clinic heat flood water service access planning">
+              <article class="course-card" data-course-card data-syllabus-card="pol-360" data-domain="public-data" data-level="partner-studio" data-search="POL-360 Municipal Resilience Policy Clinic Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning. Public Data Partner Studio Faculty of Public Policy Municipal Resilience Clinic Works with partner municipalities to test how climate, infrastructure, and service-access evidence can be used in local planning cycles. Translate technical evidence into policy options for municipal partners. Compare heat, flood, water, and access risks across neighborhoods. Run a partner briefing that separates evidence, judgment, and recommendation.">
                 <div class="course-meta"><span>POL-360</span><em>Partner Studio</em></div>
                 <h2>Municipal Resilience Policy Clinic</h2>
                 <p>Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning.</p>
-                <div class="course-footer"><span>Public Data</span><a href="/contact/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>Public Data</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="pol-360" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
-              <article class="course-card" data-course-card data-domain="all" data-level="partner-studio" data-search="CAP-404 Capstone Evidence Dossier portfolio research question methods limitations dataset prototype partner response">
+              <article class="course-card" data-course-card data-syllabus-card="cap-404" data-domain="all" data-level="partner-studio" data-search="CAP-404 Capstone Evidence Dossier A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response. All Domains Partner Studio Interfaculty Capstone Board Applied Research Commons The capstone converts a PU research or partner question into a documented public dossier with method transparency and stakeholder response. Frame a research question that can survive methodological review. Produce a public dossier with data, methods, limitations, and prototype evidence. Respond to partner critique with a revised, accountable final submission.">
                 <div class="course-meta"><span>CAP-404</span><em>Partner Studio</em></div>
                 <h2>Capstone Evidence Dossier</h2>
                 <p>A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response.</p>
-                <div class="course-footer"><span>All Domains</span><a href="/admissions/">Explore Syllabus</a></div>
+                <div class="course-footer">
+                  <span>All Domains</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="cap-404" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
               </article>
             </div>
             <p class="course-empty" data-course-empty hidden>No modules match those filters yet.</p>
           </div>
         </div>
       </section>
+      
+        <div class="syllabus-shell" data-syllabus-shell hidden>
+          <div class="syllabus-scrim" data-syllabus-close aria-hidden="true"></div>
+          <aside id="course-syllabus-drawer" class="syllabus-drawer" role="dialog" aria-modal="true" aria-labelledby="syllabus-drawer-title" tabindex="-1" data-syllabus-drawer>
+            <div class="syllabus-toolbar">
+              <div>
+                <span id="syllabus-drawer-title">Course Detail Inspector</span>
+                <small>Pannonian University module syllabus</small>
+              </div>
+              <button class="syllabus-close" type="button" data-syllabus-close aria-label="Close syllabus inspector">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+              </button>
+            </div>
+            <div class="syllabus-scroll">
+              
+              <article class="syllabus-panel" data-syllabus-panel="pu-101" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">PU-101</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Danube Systems</p>
+                  <h2 id="syllabus-title-pu-101">Regional Evidence &amp; Pannonian Systems</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>6 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Foundation</dd>
+                  </div>
+                  <div>
+                    <dt>Field Evidence Quota</dt>
+                    <dd>42 mapped sources</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Danube Evidence Studio</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Connected to PU's Danube Basin Civic Atlas, a living research map of municipal services, agricultural zones, wetland risks, and public data gaps.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Build a regional evidence brief from public datasets and field notes.</li><li>Read Serbian Danube planning documents with clear limits and assumptions.</li><li>Present a map-backed civic question to a faculty review panel.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Regional Systems Orientation</strong>
+                        <p>Pannonian geography, settlement patterns, institutions, and evidence ethics.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Public Dataset Recovery</strong>
+                        <p>National statistics, municipal budgets, hydrological records, and metadata quality checks.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Field Question Design</strong>
+                        <p>Turning a civic issue into a defensible research question and sampling plan.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Evidence Brief Studio</strong>
+                        <p>A concise dossier with map, method note, uncertainty label, and public-facing conclusion.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Evidence brief 35%, dataset notebook 25%, field memo 20%, oral defense 20%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Autumn 2026 Register</span>
+                    <p>Next cohort starts Sept 1</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20PU-101%20Regional%20Evidence%20%26%20Pannonian%20Systems">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="agt-202" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">AGT-202</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Climate &amp; Land</p>
+                  <h2 id="syllabus-title-agt-202">Remote Sensing for Climate-Smart Agriculture</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>6 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Core Exploration</dd>
+                  </div>
+                  <div>
+                    <dt>Imagery Processing Quota</dt>
+                    <dd>18 scenes</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>AgriTech Remote Sensing Lab</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Uses PU field plots near Novi Sad to compare Sentinel-2 vegetation indices, UAV imagery, and farmer-reported irrigation stress.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Process remote sensing imagery into an agronomic interpretation.</li><li>Compare satellite and UAV signals without overstating precision.</li><li>Translate climate risk evidence into farm and policy recommendations.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Vegetation Indices and Ground Truth</strong>
+                        <p>NDVI, NDRE, soil moisture proxies, and the limits of spectral interpretation.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>UAV Mission Planning</strong>
+                        <p>Flight planning, image stitching, control points, and field safety procedures.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Irrigation Stress Detection</strong>
+                        <p>Temporal comparison of crop vigor, heat exposure, and water availability.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Decision Memo Lab</strong>
+                        <p>A farm-facing advisory note with maps, uncertainty, and recommended next measurements.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Imagery notebook 30%, field protocol 20%, decision memo 30%, peer critique 20%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Spring 2027 Register</span>
+                    <p>Field section opens Jan 15</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20AGT-202%20Remote%20Sensing%20for%20Climate-Smart%20Agriculture">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="wat-310" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">WAT-310</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Danube Systems</p>
+                  <h2 id="syllabus-title-wat-310">Groundwater Quality &amp; Irrigation Risk</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>7 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Lab Crucible</dd>
+                  </div>
+                  <div>
+                    <dt>Sample Chain Standard</dt>
+                    <dd>36 verified samples</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Water Futures Lab</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Feeds the Water Futures Lab's groundwater risk archive for irrigation communities along the Danube and Tisa corridors.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Execute a defensible water sampling chain from field site to lab record.</li><li>Interpret salinity, nitrate, and conductivity indicators for irrigation risk.</li><li>Prepare public communication that is accurate without being alarmist.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Sampling Chain and Site Selection</strong>
+                        <p>Field logs, bottles, preservation, duplicates, and location metadata.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Water Chemistry Interpretation</strong>
+                        <p>Conductivity, salinity, nitrate, pH, and threshold comparison.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Aquifer Risk Mapping</strong>
+                        <p>Combining sample evidence, land use, and irrigation dependence.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Community Risk Note</strong>
+                        <p>A public-facing note with clear evidence levels and next-step monitoring advice.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Lab notebook 30%, risk map 25%, methods audit 20%, community note 25%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Spring 2027 Register</span>
+                    <p>Lab safety clearance required</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20WAT-310%20Groundwater%20Quality%20%26%20Irrigation%20Risk">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="eco-220" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">ECO-220</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Economics</p>
+                  <h2 id="syllabus-title-eco-220">Regional Economics &amp; Responsible Growth</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>6 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Core Exploration</dd>
+                  </div>
+                  <div>
+                    <dt>Model Review Quota</dt>
+                    <dd>4 policy scenarios</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Regional Growth Observatory</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Supports the Regional Growth Observatory's work on logistics corridors, municipal finance stress, and circular bioeconomy investment.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Model regional growth tradeoffs using transparent assumptions.</li><li>Evaluate public finance and logistics constraints in cross-border industry.</li><li>Write an investment memo that weighs growth, resilience, and social risk.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Regional Accounts and Productive Capacity</strong>
+                        <p>Employment, sector mix, freight routes, and local fiscal structure.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Circular Bioeconomy Finance</strong>
+                        <p>Agricultural byproducts, investment cases, lifecycle claims, and risk controls.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Cross-Border Industry Scenarios</strong>
+                        <p>Scenario modeling for Serbia-EU trade, logistics, and infrastructure constraints.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Responsible Growth Memo</strong>
+                        <p>A board-ready memo with assumptions, sensitivity checks, and equity considerations.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Scenario model 30%, finance memo 30%, seminar brief 20%, oral defense 20%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Autumn 2026 Register</span>
+                    <p>Next cohort starts Sept 1</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20ECO-220%20Regional%20Economics%20%26%20Responsible%20Growth">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="ant-240" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">ANT-240</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Culture &amp; Society</p>
+                  <h2 id="syllabus-title-ant-240">Borderlands Ethnography &amp; Oral History</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>6 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Core Exploration</dd>
+                  </div>
+                  <div>
+                    <dt>Interview Practice Quota</dt>
+                    <dd>8 supervised sessions</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Borderlands Oral History Archive</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Contributes to PU's Borderlands Oral History Archive, preserving multilingual accounts of migration, labor, farming, and everyday civic life.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Design an ethical interview protocol for sensitive regional histories.</li><li>Connect oral testimony with archive material and public interpretation.</li><li>Produce a respectful public history object with participant consent.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Ethnographic Listening and Consent</strong>
+                        <p>Interview roles, consent language, positionality, and field note practice.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Archives, Memory, and Minority Languages</strong>
+                        <p>Working with multilingual sources and fragmented public records.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Interpretation Without Extraction</strong>
+                        <p>Participant review, anonymization, translation limits, and narrative responsibility.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Public History Studio</strong>
+                        <p>A short exhibit script, audio excerpt plan, and ethics appendix.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Interview protocol 25%, archive note 20%, field reflection 25%, public history object 30%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Autumn 2026 Register</span>
+                    <p>Ethics workshop required</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20ANT-240%20Borderlands%20Ethnography%20%26%20Oral%20History">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="dat-330" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">DAT-330</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Public Data</p>
+                  <h2 id="syllabus-title-dat-330">Open Data Studio for Public Dashboards</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>7 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Lab Crucible</dd>
+                  </div>
+                  <div>
+                    <dt>Dashboard Usability Quota</dt>
+                    <dd>12 resident tests</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Civic Data Interface Lab</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Builds directly on PU's Civic Data Interface Lab research into accessible dashboards for municipal water, heat, and service access.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Build a reproducible data pipeline with source notes and limitations.</li><li>Design an accessible public dashboard for non-specialist residents.</li><li>Test visual explanations with real users and revise based on evidence.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Reproducible Notebook Foundations</strong>
+                        <p>Data provenance, cleaning logs, joins, and versioned assumptions.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Geospatial Interface Patterns</strong>
+                        <p>Maps, tables, filters, legends, and mobile-first public access.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Uncertainty and Accessibility</strong>
+                        <p>Plain-language uncertainty, contrast, keyboard access, and screen-reader labels.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Resident Test and Revision</strong>
+                        <p>Usability sessions, issue triage, and a published dashboard release note.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Notebook 25%, dashboard prototype 35%, user test report 20%, release note 20%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Spring 2027 Register</span>
+                    <p>Studio review starts Feb 3</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20DAT-330%20Open%20Data%20Studio%20for%20Public%20Dashboards">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="pol-360" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">POL-360</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">Public Data</p>
+                  <h2 id="syllabus-title-pol-360">Municipal Resilience Policy Clinic</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>8 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Partner Studio</dd>
+                  </div>
+                  <div>
+                    <dt>Partner Briefing Quota</dt>
+                    <dd>3 policy briefs</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Municipal Resilience Clinic</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>Works with partner municipalities to test how climate, infrastructure, and service-access evidence can be used in local planning cycles.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Translate technical evidence into policy options for municipal partners.</li><li>Compare heat, flood, water, and access risks across neighborhoods.</li><li>Run a partner briefing that separates evidence, judgment, and recommendation.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Partner Problem Intake</strong>
+                        <p>Scope, stakeholders, available evidence, decision calendar, and constraints.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Risk Comparison Framework</strong>
+                        <p>Heat, flood, water, and access indicators with neighborhood-level caveats.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Policy Option Design</strong>
+                        <p>Tradeoffs, implementation cost, legal fit, and accountability measures.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Partner Briefing</strong>
+                        <p>A live briefing deck, evidence appendix, and follow-up action log.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Partner intake 20%, risk framework 25%, policy brief 35%, live briefing 20%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Spring 2027 Register</span>
+                    <p>Partner matching begins Feb 10</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20POL-360%20Municipal%20Resilience%20Policy%20Clinic">Enroll in Module</a>
+                </div>
+              </article>
+              <article class="syllabus-panel" data-syllabus-panel="cap-404" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">CAP-404</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">All Domains</p>
+                  <h2 id="syllabus-title-cap-404">Capstone Evidence Dossier</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>10 ECTS</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>Partner Studio</dd>
+                  </div>
+                  <div>
+                    <dt>Public Portfolio Standard</dt>
+                    <dd>1 reviewed dossier</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>Applied Research Commons</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>The capstone converts a PU research or partner question into a documented public dossier with method transparency and stakeholder response.</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    <li>Frame a research question that can survive methodological review.</li><li>Produce a public dossier with data, methods, limitations, and prototype evidence.</li><li>Respond to partner critique with a revised, accountable final submission.</li>
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    
+                    <li>
+                      <span>01</span>
+                      <div>
+                        <strong>Question and Method Gate</strong>
+                        <p>Research question, partner need, data access, ethics, and feasibility review.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <div>
+                        <strong>Dataset and Prototype Sprint</strong>
+                        <p>Evidence assembly, prototype build, testing plan, and limitation log.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <div>
+                        <strong>Partner Response Cycle</strong>
+                        <p>Critique session, revision priorities, and public communication choices.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <div>
+                        <strong>Final Dossier Defense</strong>
+                        <p>Public portfolio, methods appendix, partner response, and oral defense.</p>
+                      </div>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>Proposal gate 15%, dataset/prototype 35%, public dossier 35%, defense 15%.</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>Autumn 2027 Register</span>
+                    <p>Proposal gate opens May 20</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:registrar@pu.edu.rs?subject=Syllabus%20enquiry%3A%20CAP-404%20Capstone%20Evidence%20Dossier">Enroll in Module</a>
+                </div>
+              </article>
+            </div>
+          </aside>
+        </div>
     
   </main>
   <footer class="site-footer">

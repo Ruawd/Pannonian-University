@@ -9,14 +9,17 @@ export function setupInteractions() {
   setupSystemsConsole();
   setupCohortShowcases();
   setupCurriculumFilters();
+  setupSyllabusDrawer();
 
   document.addEventListener("pu:page-ready", setupRevealObserver);
   document.addEventListener("pu:navigated", () => {
+    document.body.classList.remove("syllabus-open");
     updateNavIndicator();
     setupRevealObserver();
     setupSystemsConsole();
     setupCohortShowcases();
     setupCurriculumFilters();
+    setupSyllabusDrawer();
     closeMenu();
   });
 }
@@ -531,4 +534,123 @@ function updateFilterGroupIndicator(group) {
   group.style.setProperty("--filter-indicator-y", `${buttonRect.top - groupRect.top}px`);
   group.style.setProperty("--filter-indicator-height", `${buttonRect.height}px`);
   group.classList.add("has-filter-indicator");
+}
+
+function setupSyllabusDrawer() {
+  const shell = document.querySelector("[data-syllabus-shell]");
+  if (!shell || shell.dataset.drawerReady === "true") return;
+
+  shell.dataset.drawerReady = "true";
+
+  const drawer = shell.querySelector("[data-syllabus-drawer]");
+  const scrollArea = shell.querySelector(".syllabus-scroll");
+  const panels = [...shell.querySelectorAll("[data-syllabus-panel]")];
+  const openers = [...document.querySelectorAll("[data-syllabus-open]")];
+  const closers = [...shell.querySelectorAll("[data-syllabus-close]")];
+  let activeOpener = null;
+  let closeTimer = 0;
+
+  openers.forEach((opener) => {
+    opener.setAttribute("aria-expanded", "false");
+    opener.addEventListener("click", () => {
+      openSyllabus(opener.dataset.syllabusOpen, opener);
+    });
+  });
+
+  closers.forEach((closer) => {
+    closer.addEventListener("click", closeSyllabus);
+  });
+
+  shell.addEventListener("keydown", (event) => {
+    if (shell.hidden) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeSyllabus();
+      return;
+    }
+
+    if (event.key === "Tab") {
+      trapDrawerFocus(event);
+    }
+  });
+
+  function openSyllabus(id, opener) {
+    const panel = panels.find((item) => item.dataset.syllabusPanel === id) || panels[0];
+    if (!panel || !drawer) return;
+
+    window.clearTimeout(closeTimer);
+    activeOpener = opener;
+
+    panels.forEach((item) => {
+      const active = item === panel;
+      item.hidden = !active;
+      item.classList.toggle("is-active", active);
+    });
+
+    openers.forEach((item) => {
+      item.setAttribute("aria-expanded", String(item === opener));
+    });
+
+    drawer.setAttribute("aria-labelledby", panel.querySelector("h2")?.id || "syllabus-drawer-title");
+    shell.hidden = false;
+    document.body.classList.add("syllabus-open");
+    if (scrollArea) {
+      scrollArea.scrollTop = 0;
+      scrollArea.scrollLeft = 0;
+    }
+
+    requestAnimationFrame(() => {
+      shell.classList.add("is-open");
+      drawer.focus({ preventScroll: true });
+    });
+  }
+
+  function closeSyllabus() {
+    if (shell.hidden) return;
+
+    shell.classList.remove("is-open");
+    document.body.classList.remove("syllabus-open");
+    openers.forEach((item) => item.setAttribute("aria-expanded", "false"));
+
+    const finishClose = () => {
+      shell.hidden = true;
+      panels.forEach((panel) => {
+        panel.hidden = true;
+        panel.classList.remove("is-active");
+      });
+
+      if (activeOpener?.isConnected) {
+        activeOpener.focus({ preventScroll: true });
+      }
+      activeOpener = null;
+    };
+
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(finishClose, reducedMotion.matches ? 0 : 280);
+  }
+
+  function trapDrawerFocus(event) {
+    const focusable = [...drawer.querySelectorAll(
+      "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])"
+    )].filter((element) => !element.hidden && element.offsetParent !== null);
+
+    if (!focusable.length) {
+      event.preventDefault();
+      drawer.focus({ preventScroll: true });
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 }

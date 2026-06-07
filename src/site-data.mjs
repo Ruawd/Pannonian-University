@@ -1,3 +1,5 @@
+import { curriculumCourses } from "./curriculum-data.mjs";
+
 export const site = {
   name: "Pannonian University",
   shortName: "PU",
@@ -26,6 +28,139 @@ export const site = {
     { value: "31", label: "partner institutions" }
   ]
 };
+
+function html(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderCourseCards() {
+  return curriculumCourses.map((course) => {
+    const searchText = [
+      course.code,
+      course.title,
+      course.summary,
+      course.domainLabel,
+      course.levelLabel,
+      course.faculty,
+      course.lab,
+      course.researchTie,
+      ...course.outcomes
+    ].join(" ");
+
+    return `
+              <article class="course-card" data-course-card data-syllabus-card="${html(course.id)}" data-domain="${html(course.domain)}" data-level="${html(course.level)}" data-search="${html(searchText)}">
+                <div class="course-meta"><span>${html(course.code)}</span><em>${html(course.levelLabel)}</em></div>
+                <h2>${html(course.title)}</h2>
+                <p>${html(course.summary)}</p>
+                <div class="course-footer">
+                  <span>${html(course.domainLabel)}</span>
+                  <button class="syllabus-link" type="button" data-syllabus-open="${html(course.id)}" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                    Explore Syllabus
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                  </button>
+                </div>
+              </article>`;
+  }).join("");
+}
+
+function renderSyllabusDrawer() {
+  return `
+        <div class="syllabus-shell" data-syllabus-shell hidden>
+          <div class="syllabus-scrim" data-syllabus-close aria-hidden="true"></div>
+          <aside id="course-syllabus-drawer" class="syllabus-drawer" role="dialog" aria-modal="true" aria-labelledby="syllabus-drawer-title" tabindex="-1" data-syllabus-drawer>
+            <div class="syllabus-toolbar">
+              <div>
+                <span id="syllabus-drawer-title">Course Detail Inspector</span>
+                <small>Pannonian University module syllabus</small>
+              </div>
+              <button class="syllabus-close" type="button" data-syllabus-close aria-label="Close syllabus inspector">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+              </button>
+            </div>
+            <div class="syllabus-scroll">
+              ${curriculumCourses.map(renderSyllabusPanel).join("")}
+            </div>
+          </aside>
+        </div>`;
+}
+
+function renderSyllabusPanel(course) {
+  const mailSubject = encodeURIComponent(`Syllabus enquiry: ${course.code} ${course.title}`);
+
+  return `
+              <article class="syllabus-panel" data-syllabus-panel="${html(course.id)}" hidden>
+                <header class="syllabus-header">
+                  <div class="syllabus-inspector-row">
+                    <span class="syllabus-code">${html(course.code)}</span>
+                    <span>Detail Inspector</span>
+                  </div>
+                  <p class="eyebrow">${html(course.domainLabel)}</p>
+                  <h2 id="syllabus-title-${html(course.id)}">${html(course.title)}</h2>
+                </header>
+
+                <dl class="syllabus-facts">
+                  <div>
+                    <dt>Credits</dt>
+                    <dd>${html(course.credits)}</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Level</dt>
+                    <dd>${html(course.levelLabel)}</dd>
+                  </div>
+                  <div>
+                    <dt>${html(course.performanceLabel)}</dt>
+                    <dd>${html(course.performanceValue)}</dd>
+                  </div>
+                  <div>
+                    <dt>Academic Lab Affiliate</dt>
+                    <dd>${html(course.lab)}</dd>
+                  </div>
+                </dl>
+
+                <section class="syllabus-block">
+                  <h3>Research Connection</h3>
+                  <p>${html(course.researchTie)}</p>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Learning Outcomes</h3>
+                  <ul class="syllabus-outcomes">
+                    ${course.outcomes.map((outcome) => `<li>${html(outcome)}</li>`).join("")}
+                  </ul>
+                </section>
+
+                <section class="syllabus-block">
+                  <h3>Chronological Syllabus (4-week intensive modules)</h3>
+                  <ol class="syllabus-weeks">
+                    ${course.weeks.map(([title, detail], index) => `
+                    <li>
+                      <span>${String(index + 1).padStart(2, "0")}</span>
+                      <div>
+                        <strong>${html(title)}</strong>
+                        <p>${html(detail)}</p>
+                      </div>
+                    </li>`).join("")}
+                  </ol>
+                </section>
+
+                <section class="syllabus-block syllabus-assessment">
+                  <h3>Assessment Pattern</h3>
+                  <p>${html(course.assessment)}</p>
+                </section>
+
+                <div class="syllabus-actionbar">
+                  <div>
+                    <span>${html(course.term)} Register</span>
+                    <p>${html(course.registerNote)}</p>
+                  </div>
+                  <a class="syllabus-enroll" href="mailto:${site.emails.registrar}?subject=${mailSubject}">Enroll in Module</a>
+                </div>
+              </article>`;
+}
 
 export const pages = [
   {
@@ -531,61 +666,15 @@ export const pages = [
             </div>
           </aside>
           <div class="curriculum-results">
-            <p class="result-count">Filtered Result Count: <strong data-result-count>8</strong> Course Modules</p>
+            <p class="result-count">Filtered Result Count: <strong data-result-count>${curriculumCourses.length}</strong> Course Modules</p>
             <div class="course-grid">
-              <article class="course-card" data-course-card data-domain="danube-systems" data-level="foundation" data-search="PU-101 Regional Evidence Pannonian Systems Danube foundation geography institutions datasets civic questions">
-                <div class="course-meta"><span>PU-101</span><em>Foundation</em></div>
-                <h2>Regional Evidence &amp; Pannonian Systems</h2>
-                <p>Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region.</p>
-                <div class="course-footer"><span>Danube Systems</span><a href="/academics/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="climate-land" data-level="core-exploration" data-search="AGT-202 Remote Sensing Climate Smart Agriculture crop vigor field stress irrigation UAV imagery">
-                <div class="course-meta"><span>AGT-202</span><em>Core Exploration</em></div>
-                <h2>Remote Sensing for Climate-Smart Agriculture</h2>
-                <p>Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions.</p>
-                <div class="course-footer"><span>Climate &amp; Land</span><a href="/research/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="danube-systems" data-level="lab-crucible" data-search="WAT-310 Groundwater Quality Irrigation Risk sampling salinity aquifer mapping">
-                <div class="course-meta"><span>WAT-310</span><em>Lab Crucible</em></div>
-                <h2>Groundwater Quality &amp; Irrigation Risk</h2>
-                <p>Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards.</p>
-                <div class="course-footer"><span>Danube Systems</span><a href="/research/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="economics" data-level="core-exploration" data-search="ECO-220 Regional Economics Responsible Growth Huang Yu Fei logistics public finance circular bioeconomy cross-border industry">
-                <div class="course-meta"><span>ECO-220</span><em>Core Exploration</em></div>
-                <h2>Regional Economics &amp; Responsible Growth</h2>
-                <p>Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry.</p>
-                <div class="course-footer"><span>Economics</span><a href="/academics/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography Oral History Chen Wei Hong field interviews ethics archives minority languages public history">
-                <div class="course-meta"><span>ANT-240</span><em>Core Exploration</em></div>
-                <h2>Borderlands Ethnography &amp; Oral History</h2>
-                <p>Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
-                <div class="course-footer"><span>Culture &amp; Society</span><a href="/academics/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio Public Dashboards reproducible notebooks geospatial interfaces uncertainty accessible visual explanation">
-                <div class="course-meta"><span>DAT-330</span><em>Lab Crucible</em></div>
-                <h2>Open Data Studio for Public Dashboards</h2>
-                <p>Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation.</p>
-                <div class="course-footer"><span>Public Data</span><a href="/research/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="public-data" data-level="partner-studio" data-search="POL-360 Municipal Resilience Policy Clinic heat flood water service access planning">
-                <div class="course-meta"><span>POL-360</span><em>Partner Studio</em></div>
-                <h2>Municipal Resilience Policy Clinic</h2>
-                <p>Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning.</p>
-                <div class="course-footer"><span>Public Data</span><a href="/contact/">Explore Syllabus</a></div>
-              </article>
-              <article class="course-card" data-course-card data-domain="all" data-level="partner-studio" data-search="CAP-404 Capstone Evidence Dossier portfolio research question methods limitations dataset prototype partner response">
-                <div class="course-meta"><span>CAP-404</span><em>Partner Studio</em></div>
-                <h2>Capstone Evidence Dossier</h2>
-                <p>A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response.</p>
-                <div class="course-footer"><span>All Domains</span><a href="/admissions/">Explore Syllabus</a></div>
-              </article>
+              ${renderCourseCards()}
             </div>
             <p class="course-empty" data-course-empty hidden>No modules match those filters yet.</p>
           </div>
         </div>
       </section>
+      ${renderSyllabusDrawer()}
     `
   },
   {
