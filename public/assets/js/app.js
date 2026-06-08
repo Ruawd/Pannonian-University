@@ -1,5 +1,5 @@
-import { setupPageTransitions } from "./transitions.js?v=20260608-consolecards";
-import { setupInteractions } from "./interactions.js?v=20260608-consolecards";
+import { setupPageTransitions } from "./transitions.js?v=20260608-luodean";
+import { setupInteractions } from "./interactions.js?v=20260608-luodean";
 
 setupInteractions();
 setupPageTransitions();

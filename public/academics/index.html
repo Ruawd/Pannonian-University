@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-consolecards">
-  <script type="module" src="/assets/js/app.js?v=20260608-consolecards"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-luodean">
+  <script type="module" src="/assets/js/app.js?v=20260608-luodean"></script>
 </head>
 <body data-page="academics">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -71,8 +71,13 @@
               
               <button class="faculty-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="faculty-engineering" data-faculty-trigger="engineering" data-ripple>
                 <span>Engineering</span>
-                <strong>Faculty of Engineering and Computing</strong>
-                <small>9 degree pathways</small>
+                <strong>Faculty of Engineering</strong>
+                <small>7 degree pathways</small>
+              </button>
+              <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-computer-science" data-faculty-trigger="computer-science" data-ripple>
+                <span>Computer Science</span>
+                <strong>School of Computer Science</strong>
+                <small>8 computing pathways</small>
               </button>
               <button class="faculty-tab" type="button" role="tab" aria-selected="false" aria-controls="faculty-land" data-faculty-trigger="land" data-ripple>
                 <span>Life Sciences</span>
@@ -105,10 +110,10 @@
               <article id="faculty-engineering" class="faculty-detail is-active" role="tabpanel" data-faculty-panel="engineering">
                 <div class="faculty-detail-top">
                   <span>Engineering</span>
-                  <strong>9 degree pathways</strong>
+                  <strong>7 degree pathways</strong>
                 </div>
-                <h3>Faculty of Engineering and Computing</h3>
-                <p>Engineering, software systems, robotics, energy, transport, and civic infrastructure.</p>
+                <h3>Faculty of Engineering</h3>
+                <p>Robotics, energy, transport, sensing, water infrastructure, and civic systems engineering.</p>
                 <div class="faculty-inspector-grid">
                   <div>
                     <span>Dean</span>
@@ -118,20 +123,53 @@
                   <div>
                     <span>Featured Course</span>
                     <strong>DAT-330 Open Data Studio for Public Dashboards</strong>
-                    <p>Students prototype public dashboards, low-cost sensor rigs, and field-ready decision tools with municipal partners.</p>
+                    <p>Students prototype field sensors, infrastructure models, public dashboards, and decision tools with municipal partners.</p>
                   </div>
                 </div>
-                <div class="faculty-tags" aria-label="Faculty of Engineering and Computing programs">
-                  <span>Software Systems</span><span>Civil and Water Infrastructure</span><span>Robotics and Sensing</span><span>Energy Systems</span>
+                <div class="faculty-tags" aria-label="Faculty of Engineering programs">
+                  <span>Civil and Water Infrastructure</span><span>Robotics and Sensing</span><span>Energy Systems</span><span>Transport Systems</span>
                 </div>
                 <div class="faculty-lab-list">
-                  <div><span>Lab</span><strong>Human-Centered AI Group</strong></div><div><span>Lab</span><strong>Systems Prototyping Lab</strong></div><div><span>Lab</span><strong>Infrastructure Simulation Suite</strong></div>
+                  <div><span>Lab</span><strong>Systems Prototyping Lab</strong></div><div><span>Lab</span><strong>Infrastructure Simulation Suite</strong></div><div><span>Lab</span><strong>Field Robotics Workshop</strong></div>
                 </div>
                 <div class="faculty-detail-footer">
-                  <p><span>Career Signals</span>software engineer, data analyst, infrastructure planner, product designer</p>
+                  <p><span>Career Signals</span>infrastructure planner, robotics engineer, systems analyst, transport designer</p>
                   <div class="faculty-detail-actions">
                     <a href="/academics/engineering/">View faculty profile</a>
                     <a href="mailto:engineering@pu.edu.rs">Contact faculty office</a>
+                  </div>
+                </div>
+              </article>
+              <article id="faculty-computer-science" class="faculty-detail" role="tabpanel" data-faculty-panel="computer-science" hidden>
+                <div class="faculty-detail-top">
+                  <span>Computer Science</span>
+                  <strong>8 computing pathways</strong>
+                </div>
+                <h3>School of Computer Science</h3>
+                <p>Artificial intelligence, software engineering, cybersecurity, data systems, and public-interest computing.</p>
+                <div class="faculty-inspector-grid">
+                  <div>
+                    <span>Dean</span>
+                    <strong>Luo Zi Chao</strong>
+                    <p>Human-Centered AI and Systems Lab</p>
+                  </div>
+                  <div>
+                    <span>Featured Course</span>
+                    <strong>DAT-330 Open Data Studio for Public Dashboards</strong>
+                    <p>Students build auditable AI prototypes, secure software services, reproducible data systems, and public-facing digital tools.</p>
+                  </div>
+                </div>
+                <div class="faculty-tags" aria-label="School of Computer Science programs">
+                  <span>Artificial Intelligence</span><span>Software Engineering</span><span>Cybersecurity</span><span>Data Systems</span>
+                </div>
+                <div class="faculty-lab-list">
+                  <div><span>Lab</span><strong>Human-Centered AI Group</strong></div><div><span>Lab</span><strong>Secure Systems Lab</strong></div><div><span>Lab</span><strong>Civic Data Interface Lab</strong></div>
+                </div>
+                <div class="faculty-detail-footer">
+                  <p><span>Career Signals</span>software engineer, AI systems analyst, cybersecurity associate, data product designer</p>
+                  <div class="faculty-detail-actions">
+                    <a href="/academics/computer-science/">View faculty profile</a>
+                    <a href="mailto:computing@pu.edu.rs">Contact faculty office</a>
                   </div>
                 </div>
               </article>
@@ -309,8 +347,13 @@
         <div class="container feature-grid three">
           <article class="feature-card">
             <span class="card-kicker">Faculty</span>
-            <h2>Engineering and Computing</h2>
-            <p>Software systems, AI, robotics, energy, transport, civil engineering, and product design.</p>
+            <h2>Engineering</h2>
+            <p>Robotics, energy, transport, civil engineering, infrastructure sensing, and systems prototyping.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-kicker">Faculty</span>
+            <h2>Computer Science</h2>
+            <p>AI, cybersecurity, software engineering, data systems, civic interfaces, and public-interest computing.</p>
           </article>
           <article class="feature-card">
             <span class="card-kicker">Faculty</span>
@@ -459,6 +502,11 @@
                 <span>Dean, School of Economics</span>
                 <small>Office: Regional Growth</small>
               </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-luo" data-cohort-trigger="luo" data-ripple>
+                <strong>Luo Zi Chao</strong>
+                <span>Dean, School of Computer Science</span>
+                <small>Office: Human-Centered AI</small>
+              </button>
               <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-liu" data-cohort-trigger="liu" data-ripple>
                 <strong>Liu Jun Ye</strong>
                 <span>Professor of Physics</span>
@@ -524,6 +572,31 @@
                   <strong>Responsible Growth Studio</strong>
                   <p>Applied finance, circular bioeconomy, logistics evidence, and industry partnerships across the Danube corridor.</p>
                   <a href="mailto:huang.yufei@pu.edu.rs">huang.yufei@pu.edu.rs</a>
+                </div>
+              </article>
+              <article id="profile-luo" class="cohort-detail" role="tabpanel" data-cohort-detail="luo" hidden>
+                <p class="cohort-quote">"Computer science should make public systems easier to audit, safer to operate, and clearer for the people who depend on them."</p>
+                <div class="cohort-person">
+                  <picture class="person-photo">
+          <source type="image/avif" srcset="/assets/img/luo-zi-chao-portrait-360.avif 360w, /assets/img/luo-zi-chao-portrait-720.avif 720w, /assets/img/luo-zi-chao-portrait-960.avif 960w" sizes="(max-width: 680px) 112px, 168px">
+          <source type="image/webp" srcset="/assets/img/luo-zi-chao-portrait-360.webp 360w, /assets/img/luo-zi-chao-portrait-720.webp 720w, /assets/img/luo-zi-chao-portrait-960.webp 960w" sizes="(max-width: 680px) 112px, 168px">
+          <img src="/assets/img/luo-zi-chao-portrait.jpg" width="960" height="1200" alt="Luo Zi Chao, Dean of the School of Computer Science" loading="lazy" decoding="async">
+        </picture>
+                  <div>
+                    <h3>Luo Zi Chao</h3>
+                    <p>Dean, School of Computer Science</p>
+                  </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Wed 10:00-12:00</strong></div>
+                  <div><span>Course</span><strong>DAT-330 Open Data Studio</strong></div>
+                  <div><span>Research Output</span><strong>Auditable AI prototypes</strong></div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Human-Centered AI and Systems Lab</strong>
+                  <p>Auditable AI, secure software services, civic data interfaces, and reproducible systems for public-sector partners.</p>
+                  <a href="mailto:luo.zichao@pu.edu.rs">luo.zichao@pu.edu.rs</a>
                 </div>
               </article>
               <article id="profile-liu" class="cohort-detail" role="tabpanel" data-cohort-detail="liu" hidden>

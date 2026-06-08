@@ -28,7 +28,7 @@ export const site = {
     { label: "Contact", href: "/contact/" }
   ],
   stats: [
-    { value: "6", label: "faculties" },
+    { value: "7", label: "faculties" },
     { value: "42", label: "degree pathways" },
     { value: "18:1", label: "student-faculty ratio" },
     { value: "31", label: "partner institutions" }
@@ -36,6 +36,7 @@ export const site = {
 };
 
 const economicsFaculty = academicFaculties.find((faculty) => faculty.id === "economics");
+const computerScienceFaculty = academicFaculties.find((faculty) => faculty.id === "computer-science");
 
 function html(value) {
   return String(value)
@@ -898,11 +899,16 @@ const corePages = [
             <p class="eyebrow">Study areas</p>
             <h2>Programs shaped around problems that matter.</h2>
           </div>
-          <div class="feature-grid three">
+          <div class="feature-grid four">
             <article class="feature-card">
               <span class="card-kicker">Faculty of Engineering</span>
               <h3>Intelligent Infrastructure</h3>
-              <p>Energy systems, robotics, transport, civil technology, and human-centered computing.</p>
+              <p>Energy systems, robotics, transport, civil technology, field sensing, and infrastructure simulation.</p>
+            </article>
+            <article class="feature-card">
+              <span class="card-kicker">School of Computer Science</span>
+              <h3>Auditable AI and Systems</h3>
+              <p>Artificial intelligence, software engineering, cybersecurity, open data, and civic digital services.</p>
             </article>
             <article class="feature-card">
               <span class="card-kicker">Faculty of Life Sciences</span>
@@ -1084,8 +1090,13 @@ const corePages = [
         <div class="container feature-grid three">
           <article class="feature-card">
             <span class="card-kicker">Faculty</span>
-            <h2>Engineering and Computing</h2>
-            <p>Software systems, AI, robotics, energy, transport, civil engineering, and product design.</p>
+            <h2>Engineering</h2>
+            <p>Robotics, energy, transport, civil engineering, infrastructure sensing, and systems prototyping.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-kicker">Faculty</span>
+            <h2>Computer Science</h2>
+            <p>AI, cybersecurity, software engineering, data systems, civic interfaces, and public-interest computing.</p>
           </article>
           <article class="feature-card">
             <span class="card-kicker">Faculty</span>
@@ -1230,6 +1241,11 @@ const corePages = [
                 <span>Dean, School of Economics</span>
                 <small>Office: Regional Growth</small>
               </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-luo" data-cohort-trigger="luo" data-ripple>
+                <strong>Luo Zi Chao</strong>
+                <span>Dean, School of Computer Science</span>
+                <small>Office: Human-Centered AI</small>
+              </button>
               <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-liu" data-cohort-trigger="liu" data-ripple>
                 <strong>Liu Jun Ye</strong>
                 <span>Professor of Physics</span>
@@ -1298,6 +1314,31 @@ const corePages = [
                   <strong>Responsible Growth Studio</strong>
                   <p>Applied finance, circular bioeconomy, logistics evidence, and industry partnerships across the Danube corridor.</p>
                   <a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-luo" class="cohort-detail" role="tabpanel" data-cohort-detail="luo" hidden>
+                <p class="cohort-quote">"Computer science should make public systems easier to audit, safer to operate, and clearer for the people who depend on them."</p>
+                <div class="cohort-person">
+                  ${responsiveImage(computerScienceFaculty.portrait.fileName, {
+                    ...computerScienceFaculty.portrait,
+                    className: "person-photo",
+                    sizes: "(max-width: 680px) 112px, 168px"
+                  })}
+                  <div>
+                    <h3>Luo Zi Chao</h3>
+                    <p>Dean, School of Computer Science</p>
+                  </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Wed 10:00-12:00</strong></div>
+                  <div><span>Course</span><strong>DAT-330 Open Data Studio</strong></div>
+                  <div><span>Research Output</span><strong>Auditable AI prototypes</strong></div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Human-Centered AI and Systems Lab</strong>
+                  <p>Auditable AI, secure software services, civic data interfaces, and reproducible systems for public-sector partners.</p>
+                  <a href="mailto:luo.zichao@${site.domain}">luo.zichao@${site.domain}</a>
                 </div>
               </article>
               <article id="profile-liu" class="cohort-detail" role="tabpanel" data-cohort-detail="liu" hidden>
@@ -1934,6 +1975,7 @@ const corePages = [
             <article><span>Visitor Desk</span><strong><a href="mailto:${site.emails.general}">${site.emails.general}</a></strong><p>Campus visits, public events, media routing, delivery information, and accessibility needs.</p></article>
             <article><span>Faculty of Society</span><strong><a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a></strong><p>Dean Chen Wei Hong's office supports society faculty advising, ethnographic methods, and heritage-fieldwork inquiries.</p></article>
             <article><span>School of Economics</span><strong><a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a></strong><p>Dean Huang Yu Fei's office supports economics advising, applied finance studios, and industry partnership questions.</p></article>
+            <article><span>School of Computer Science</span><strong><a href="mailto:luo.zichao@${site.domain}">luo.zichao@${site.domain}</a></strong><p>Dean Luo Zi Chao's office supports computing advising, AI systems studios, secure software projects, and data-platform inquiries.</p></article>
           </div>
         </div>
       </section>

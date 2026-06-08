@@ -2,17 +2,40 @@ export const academicFaculties = [
   {
     id: "engineering",
     label: "Engineering",
-    name: "Faculty of Engineering and Computing",
-    short: "Engineering, software systems, robotics, energy, transport, and civic infrastructure.",
+    name: "Faculty of Engineering",
+    short: "Robotics, energy, transport, sensing, water infrastructure, and civic systems engineering.",
     dean: "Dr. Marko Ilic",
     office: "Intelligent Infrastructure Studio",
-    metric: "9 degree pathways",
+    metric: "7 degree pathways",
     email: "engineering@pu.edu.rs",
-    programs: ["Software Systems", "Civil and Water Infrastructure", "Robotics and Sensing", "Energy Systems"],
-    labs: ["Human-Centered AI Group", "Systems Prototyping Lab", "Infrastructure Simulation Suite"],
+    programs: ["Civil and Water Infrastructure", "Robotics and Sensing", "Energy Systems", "Transport Systems"],
+    labs: ["Systems Prototyping Lab", "Infrastructure Simulation Suite", "Field Robotics Workshop"],
     featuredCourse: "DAT-330 Open Data Studio for Public Dashboards",
-    studio: "Students prototype public dashboards, low-cost sensor rigs, and field-ready decision tools with municipal partners.",
-    careers: "software engineer, data analyst, infrastructure planner, product designer"
+    studio: "Students prototype field sensors, infrastructure models, public dashboards, and decision tools with municipal partners.",
+    careers: "infrastructure planner, robotics engineer, systems analyst, transport designer"
+  },
+  {
+    id: "computer-science",
+    label: "Computer Science",
+    name: "School of Computer Science",
+    short: "Artificial intelligence, software engineering, cybersecurity, data systems, and public-interest computing.",
+    dean: "Luo Zi Chao",
+    portrait: {
+      fileName: "luo-zi-chao-portrait.jpg",
+      alt: "Luo Zi Chao, Dean of the School of Computer Science",
+      width: 960,
+      height: 1200,
+      widths: [360, 720, 960],
+      sizes: "(max-width: 680px) 152px, 220px"
+    },
+    office: "Human-Centered AI and Systems Lab",
+    metric: "8 computing pathways",
+    email: "computing@pu.edu.rs",
+    programs: ["Artificial Intelligence", "Software Engineering", "Cybersecurity", "Data Systems"],
+    labs: ["Human-Centered AI Group", "Secure Systems Lab", "Civic Data Interface Lab"],
+    featuredCourse: "DAT-330 Open Data Studio for Public Dashboards",
+    studio: "Students build auditable AI prototypes, secure software services, reproducible data systems, and public-facing digital tools.",
+    careers: "software engineer, AI systems analyst, cybersecurity associate, data product designer"
   },
   {
     id: "land",

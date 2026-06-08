@@ -4,7 +4,7 @@ export const commandCenterItems = [
     label: "Open Day",
     title: "Spring Open Day and Faculty Studio Tours",
     date: "12 Feb 2027",
-    metric: "6 faculties",
+    metric: "7 faculties",
     summary: "Prospective students can tour studios, meet advisors, and inspect current student field dossiers.",
     action: "Book admissions visit",
     href: "/admissions/"
