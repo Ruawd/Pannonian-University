@@ -1229,7 +1229,14 @@ const corePages = [
               <article id="profile-chen" class="cohort-detail is-active" role="tabpanel" data-cohort-detail="chen">
                 <p class="cohort-quote">"Society is not a soft backdrop to technical work. It is where water policy, cultural memory, language, and public trust become visible."</p>
                 <div class="cohort-person">
-                  <div class="person-avatar" aria-hidden="true">CW</div>
+                  ${responsiveImage("chen-wei-hong-portrait.jpg", {
+                    alt: "Chen Wei Hong, Dean of the Faculty of Society",
+                    className: "person-photo",
+                    width: 960,
+                    height: 1200,
+                    widths: [360, 720, 960],
+                    sizes: "(max-width: 680px) 112px, 168px"
+                  })}
                   <div>
                     <h3>Chen Wei Hong</h3>
                     <p>Dean, Faculty of Society</p>

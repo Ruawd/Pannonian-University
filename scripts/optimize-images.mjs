@@ -9,6 +9,7 @@ const images = [
   { file: "pannonian-campus-hero.jpg", widths: [640, 1120, 1672] },
   { file: "research-data-studio.jpg", widths: [640, 1120, 1672] },
   { file: "research-fieldwork.jpg", widths: [640, 1120, 1672] },
+  { file: "chen-wei-hong-portrait.jpg", widths: [360, 720, 960] },
   { file: "huang-yu-fei-portrait.jpg", widths: [360, 720, 960] },
   { file: "liu-jun-ye-portrait.jpg", widths: [360, 720, 960] }
 ];

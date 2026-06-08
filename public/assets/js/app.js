@@ -1,5 +1,5 @@
-import { setupPageTransitions } from "./transitions.js?v=20260608-liuportrait";
-import { setupInteractions } from "./interactions.js?v=20260608-liuportrait";
+import { setupPageTransitions } from "./transitions.js?v=20260608-chenportrait";
+import { setupInteractions } from "./interactions.js?v=20260608-chenportrait";
 
 setupInteractions();
 setupPageTransitions();
