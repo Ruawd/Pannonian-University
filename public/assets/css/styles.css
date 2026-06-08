@@ -1231,6 +1231,26 @@ h3 {
   padding: 1.25rem;
 }
 
+.detail-dean-photo {
+  width: min(100%, 220px);
+  aspect-ratio: 4 / 5;
+  display: block;
+  overflow: hidden;
+  justify-self: start;
+  margin-bottom: 0.35rem;
+  border: 1px solid rgba(31, 111, 100, 0.16);
+  border-radius: var(--radius);
+  background: var(--mist);
+  box-shadow: 0 14px 34px rgba(32, 35, 38, 0.12);
+}
+
+.detail-dean-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .detail-sidebar span,
 .detail-stat-grid span,
 .detail-chip-list span,
@@ -1480,6 +1500,25 @@ h3 {
   font-size: 1.45rem;
   font-weight: 700;
   box-shadow: 0 12px 28px rgba(31, 111, 100, 0.22);
+}
+
+.person-photo {
+  width: 76px;
+  height: 92px;
+  flex: 0 0 76px;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(31, 111, 100, 0.16);
+  border-radius: var(--radius);
+  background: var(--mist);
+  box-shadow: 0 12px 28px rgba(32, 35, 38, 0.13);
+}
+
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .person-card a {
@@ -4374,6 +4413,7 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   .hero h1,
   .page-masthead h1 {
     font-size: 2.55rem;
+    overflow-wrap: anywhere;
   }
 
   .hero-lead,
@@ -4542,6 +4582,7 @@ html[data-nav-direction="back"]::view-transition-new(root) {
 
   .detail-main h2 {
     font-size: 2rem;
+    overflow-wrap: anywhere;
   }
 
   .detail-week-list li {
@@ -4652,6 +4693,16 @@ html[data-nav-direction="back"]::view-transition-new(root) {
     width: 60px;
     height: 60px;
     font-size: 1.1rem;
+  }
+
+  .person-photo {
+    width: 60px;
+    height: 72px;
+    flex-basis: 60px;
+  }
+
+  .detail-dean-photo {
+    width: min(152px, 52vw);
   }
 }
 

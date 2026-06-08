@@ -35,6 +35,14 @@ export const academicFaculties = [
     name: "School of Economics",
     short: "Regional finance, logistics, entrepreneurship, circular bioeconomy, and responsible growth.",
     dean: "Huang Yu Fei",
+    portrait: {
+      fileName: "huang-yu-fei-portrait.jpg",
+      alt: "Huang Yu Fei, Dean of the School of Economics",
+      width: 960,
+      height: 1200,
+      widths: [360, 720, 960],
+      sizes: "(max-width: 680px) 152px, 220px"
+    },
     office: "Regional Growth Observatory",
     metric: "4 policy studios",
     email: "economics@pu.edu.rs",

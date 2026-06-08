@@ -35,6 +35,8 @@ export const site = {
   ]
 };
 
+const economicsFaculty = academicFaculties.find((faculty) => faculty.id === "economics");
+
 function html(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -54,10 +56,10 @@ function responsiveImage(fileName, {
   height = 941,
   sizes = "(min-width: 980px) 50vw, 100vw",
   loading = "lazy",
-  fetchpriority = ""
+  fetchpriority = "",
+  widths = [640, 1120, width]
 } = {}) {
   const stem = imageStem(fileName);
-  const widths = [640, 1120, width];
   const srcset = (format) => widths
     .map((item) => `/assets/img/${stem}-${item}.${format} ${item}w`)
     .join(", ");
@@ -68,7 +70,7 @@ function responsiveImage(fileName, {
   return `<picture${classAttr}>
           <source type="image/avif" srcset="${srcset("avif")}" sizes="${html(sizes)}">
           <source type="image/webp" srcset="${srcset("webp")}" sizes="${html(sizes)}">
-          <img src="/assets/img/${html(fileName)}" width="${html(width)}" height="${html(height)}" alt="${html(alt)}"${loadingAttr}${fetchPriorityAttr}>
+          <img src="/assets/img/${html(fileName)}" width="${html(width)}" height="${html(height)}" alt="${html(alt)}"${loadingAttr}${fetchPriorityAttr} decoding="async">
         </picture>`;
 }
 
@@ -564,6 +566,7 @@ function renderFacultyProfilePage(faculty) {
       <section class="section" data-reveal>
         <div class="container detail-layout">
           <aside class="detail-sidebar">
+            ${faculty.portrait ? responsiveImage(faculty.portrait.fileName, { ...faculty.portrait, className: "detail-dean-photo" }) : ""}
             <span>Dean</span>
             <strong>${html(faculty.dean)}</strong>
             <p>${html(faculty.office)}</p>
@@ -1242,7 +1245,11 @@ const corePages = [
               <article id="profile-huang" class="cohort-detail" role="tabpanel" data-cohort-detail="huang" hidden>
                 <p class="cohort-quote">"Regional economics works best when students can read a balance sheet, a logistics route, and a municipal budget in the same week."</p>
                 <div class="cohort-person">
-                  <div class="person-avatar" aria-hidden="true">HY</div>
+                  ${responsiveImage(economicsFaculty.portrait.fileName, {
+                    ...economicsFaculty.portrait,
+                    className: "person-photo",
+                    sizes: "(max-width: 680px) 60px, 76px"
+                  })}
                   <div>
                     <h3>Huang Yu Fei</h3>
                     <p>Dean, School of Economics</p>

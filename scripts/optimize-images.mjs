@@ -4,26 +4,29 @@ import sharp from "sharp";
 
 const imageDir = new URL("../public/assets/img/", import.meta.url);
 const images = [
-  "academic-studio.jpg",
-  "library-commons.jpg",
-  "pannonian-campus-hero.jpg",
-  "research-data-studio.jpg",
-  "research-fieldwork.jpg"
+  { file: "academic-studio.jpg", widths: [640, 1120, 1672] },
+  { file: "library-commons.jpg", widths: [640, 1120, 1672] },
+  { file: "pannonian-campus-hero.jpg", widths: [640, 1120, 1672] },
+  { file: "research-data-studio.jpg", widths: [640, 1120, 1672] },
+  { file: "research-fieldwork.jpg", widths: [640, 1120, 1672] },
+  { file: "huang-yu-fei-portrait.jpg", widths: [360, 720, 960] }
 ];
-const widths = [640, 1120, 1672];
 
 await mkdir(imageDir, { recursive: true });
 
-for (const image of images) {
-  const source = new URL(image, imageDir);
+let generated = 0;
+
+for (const { file, widths } of images) {
+  const source = new URL(file, imageDir);
   const sourcePath = fileURLToPath(source);
-  const stem = image.replace(/\.jpg$/i, "");
+  const stem = file.replace(/\.jpg$/i, "");
 
   for (const width of widths) {
     const pipeline = sharp(sourcePath).resize({ width, withoutEnlargement: true });
     await pipeline.clone().webp({ quality: 76 }).toFile(fileURLToPath(new URL(`${stem}-${width}.webp`, imageDir)));
     await pipeline.clone().avif({ quality: 50 }).toFile(fileURLToPath(new URL(`${stem}-${width}.avif`, imageDir)));
+    generated += 2;
   }
 }
 
-console.log(`Generated ${images.length * widths.length * 2} responsive image variants.`);
+console.log(`Generated ${generated} responsive image variants.`);
