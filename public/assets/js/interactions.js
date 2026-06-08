@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const assetVersion = "20260608-huangportrait";
+const assetVersion = "20260608-liuportrait";
 
 export function setupInteractions() {
   setupHeaderState();

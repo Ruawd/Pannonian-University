@@ -1503,9 +1503,9 @@ h3 {
 }
 
 .person-photo {
-  width: 76px;
-  height: 92px;
-  flex: 0 0 76px;
+  width: 168px;
+  height: 210px;
+  flex: 0 0 168px;
   display: block;
   overflow: hidden;
   border: 1px solid rgba(31, 111, 100, 0.16);
@@ -4696,9 +4696,9 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   }
 
   .person-photo {
-    width: 60px;
-    height: 72px;
-    flex-basis: 60px;
+    width: 112px;
+    height: 140px;
+    flex-basis: 112px;
   }
 
   .detail-dean-photo {

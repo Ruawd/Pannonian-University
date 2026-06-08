@@ -1194,7 +1194,7 @@ const corePages = [
       <section class="section cohort-section" data-reveal>
         <div class="container">
           <div class="section-heading">
-            <p class="eyebrow">Faculty leadership</p>
+            <p class="eyebrow">Faculty leadership and public scholars</p>
             <h2>Academic leaders students meet through studios, fieldwork, and public lectures.</h2>
           </div>
           <div class="cohort-showcase" data-cohort-showcase>
@@ -1208,6 +1208,11 @@ const corePages = [
                 <strong>Huang Yu Fei</strong>
                 <span>Dean, School of Economics</span>
                 <small>Office: Regional Growth</small>
+              </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-liu" data-cohort-trigger="liu" data-ripple>
+                <strong>Liu Jun Ye</strong>
+                <span>Professor of Physics</span>
+                <small>Lab: Quantum Materials</small>
               </button>
               <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-milena" data-cohort-trigger="milena" data-ripple>
                 <strong>Milena Kovac</strong>
@@ -1248,7 +1253,7 @@ const corePages = [
                   ${responsiveImage(economicsFaculty.portrait.fileName, {
                     ...economicsFaculty.portrait,
                     className: "person-photo",
-                    sizes: "(max-width: 680px) 60px, 76px"
+                    sizes: "(max-width: 680px) 112px, 168px"
                   })}
                   <div>
                     <h3>Huang Yu Fei</h3>
@@ -1265,6 +1270,34 @@ const corePages = [
                   <strong>Responsible Growth Studio</strong>
                   <p>Applied finance, circular bioeconomy, logistics evidence, and industry partnerships across the Danube corridor.</p>
                   <a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-liu" class="cohort-detail" role="tabpanel" data-cohort-detail="liu" hidden>
+                <p class="cohort-quote">"Physics is clearest when equations, instruments, and student notebooks agree on the same phenomenon."</p>
+                <div class="cohort-person">
+                  ${responsiveImage("liu-jun-ye-portrait.jpg", {
+                    alt: "Liu Jun Ye, Professor of Physics",
+                    className: "person-photo",
+                    width: 960,
+                    height: 1200,
+                    widths: [360, 720, 960],
+                    sizes: "(max-width: 680px) 112px, 168px"
+                  })}
+                  <div>
+                    <h3>Liu Jun Ye</h3>
+                    <p>Professor of Physics</p>
+                  </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Mon 15:00-17:00</strong></div>
+                  <div><span>Course</span><strong>PHY-210 Experimental Physics</strong></div>
+                  <div><span>Research Output</span><strong>Spectroscopy lab notebooks</strong></div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Quantum Materials and Measurement Lab</strong>
+                  <p>Condensed matter physics, optics, environmental sensing instrumentation, and rigorous lab methods for engineering and life-science students.</p>
+                  <a href="mailto:liu.junye@${site.domain}">liu.junye@${site.domain}</a>
                 </div>
               </article>
               <article id="profile-milena" class="cohort-detail" role="tabpanel" data-cohort-detail="milena" hidden>
