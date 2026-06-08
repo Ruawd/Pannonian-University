@@ -1,7 +1,6 @@
 const parser = new DOMParser();
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const directoryIndex = "index.html";
-const cleanPagePaths = new Set(["/", "/academics/", "/curriculum/", "/admissions/", "/research/", "/campus/", "/contact/"]);
 const legacyPagePaths = new Map([
   ["/index.html", "/"],
   ["/academics.html", "/academics/"],
@@ -82,7 +81,10 @@ function shouldHandle(link, event) {
   if (url.hash && stripHash(url.href) === stripHash(window.location.href)) return false;
 
   const pathname = normalizePath(url.pathname);
-  return cleanPagePaths.has(pathname);
+  if (pathname === "/") return true;
+  if (pathname.startsWith("/assets/")) return false;
+  if (pathname.endsWith("/")) return true;
+  return legacyPagePaths.has(pathname);
 }
 
 function stripHash(value) {
@@ -94,7 +96,8 @@ function stripHash(value) {
 function normalizePath(pathname) {
   if (legacyPagePaths.has(pathname)) return legacyPagePaths.get(pathname);
   if (pathname.endsWith(`/${directoryIndex}`)) return pathname.slice(0, -directoryIndex.length);
-  if (cleanPagePaths.has(`${pathname}/`)) return `${pathname}/`;
+  if (pathname !== "/404.html" && pathname.endsWith(".html") && !pathname.startsWith("/assets/")) return `${pathname.slice(0, -5)}/`;
+  if (pathname !== "/" && !pathname.endsWith("/") && !pathname.split("/").pop().includes(".")) return `${pathname}/`;
   return pathname;
 }
 

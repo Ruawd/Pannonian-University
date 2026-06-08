@@ -14,9 +14,9 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="preload" href="/assets/img/pannonian-campus-hero.jpg" as="image">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-completeux">
-  <script type="module" src="/assets/js/app.js?v=20260608-completeux"></script>
+  <link rel="preload" as="image" href="/assets/img/pannonian-campus-hero-1120.webp" imagesrcset="/assets/img/pannonian-campus-hero-640.webp 640w, /assets/img/pannonian-campus-hero-1120.webp 1120w, /assets/img/pannonian-campus-hero-1672.webp 1672w" imagesizes="100vw" type="image/webp">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-infosearch">
+  <script type="module" src="/assets/js/app.js?v=20260608-infosearch"></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -33,6 +33,11 @@
         <span class="nav-indicator" aria-hidden="true"></span>
         <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link>Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
       </nav>
+      <button class="icon-button search-toggle" type="button" aria-label="Search Pannonian University" data-search-open data-ripple>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path>
+        </svg>
+      </button>
       <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle data-ripple>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -40,6 +45,7 @@
       </button>
     </div>
     <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <button class="mobile-search-button" type="button" data-search-open>Search university</button>
       <a href="/" data-nav-link aria-current="page">Home</a>
       <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link>Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
     </nav>
@@ -47,7 +53,11 @@
   <main id="main" tabindex="-1">
     
       <section class="hero hero-home" aria-label="Pannonian University campus">
-        <img class="hero-media" src="/assets/img/pannonian-campus-hero.jpg" width="1672" height="941" alt="Modern university campus in the Pannonian plain near Novi Sad">
+        <picture class="hero-media">
+          <source type="image/avif" srcset="/assets/img/pannonian-campus-hero-640.avif 640w, /assets/img/pannonian-campus-hero-1120.avif 1120w, /assets/img/pannonian-campus-hero-1672.avif 1672w" sizes="100vw">
+          <source type="image/webp" srcset="/assets/img/pannonian-campus-hero-640.webp 640w, /assets/img/pannonian-campus-hero-1120.webp 1120w, /assets/img/pannonian-campus-hero-1672.webp 1672w" sizes="100vw">
+          <img src="/assets/img/pannonian-campus-hero.jpg" width="1672" height="941" alt="Modern university campus in the Pannonian plain near Novi Sad" loading="eager" fetchpriority="high">
+        </picture>
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="container hero-content">
           <p class="eyebrow">Novi Sad, Serbia</p>
@@ -267,11 +277,19 @@
           </div>
           <div class="research-image-row">
             <figure class="image-card">
-              <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Researchers collecting soil samples in a Pannonian crop field">
+              <picture>
+          <source type="image/avif" srcset="/assets/img/research-fieldwork-640.avif 640w, /assets/img/research-fieldwork-1120.avif 1120w, /assets/img/research-fieldwork-1672.avif 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <source type="image/webp" srcset="/assets/img/research-fieldwork-640.webp 640w, /assets/img/research-fieldwork-1120.webp 1120w, /assets/img/research-fieldwork-1672.webp 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Researchers collecting soil samples in a Pannonian crop field" loading="lazy">
+        </picture>
               <figcaption>Field teams combine soil sampling, drone imagery, and irrigation-channel observations.</figcaption>
             </figure>
             <figure class="image-card">
-              <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Researchers reviewing geospatial maps and river basin models in a data studio">
+              <picture>
+          <source type="image/avif" srcset="/assets/img/research-data-studio-640.avif 640w, /assets/img/research-data-studio-1120.avif 1120w, /assets/img/research-data-studio-1672.avif 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <source type="image/webp" srcset="/assets/img/research-data-studio-640.webp 640w, /assets/img/research-data-studio-1120.webp 1120w, /assets/img/research-data-studio-1672.webp 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Researchers reviewing geospatial maps and river basin models in a data studio" loading="lazy">
+        </picture>
               <figcaption>The Open Data Studio turns field evidence into maps, models, and public briefs.</figcaption>
             </figure>
           </div>
@@ -282,7 +300,11 @@
       <section class="section" data-reveal>
         <div class="container media-split">
           <figure class="image-card">
-            <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Students and faculty working in an interdisciplinary project studio">
+            <picture>
+          <source type="image/avif" srcset="/assets/img/academic-studio-640.avif 640w, /assets/img/academic-studio-1120.avif 1120w, /assets/img/academic-studio-1672.avif 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <source type="image/webp" srcset="/assets/img/academic-studio-640.webp 640w, /assets/img/academic-studio-1120.webp 1120w, /assets/img/academic-studio-1672.webp 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Students and faculty working in an interdisciplinary project studio" loading="lazy">
+        </picture>
             <figcaption>Project studios bring students from engineering, life sciences, policy, and media into the same room.</figcaption>
           </figure>
           <div class="media-copy">
@@ -311,25 +333,25 @@
               <span>Admissions / 15 March 2027</span>
               <h3>Priority review window opens for international applicants</h3>
               <p>Applicants seeking early faculty review should submit transcripts, language evidence, and a pathway statement before the priority date.</p>
-              <a href="/admissions/">Read notice</a>
+              <a href="/notices/international-priority-review/">Read notice</a>
             </article>
             <article class="bulletin-card">
               <span>Research / 22 April 2027</span>
               <h3>Water Futures Lab publishes first-aquifer sampling brief</h3>
               <p>The brief summarizes irrigation-quality monitoring methods, salinity risk labels, and partner municipality next steps.</p>
-              <a href="/research/">Read notice</a>
+              <a href="/notices/water-futures-sampling-brief/">Read notice</a>
             </article>
             <article class="bulletin-card">
               <span>Campus / 01 May 2027</span>
               <h3>Library Commons extends evening studio hours</h3>
               <p>Data workstations, advising rooms, and media suites remain available later during capstone and fieldwork submission weeks.</p>
-              <a href="/campus/">Read notice</a>
+              <a href="/notices/library-evening-hours/">Read notice</a>
             </article>
             <article class="bulletin-card">
               <span>Lecture / 09 May 2027</span>
               <h3>Borderlands Memory public lecture with Chen Wei Hong</h3>
               <p>The Faculty of Society hosts a public lecture on oral history, language, and consent in multilingual communities.</p>
-              <a href="/academics/">Read notice</a>
+              <a href="/notices/chen-public-lecture/">Read notice</a>
             </article>
           </div>
         </div>
@@ -393,7 +415,7 @@
           <a href="/admissions/">Undergraduate entry</a>
           <a href="/admissions/">Graduate entry</a>
           <a href="/admissions/">International applicants</a>
-          <a href="/admissions/">Scholarships</a>
+          <a href="/tuition-scholarships/">Tuition &amp; scholarships</a>
           <a href="mailto:admissions@pu.edu.rs">Ask admissions</a>
         </nav>
       </div>
@@ -402,9 +424,9 @@
         <nav aria-label="Footer academic links">
           <a href="/curriculum/">Course Catalog</a>
           <a href="/academics/">Faculties</a>
-          <a href="/admissions/">Academic Calendar</a>
-          <a href="/campus/">Library Commons</a>
-          <a href="/campus/">Student support</a>
+          <a href="/calendar/">Academic Calendar</a>
+          <a href="/library/">Library Commons</a>
+          <a href="/student-life/">Student support</a>
         </nav>
       </div>
       <div>
@@ -418,6 +440,16 @@
         </nav>
       </div>
       <div>
+        <h2>University</h2>
+        <nav aria-label="Footer university links">
+          <a href="/accreditation/">Accreditation</a>
+          <a href="/governance/">Governance</a>
+          <a href="/policies/">Policies</a>
+          <a href="/student-life/">Student life</a>
+          <a href="/library/">Library</a>
+        </nav>
+      </div>
+      <div>
         <h2>Contact</h2>
         <p>Bulevar Pannonica 12, 21000 Novi Sad, Serbia</p>
         <p>+381 21 555 0198</p>
@@ -428,11 +460,31 @@
     <div class="container footer-bottom">
       <span>&copy; 2026 Pannonian University</span>
       <nav aria-label="Footer legal links">
-        <a href="/">Privacy Policy</a>
-        <a href="/">Accessibility</a>
+        <a href="/policies/">Privacy Policy</a>
+        <a href="/policies/">Accessibility</a>
         <a href="/sitemap.xml">Sitemap</a>
       </nav>
     </div>
   </footer>
+  <div class="site-search-shell" data-site-search hidden>
+    <div class="site-search-scrim" data-search-close aria-hidden="true"></div>
+    <section class="site-search-panel" role="dialog" aria-modal="true" aria-labelledby="site-search-title" tabindex="-1" data-search-panel>
+      <div class="site-search-topbar">
+        <div>
+          <span id="site-search-title">University search</span>
+          <small>Courses, faculties, notices, offices, and student information</small>
+        </div>
+        <button class="syllabus-close" type="button" data-search-close aria-label="Close search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <label class="site-search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path></svg>
+        <span class="sr-only">Search Pannonian University</span>
+        <input type="search" data-search-input autocomplete="off" placeholder="Search courses, faculty, notices, offices...">
+      </label>
+      <div class="site-search-results" data-search-results aria-live="polite"></div>
+    </section>
+  </div>
 </body>
 </html>

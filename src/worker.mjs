@@ -8,14 +8,6 @@ const legacyRoutes = new Map([
   ["/contact.html", "/contact/"]
 ]);
 
-const cleanRoutes = new Set([
-  "/academics",
-  "/curriculum",
-  "/admissions",
-  "/research",
-  "/campus",
-  "/contact"
-]);
 const directoryIndex = "index.html";
 
 export default {
@@ -37,7 +29,10 @@ function getRedirectUrl(value) {
     pathname = legacyRoutes.get(pathname);
   } else if (pathname.endsWith(`/${directoryIndex}`)) {
     pathname = pathname.slice(0, -directoryIndex.length);
-  } else if (cleanRoutes.has(pathname)) {
+  } else if (pathname !== "/404.html" && pathname.endsWith(".html") && !pathname.startsWith("/assets/")) {
+    pathname = pathname.slice(0, -5);
+    if (!pathname.endsWith("/")) pathname = `${pathname}/`;
+  } else if (pathname !== "/" && !pathname.endsWith("/") && !pathname.split("/").pop().includes(".")) {
     pathname = `${pathname}/`;
   } else {
     return null;

@@ -3,6 +3,7 @@ import { admissionsSteps } from "./admissions-data.mjs";
 import { commandCenterItems, universityNotices } from "./bulletin-data.mjs";
 import { campusPlaces } from "./campus-data.mjs";
 import { curriculumCourses } from "./curriculum-data.mjs";
+import { institutionPages } from "./institution-data.mjs";
 import { researchMapNodes } from "./research-map-data.mjs";
 
 export const site = {
@@ -42,6 +43,51 @@ function html(value) {
     .replaceAll('"', "&quot;");
 }
 
+function imageStem(fileName) {
+  return fileName.replace(/\.(jpg|jpeg|png)$/i, "");
+}
+
+function responsiveImage(fileName, {
+  alt,
+  className = "",
+  width = 1672,
+  height = 941,
+  sizes = "(min-width: 980px) 50vw, 100vw",
+  loading = "lazy",
+  fetchpriority = ""
+} = {}) {
+  const stem = imageStem(fileName);
+  const widths = [640, 1120, width];
+  const srcset = (format) => widths
+    .map((item) => `/assets/img/${stem}-${item}.${format} ${item}w`)
+    .join(", ");
+  const classAttr = className ? ` class="${html(className)}"` : "";
+  const loadingAttr = loading ? ` loading="${html(loading)}"` : "";
+  const fetchPriorityAttr = fetchpriority ? ` fetchpriority="${html(fetchpriority)}"` : "";
+
+  return `<picture${classAttr}>
+          <source type="image/avif" srcset="${srcset("avif")}" sizes="${html(sizes)}">
+          <source type="image/webp" srcset="${srcset("webp")}" sizes="${html(sizes)}">
+          <img src="/assets/img/${html(fileName)}" width="${html(width)}" height="${html(height)}" alt="${html(alt)}"${loadingAttr}${fetchPriorityAttr}>
+        </picture>`;
+}
+
+function facultyHref(faculty) {
+  return `/academics/${faculty.id}/`;
+}
+
+function courseHref(course) {
+  return `/curriculum/${course.id}/`;
+}
+
+function noticeHref(notice) {
+  return notice.href || `/notices/${notice.id}/`;
+}
+
+function stripTags(value) {
+  return String(value).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
 function renderCourseCards() {
   return curriculumCourses.map((course) => {
     const searchText = [
@@ -59,14 +105,17 @@ function renderCourseCards() {
     return `
               <article class="course-card" data-course-card data-syllabus-card="${html(course.id)}" data-domain="${html(course.domain)}" data-level="${html(course.level)}" data-search="${html(searchText)}">
                 <div class="course-meta"><span>${html(course.code)}</span><em>${html(course.levelLabel)}</em></div>
-                <h2>${html(course.title)}</h2>
+                <h2><a href="${html(courseHref(course))}">${html(course.title)}</a></h2>
                 <p>${html(course.summary)}</p>
                 <div class="course-footer">
                   <span>${html(course.domainLabel)}</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="${html(course.id)}" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="${html(courseHref(course))}">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="${html(course.id)}" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>`;
   }).join("");
@@ -286,7 +335,10 @@ function renderAcademicExplorer() {
                 </div>
                 <div class="faculty-detail-footer">
                   <p><span>Career Signals</span>${html(faculty.careers)}</p>
-                  <a href="mailto:${html(faculty.email)}">Contact faculty office</a>
+                  <div class="faculty-detail-actions">
+                    <a href="${html(facultyHref(faculty))}">View faculty profile</a>
+                    <a href="mailto:${html(faculty.email)}">Contact faculty office</a>
+                  </div>
                 </div>
               </article>`).join("")}
             </div>
@@ -437,7 +489,7 @@ function renderUniversityNotices() {
               <span>${html(notice.type)} / ${html(notice.date)}</span>
               <h3>${html(notice.title)}</h3>
               <p>${html(notice.summary)}</p>
-              <a href="${html(notice.href)}">Read notice</a>
+              <a href="${html(noticeHref(notice))}">Read notice</a>
             </article>`).join("")}
           </div>
         </div>
@@ -491,7 +543,284 @@ function renderCampusGuide() {
       </section>`;
 }
 
-export const pages = [
+function renderFacultyProfilePage(faculty) {
+  return {
+    id: `faculty-${faculty.id}`,
+    href: facultyHref(faculty),
+    output: `academics/${faculty.id}/index.html`,
+    title: `${faculty.name} | Pannonian University`,
+    description: `${faculty.name} at Pannonian University: programs, labs, advising, dean, and career signals.`,
+    searchSection: "Faculty",
+    searchKeywords: [faculty.label, faculty.dean, faculty.programs.join(" "), faculty.labs.join(" "), faculty.featuredCourse].join(" "),
+    body: `
+      <section class="page-masthead detail-masthead">
+        <div class="container">
+          <p class="eyebrow">${html(faculty.label)}</p>
+          <h1>${html(faculty.name)}</h1>
+          <p>${html(faculty.short)}</p>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container detail-layout">
+          <aside class="detail-sidebar">
+            <span>Dean</span>
+            <strong>${html(faculty.dean)}</strong>
+            <p>${html(faculty.office)}</p>
+            <a href="mailto:${html(faculty.email)}">${html(faculty.email)}</a>
+          </aside>
+          <article class="detail-main">
+            <p class="eyebrow">Faculty profile</p>
+            <h2>Programs, studios, and labs are organized around evidence students can defend.</h2>
+            <p>${html(faculty.studio)}</p>
+            <div class="detail-stat-grid">
+              <div><span>Pathways</span><strong>${html(faculty.metric)}</strong></div>
+              <div><span>Featured course</span><strong>${html(faculty.featuredCourse)}</strong></div>
+              <div><span>Career signals</span><strong>${html(faculty.careers)}</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-band" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Programs and labs</p>
+            <h2>Academic routes inside ${html(faculty.label)}.</h2>
+          </div>
+          <div class="feature-grid two">
+            ${faculty.programs.map((program) => `<article class="feature-card"><span class="card-kicker">Program</span><h3>${html(program)}</h3><p>Students combine faculty coursework with methods training, advising, and a partner-facing studio brief.</p></article>`).join("")}
+            ${faculty.labs.map((lab) => `<article class="feature-card"><span class="card-kicker">Lab</span><h3>${html(lab)}</h3><p>Faculty and students use this lab for applied research, public evidence, prototypes, or field-facing methods work.</p></article>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Advising</p>
+            <h2>Start with a faculty home, then choose a problem to study deeply.</h2>
+            <p>Faculty advisors help students connect core coursework, methods, research ethics, fieldwork, and career preparation without losing disciplinary depth.</p>
+          </div>
+          <ul class="check-list">
+            <li>Faculty advising from the first semester</li>
+            <li>Studio or lab work tied to regional evidence</li>
+            <li>Capstone planning with a named supervisor</li>
+            <li>Portfolio-ready outputs for graduate study or employment</li>
+          </ul>
+        </div>
+      </section>
+    `
+  };
+}
+
+function renderCourseDetailPage(course, index) {
+  const previous = curriculumCourses[(index - 1 + curriculumCourses.length) % curriculumCourses.length];
+  const next = curriculumCourses[(index + 1) % curriculumCourses.length];
+  const intensity = getCourseIntensity(course);
+  const prerequisites = getCoursePrerequisites(course);
+
+  return {
+    id: `course-${course.id}`,
+    href: courseHref(course),
+    output: `curriculum/${course.id}/index.html`,
+    title: `${course.code} ${course.title} | Pannonian University`,
+    description: `${course.code} ${course.title}: credits, outcomes, weekly syllabus, assessment, and research connection at Pannonian University.`,
+    searchSection: "Course",
+    searchKeywords: [course.code, course.domainLabel, course.levelLabel, course.faculty, course.lab, course.outcomes.join(" ")].join(" "),
+    body: `
+      <section class="page-masthead detail-masthead">
+        <div class="container">
+          <p class="eyebrow">${html(course.domainLabel)} / ${html(course.code)}</p>
+          <h1>${html(course.title)}</h1>
+          <p>${html(course.summary)}</p>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container detail-layout">
+          <aside class="detail-sidebar">
+            <span>Module facts</span>
+            <strong>${html(course.credits)}</strong>
+            <p>${html(course.levelLabel)} / ${html(course.term)}</p>
+            <a href="mailto:${site.emails.registrar}?subject=${encodeURIComponent(`Course enquiry: ${course.code}`)}">Ask registrar</a>
+          </aside>
+          <article class="detail-main">
+            <p class="eyebrow">Course detail</p>
+            <h2>Research connection</h2>
+            <p>${html(course.researchTie)}</p>
+            <div class="detail-stat-grid">
+              <div><span>${html(course.performanceLabel)}</span><strong>${html(course.performanceValue)}</strong></div>
+              <div><span>Lab affiliate</span><strong>${html(course.lab)}</strong></div>
+              <div><span>Studio intensity</span><strong>${intensity}/100</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-band" data-reveal>
+        <div class="container detail-two-column">
+          <article>
+            <p class="eyebrow">Learning outcomes</p>
+            <h2>What students should be able to do.</h2>
+            <ul class="check-list">
+              ${course.outcomes.map((outcome) => `<li>${html(outcome)}</li>`).join("")}
+            </ul>
+          </article>
+          <article>
+            <p class="eyebrow">Readiness</p>
+            <h2>Prerequisites and assessment.</h2>
+            <div class="detail-chip-list">
+              ${prerequisites.map((item) => `<span>${html(item)}</span>`).join("")}
+            </div>
+            <p>${html(course.assessment)}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Weekly syllabus</p>
+            <h2>Four-week intensive module structure.</h2>
+          </div>
+          <ol class="detail-week-list">
+            ${course.weeks.map(([title, detail], weekIndex) => `<li><span>${String(weekIndex + 1).padStart(2, "0")}</span><div><strong>${html(title)}</strong><p>${html(detail)}</p></div></li>`).join("")}
+          </ol>
+          <div class="detail-neighbors">
+            <a href="${html(courseHref(previous))}">Previous: ${html(previous.code)}</a>
+            <a href="/curriculum/">All courses</a>
+            <a href="${html(courseHref(next))}">Next: ${html(next.code)}</a>
+          </div>
+        </div>
+      </section>
+    `
+  };
+}
+
+function renderNoticeDetailPage(notice) {
+  return {
+    id: `notice-${notice.id}`,
+    href: noticeHref(notice),
+    output: `notices/${notice.id}/index.html`,
+    title: `${notice.title} | Pannonian University`,
+    description: `${notice.type} notice from Pannonian University: ${notice.summary}`,
+    searchSection: "Notice",
+    searchKeywords: [notice.type, notice.date, notice.office, notice.contact].join(" "),
+    body: `
+      <section class="page-masthead detail-masthead">
+        <div class="container">
+          <p class="eyebrow">${html(notice.type)} / ${html(notice.date)}</p>
+          <h1>${html(notice.title)}</h1>
+          <p>${html(notice.summary)}</p>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container detail-layout">
+          <aside class="detail-sidebar">
+            <span>Responsible office</span>
+            <strong>${html(notice.office)}</strong>
+            <p>${html(notice.date)}</p>
+            <a href="mailto:${html(notice.contact)}">${html(notice.contact)}</a>
+          </aside>
+          <article class="detail-main">
+            <p class="eyebrow">Notice detail</p>
+            <h2>What this means for students, applicants, and partners.</h2>
+            ${notice.details.map((paragraph) => `<p>${html(paragraph)}</p>`).join("")}
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-band" data-reveal>
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Next step</p>
+            <h2>Contact the responsible office if this notice affects your timetable.</h2>
+            <p>Use your PU email address when writing from an enrolled account so staff can connect the request to your student record.</p>
+          </div>
+          <div class="hours-panel">
+            <div><span>Office</span><strong>${html(notice.office)}</strong></div>
+            <div><span>Email</span><strong>${html(notice.contact)}</strong></div>
+            <div><span>Notice type</span><strong>${html(notice.type)}</strong></div>
+          </div>
+        </div>
+      </section>
+    `
+  };
+}
+
+function renderInstitutionPage(page) {
+  return {
+    id: page.id,
+    href: page.href,
+    output: page.output,
+    title: page.title,
+    description: page.description,
+    searchSection: "University",
+    searchKeywords: [page.eyebrow, page.facts.flat().join(" "), page.contact].join(" "),
+    body: `
+      <section class="page-masthead detail-masthead">
+        <div class="container">
+          <p class="eyebrow">${html(page.eyebrow)}</p>
+          <h1>${html(page.headline)}</h1>
+          <p>${html(page.summary)}</p>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container detail-layout">
+          <aside class="detail-sidebar">
+            <span>Office contact</span>
+            <strong>${html(page.eyebrow)}</strong>
+            <p>${html(page.contact)}</p>
+            <a href="mailto:${html(page.contact)}">${html(page.contact)}</a>
+          </aside>
+          <article class="detail-main">
+            <p class="eyebrow">University information</p>
+            <h2>${html(page.summary)}</h2>
+            <div class="detail-stat-grid">
+              ${page.facts.map(([label, value]) => `<div><span>${html(label)}</span><strong>${html(value)}</strong></div>`).join("")}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-band" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Details</p>
+            <h2>How this works at PU.</h2>
+          </div>
+          <div class="feature-grid three">
+            ${page.sections.map((section) => `<article class="feature-card"><span class="card-kicker">${html(page.eyebrow)}</span><h3>${html(section.title)}</h3><p>${html(section.text)}</p></article>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section" data-reveal>
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Operational signals</p>
+            <h2>Useful reference points.</h2>
+          </div>
+          <div class="module-grid">
+            ${page.cards.map(([title, text]) => `<article class="module-card"><span>${html(page.eyebrow)}</span><h3>${html(title)}</h3><p>${html(text)}</p></article>`).join("")}
+          </div>
+        </div>
+      </section>
+    `
+  };
+}
+
+const generatedPages = [
+  ...academicFaculties.map(renderFacultyProfilePage),
+  ...curriculumCourses.map(renderCourseDetailPage),
+  ...universityNotices.map(renderNoticeDetailPage),
+  ...institutionPages.map(renderInstitutionPage)
+];
+
+const corePages = [
   {
     id: "home",
     href: "/",
@@ -500,7 +829,13 @@ export const pages = [
     description: "Pannonian University is a modern European university in Serbia focused on regional resilience, intelligent systems, civic leadership, and applied research.",
     body: `
       <section class="hero hero-home" aria-label="Pannonian University campus">
-        <img class="hero-media" src="/assets/img/pannonian-campus-hero.jpg" width="1672" height="941" alt="Modern university campus in the Pannonian plain near Novi Sad">
+        ${responsiveImage("pannonian-campus-hero.jpg", {
+          className: "hero-media",
+          alt: "Modern university campus in the Pannonian plain near Novi Sad",
+          sizes: "100vw",
+          loading: "eager",
+          fetchpriority: "high"
+        })}
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="container hero-content">
           <p class="eyebrow">Novi Sad, Serbia</p>
@@ -655,11 +990,11 @@ export const pages = [
           </div>
           <div class="research-image-row">
             <figure class="image-card">
-              <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Researchers collecting soil samples in a Pannonian crop field">
+              ${responsiveImage("research-fieldwork.jpg", { alt: "Researchers collecting soil samples in a Pannonian crop field" })}
               <figcaption>Field teams combine soil sampling, drone imagery, and irrigation-channel observations.</figcaption>
             </figure>
             <figure class="image-card">
-              <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Researchers reviewing geospatial maps and river basin models in a data studio">
+              ${responsiveImage("research-data-studio.jpg", { alt: "Researchers reviewing geospatial maps and river basin models in a data studio" })}
               <figcaption>The Open Data Studio turns field evidence into maps, models, and public briefs.</figcaption>
             </figure>
           </div>
@@ -670,7 +1005,7 @@ export const pages = [
       <section class="section" data-reveal>
         <div class="container media-split">
           <figure class="image-card">
-            <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Students and faculty working in an interdisciplinary project studio">
+            ${responsiveImage("academic-studio.jpg", { alt: "Students and faculty working in an interdisciplinary project studio" })}
             <figcaption>Project studios bring students from engineering, life sciences, policy, and media into the same room.</figcaption>
           </figure>
           <div class="media-copy">
@@ -785,7 +1120,7 @@ export const pages = [
             </div>
           </div>
           <figure class="image-card">
-            <img src="/assets/img/academic-studio.jpg" width="1672" height="941" alt="Pannonian University students reviewing prototypes and regional datasets in a project studio">
+            ${responsiveImage("academic-studio.jpg", { alt: "Pannonian University students reviewing prototypes and regional datasets in a project studio" })}
             <figcaption>Academic studios connect coursework to public questions, technical prototypes, and field evidence.</figcaption>
           </figure>
         </div>
@@ -1071,7 +1406,7 @@ export const pages = [
       <section class="section" data-reveal>
         <div class="container media-split">
           <figure class="image-card">
-            <img src="/assets/img/library-commons.jpg" width="1672" height="940" alt="Students studying and meeting advisors in the Pannonian University library commons">
+            ${responsiveImage("library-commons.jpg", { alt: "Students studying and meeting advisors in the Pannonian University library commons", height: 940 })}
             <figcaption>Applicants can meet advisors online or on campus before selecting a faculty pathway.</figcaption>
           </figure>
           <div class="media-copy">
@@ -1156,7 +1491,7 @@ export const pages = [
       <section class="section visual-research-section" data-reveal>
         <div class="container visual-research-grid">
           <figure class="research-photo large">
-            <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Pannonian University researchers collecting soil and crop data in a Vojvodina field">
+            ${responsiveImage("research-fieldwork.jpg", { alt: "Pannonian University researchers collecting soil and crop data in a Vojvodina field", sizes: "(min-width: 980px) 58vw, 100vw" })}
             <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
           </figure>
           <div class="observatory-panel" aria-label="Pannonian Observatory research dashboard">
@@ -1197,7 +1532,7 @@ export const pages = [
             </div>
           </div>
           <figure class="research-photo">
-            <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Pannonian University research team reviewing river basin and climate dashboards">
+            ${responsiveImage("research-data-studio.jpg", { alt: "Pannonian University research team reviewing river basin and climate dashboards" })}
             <figcaption>Data studio reviews connect field samples, satellite imagery, and municipal planning questions.</figcaption>
           </figure>
         </div>
@@ -1426,7 +1761,7 @@ export const pages = [
             </div>
           </div>
           <figure class="image-card">
-            <img src="/assets/img/library-commons.jpg" width="1672" height="940" alt="Pannonian University library commons with students studying and meeting">
+            ${responsiveImage("library-commons.jpg", { alt: "Pannonian University library commons with students studying and meeting", height: 940 })}
             <figcaption>The library commons supports advising, research help, and student collaboration throughout the week.</figcaption>
           </figure>
         </div>
@@ -1552,3 +1887,15 @@ export const pages = [
     `
   }
 ];
+
+export const pages = [...corePages, ...generatedPages];
+
+export const searchIndex = pages.map((page) => {
+  return {
+    title: page.title.replace(" | Pannonian University", ""),
+    href: page.href,
+    section: page.searchSection || page.id,
+    description: page.description,
+    text: [page.title, page.description, page.searchKeywords || "", stripTags(page.body)].join(" ")
+  };
+});

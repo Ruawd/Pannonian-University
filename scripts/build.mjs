@@ -1,5 +1,5 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
-import { pages } from "../src/site-data.mjs";
+import { pages, searchIndex } from "../src/site-data.mjs";
 import { renderNotFound, renderPage, renderSitemap } from "../src/templates.mjs";
 
 const outDir = new URL("../public/", import.meta.url);
@@ -16,6 +16,8 @@ for (const page of pages) {
   await writeFile(outputUrl, renderPage(page, pages), "utf8");
 }
 
+await mkdir(new URL("assets/", outDir), { recursive: true });
+await writeFile(new URL("assets/search-index.json", outDir), JSON.stringify(searchIndex, null, 2), "utf8");
 await writeFile(new URL("404.html", outDir), renderNotFound(pages), "utf8");
 await writeFile(new URL("sitemap.xml", outDir), renderSitemap(pages), "utf8");
 await writeFile(new URL("robots.txt", outDir), "User-agent: *\nAllow: /\nSitemap: https://pu.edu.rs/sitemap.xml\n", "utf8");

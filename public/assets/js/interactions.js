@@ -1,10 +1,12 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const assetVersion = "20260608-infosearch";
 
 export function setupInteractions() {
   setupHeaderState();
   setupNavIndicator();
   setupMenu();
   setupRipples();
+  setupSiteSearch();
   setupRevealObserver();
   setupCommandCenters();
   setupSystemsConsole();
@@ -20,6 +22,7 @@ export function setupInteractions() {
   document.addEventListener("pu:navigated", () => {
     document.body.classList.remove("syllabus-open");
     updateNavIndicator();
+    setupSiteSearch();
     setupRevealObserver();
     setupCommandCenters();
     setupSystemsConsole();
@@ -32,6 +35,156 @@ export function setupInteractions() {
     setupSyllabusDrawer();
     closeMenu();
   });
+}
+
+let searchIndexPromise = null;
+
+function setupSiteSearch() {
+  const shell = document.querySelector("[data-site-search]");
+  if (!shell || shell.dataset.searchReady === "true") return;
+
+  shell.dataset.searchReady = "true";
+  const panel = shell.querySelector("[data-search-panel]");
+  const input = shell.querySelector("[data-search-input]");
+  const results = shell.querySelector("[data-search-results]");
+  const openers = [...document.querySelectorAll("[data-search-open]")];
+  const closers = [...shell.querySelectorAll("[data-search-close]")];
+  let activeOpener = null;
+
+  openers.forEach((opener) => {
+    opener.addEventListener("click", () => openSearch(opener));
+  });
+
+  closers.forEach((closer) => {
+    closer.addEventListener("click", closeSearch);
+  });
+
+  input?.addEventListener("input", debounce(() => {
+    renderSearchResults(input.value, results);
+  }, 80));
+
+  shell.addEventListener("keydown", (event) => {
+    if (shell.hidden) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeSearch();
+      return;
+    }
+
+    if (event.key === "Tab") {
+      trapSearchFocus(event);
+    }
+  });
+
+  shell.addEventListener("click", (event) => {
+    if (event.target.closest(".site-search-result")) closeSearch();
+  });
+
+  async function openSearch(opener) {
+    activeOpener = opener;
+    shell.hidden = false;
+    document.body.classList.add("search-open");
+
+    await renderSearchResults(input?.value || "", results);
+    requestAnimationFrame(() => {
+      shell.classList.add("is-open");
+      input?.focus({ preventScroll: true });
+      input?.select();
+    });
+  }
+
+  function closeSearch() {
+    if (shell.hidden) return;
+
+    shell.classList.remove("is-open");
+    document.body.classList.remove("search-open");
+    window.setTimeout(() => {
+      shell.hidden = true;
+      if (activeOpener?.isConnected) activeOpener.focus({ preventScroll: true });
+      activeOpener = null;
+    }, reducedMotion.matches ? 0 : 220);
+  }
+
+  function trapSearchFocus(event) {
+    const focusable = [...panel.querySelectorAll("a[href], button:not([disabled]), input, [tabindex]:not([tabindex='-1'])")]
+      .filter((element) => element.offsetParent !== null);
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+}
+
+async function getSearchIndex() {
+  if (!searchIndexPromise) {
+    searchIndexPromise = fetch(`/assets/search-index.json?v=${assetVersion}`, { headers: { Accept: "application/json" } })
+      .then((response) => response.ok ? response.json() : [])
+      .catch(() => []);
+  }
+
+  return searchIndexPromise;
+}
+
+async function renderSearchResults(query, results) {
+  if (!results) return;
+
+  const index = await getSearchIndex();
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const matches = index
+    .map((item) => ({ item, score: scoreSearchItem(item, terms) }))
+    .filter(({ item, score }) => terms.length ? score > 0 : ["home", "Faculty", "Course", "University", "Notice"].includes(String(item.section)))
+    .sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title))
+    .slice(0, terms.length ? 10 : 8);
+
+  if (!matches.length) {
+    results.innerHTML = `<p class="site-search-empty">No results found.</p>`;
+    return;
+  }
+
+  results.innerHTML = matches.map(({ item }) => `
+    <a class="site-search-result" href="${escapeAttribute(item.href)}">
+      <span>${escapeHtml(item.section)}</span>
+      <strong>${escapeHtml(item.title)}</strong>
+      <p>${escapeHtml(item.description)}</p>
+    </a>
+  `).join("");
+}
+
+function scoreSearchItem(item, terms) {
+  if (!terms.length) return item.section === "home" ? 30 : 10;
+
+  const title = String(item.title || "").toLowerCase();
+  const section = String(item.section || "").toLowerCase();
+  const description = String(item.description || "").toLowerCase();
+  const text = String(item.text || "").toLowerCase();
+
+  return terms.reduce((score, term) => {
+    if (title.includes(term)) score += 12;
+    if (section.includes(term)) score += 6;
+    if (description.includes(term)) score += 4;
+    if (text.includes(term)) score += 1;
+    return score;
+  }, 0);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replaceAll("'", "&#39;");
 }
 
 function setupHeaderState() {

@@ -1,12 +1,12 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260608-completeux";
+const assetVersion = "20260608-infosearch";
 
 export function renderPage(page, pages) {
   const canonicalPath = page.href || "/";
   const canonical = `${baseUrl}${canonicalPath}`;
-  const heroPreload = page.id === "home" ? "\n  <link rel=\"preload\" href=\"/assets/img/pannonian-campus-hero.jpg\" as=\"image\">" : "";
+  const heroPreload = page.id === "home" ? "\n  <link rel=\"preload\" as=\"image\" href=\"/assets/img/pannonian-campus-hero-1120.webp\" imagesrcset=\"/assets/img/pannonian-campus-hero-640.webp 640w, /assets/img/pannonian-campus-hero-1120.webp 1120w, /assets/img/pannonian-campus-hero-1672.webp 1672w\" imagesizes=\"100vw\" type=\"image/webp\">" : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -34,13 +34,14 @@ export function renderPage(page, pages) {
     ${page.body}
   </main>
   ${renderFooter(pages)}
+  ${renderSearchDialog()}
 </body>
 </html>`;
 }
 
 function renderHeader(page) {
   const links = site.nav.map((item) => {
-    const active = page.href === item.href ? " aria-current=\"page\"" : "";
+    const active = page.href === item.href || (item.href !== "/" && page.href.startsWith(item.href)) ? " aria-current=\"page\"" : "";
     return `<a href="${item.href}" data-nav-link${active}>${item.label}</a>`;
   }).join("");
 
@@ -57,6 +58,11 @@ function renderHeader(page) {
         <span class="nav-indicator" aria-hidden="true"></span>
         ${links}
       </nav>
+      <button class="icon-button search-toggle" type="button" aria-label="Search Pannonian University" data-search-open data-ripple>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path>
+        </svg>
+      </button>
       <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle data-ripple>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -64,6 +70,7 @@ function renderHeader(page) {
       </button>
     </div>
     <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <button class="mobile-search-button" type="button" data-search-open>Search university</button>
       <a href="/" data-nav-link${page.id === "home" ? " aria-current=\"page\"" : ""}>Home</a>
       ${links}
     </nav>
@@ -93,7 +100,7 @@ function renderFooter(pages) {
           <a href="/admissions/">Undergraduate entry</a>
           <a href="/admissions/">Graduate entry</a>
           <a href="/admissions/">International applicants</a>
-          <a href="/admissions/">Scholarships</a>
+          <a href="/tuition-scholarships/">Tuition &amp; scholarships</a>
           <a href="mailto:${site.emails.admissions}">Ask admissions</a>
         </nav>
       </div>
@@ -102,9 +109,9 @@ function renderFooter(pages) {
         <nav aria-label="Footer academic links">
           <a href="/curriculum/">Course Catalog</a>
           <a href="/academics/">Faculties</a>
-          <a href="/admissions/">Academic Calendar</a>
-          <a href="/campus/">Library Commons</a>
-          <a href="/campus/">Student support</a>
+          <a href="/calendar/">Academic Calendar</a>
+          <a href="/library/">Library Commons</a>
+          <a href="/student-life/">Student support</a>
         </nav>
       </div>
       <div>
@@ -118,6 +125,16 @@ function renderFooter(pages) {
         </nav>
       </div>
       <div>
+        <h2>University</h2>
+        <nav aria-label="Footer university links">
+          <a href="/accreditation/">Accreditation</a>
+          <a href="/governance/">Governance</a>
+          <a href="/policies/">Policies</a>
+          <a href="/student-life/">Student life</a>
+          <a href="/library/">Library</a>
+        </nav>
+      </div>
+      <div>
         <h2>Contact</h2>
         <p>${site.address}</p>
         <p>+381 21 555 0198</p>
@@ -128,12 +145,35 @@ function renderFooter(pages) {
     <div class="container footer-bottom">
       <span>&copy; ${new Date().getFullYear()} ${site.name}</span>
       <nav aria-label="Footer legal links">
-        <a href="/">Privacy Policy</a>
-        <a href="/">Accessibility</a>
+        <a href="/policies/">Privacy Policy</a>
+        <a href="/policies/">Accessibility</a>
         <a href="/sitemap.xml">Sitemap</a>
       </nav>
     </div>
   </footer>`;
+}
+
+function renderSearchDialog() {
+  return `<div class="site-search-shell" data-site-search hidden>
+    <div class="site-search-scrim" data-search-close aria-hidden="true"></div>
+    <section class="site-search-panel" role="dialog" aria-modal="true" aria-labelledby="site-search-title" tabindex="-1" data-search-panel>
+      <div class="site-search-topbar">
+        <div>
+          <span id="site-search-title">University search</span>
+          <small>Courses, faculties, notices, offices, and student information</small>
+        </div>
+        <button class="syllabus-close" type="button" data-search-close aria-label="Close search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <label class="site-search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path></svg>
+        <span class="sr-only">Search Pannonian University</span>
+        <input type="search" data-search-input autocomplete="off" placeholder="Search courses, faculty, notices, offices...">
+      </label>
+      <div class="site-search-results" data-search-results aria-live="polite"></div>
+    </section>
+  </div>`;
 }
 
 function renderSocialIcon(label, path) {

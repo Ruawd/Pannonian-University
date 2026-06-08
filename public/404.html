@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-completeux">
-  <script type="module" src="/assets/js/app.js?v=20260608-completeux"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-infosearch">
+  <script type="module" src="/assets/js/app.js?v=20260608-infosearch"></script>
 </head>
 <body data-page="not-found">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -32,6 +32,11 @@
         <span class="nav-indicator" aria-hidden="true"></span>
         <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link>Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
       </nav>
+      <button class="icon-button search-toggle" type="button" aria-label="Search Pannonian University" data-search-open data-ripple>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path>
+        </svg>
+      </button>
       <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle data-ripple>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -39,6 +44,7 @@
       </button>
     </div>
     <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <button class="mobile-search-button" type="button" data-search-open>Search university</button>
       <a href="/" data-nav-link>Home</a>
       <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link>Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
     </nav>
@@ -100,7 +106,7 @@
           <a href="/admissions/">Undergraduate entry</a>
           <a href="/admissions/">Graduate entry</a>
           <a href="/admissions/">International applicants</a>
-          <a href="/admissions/">Scholarships</a>
+          <a href="/tuition-scholarships/">Tuition &amp; scholarships</a>
           <a href="mailto:admissions@pu.edu.rs">Ask admissions</a>
         </nav>
       </div>
@@ -109,9 +115,9 @@
         <nav aria-label="Footer academic links">
           <a href="/curriculum/">Course Catalog</a>
           <a href="/academics/">Faculties</a>
-          <a href="/admissions/">Academic Calendar</a>
-          <a href="/campus/">Library Commons</a>
-          <a href="/campus/">Student support</a>
+          <a href="/calendar/">Academic Calendar</a>
+          <a href="/library/">Library Commons</a>
+          <a href="/student-life/">Student support</a>
         </nav>
       </div>
       <div>
@@ -125,6 +131,16 @@
         </nav>
       </div>
       <div>
+        <h2>University</h2>
+        <nav aria-label="Footer university links">
+          <a href="/accreditation/">Accreditation</a>
+          <a href="/governance/">Governance</a>
+          <a href="/policies/">Policies</a>
+          <a href="/student-life/">Student life</a>
+          <a href="/library/">Library</a>
+        </nav>
+      </div>
+      <div>
         <h2>Contact</h2>
         <p>Bulevar Pannonica 12, 21000 Novi Sad, Serbia</p>
         <p>+381 21 555 0198</p>
@@ -135,11 +151,31 @@
     <div class="container footer-bottom">
       <span>&copy; 2026 Pannonian University</span>
       <nav aria-label="Footer legal links">
-        <a href="/">Privacy Policy</a>
-        <a href="/">Accessibility</a>
+        <a href="/policies/">Privacy Policy</a>
+        <a href="/policies/">Accessibility</a>
         <a href="/sitemap.xml">Sitemap</a>
       </nav>
     </div>
   </footer>
+  <div class="site-search-shell" data-site-search hidden>
+    <div class="site-search-scrim" data-search-close aria-hidden="true"></div>
+    <section class="site-search-panel" role="dialog" aria-modal="true" aria-labelledby="site-search-title" tabindex="-1" data-search-panel>
+      <div class="site-search-topbar">
+        <div>
+          <span id="site-search-title">University search</span>
+          <small>Courses, faculties, notices, offices, and student information</small>
+        </div>
+        <button class="syllabus-close" type="button" data-search-close aria-label="Close search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <label class="site-search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path></svg>
+        <span class="sr-only">Search Pannonian University</span>
+        <input type="search" data-search-input autocomplete="off" placeholder="Search courses, faculty, notices, offices...">
+      </label>
+      <div class="site-search-results" data-search-results aria-live="polite"></div>
+    </section>
+  </div>
 </body>
 </html>

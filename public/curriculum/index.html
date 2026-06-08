@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-completeux">
-  <script type="module" src="/assets/js/app.js?v=20260608-completeux"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-infosearch">
+  <script type="module" src="/assets/js/app.js?v=20260608-infosearch"></script>
 </head>
 <body data-page="curriculum">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -32,6 +32,11 @@
         <span class="nav-indicator" aria-hidden="true"></span>
         <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link aria-current="page">Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
       </nav>
+      <button class="icon-button search-toggle" type="button" aria-label="Search Pannonian University" data-search-open data-ripple>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path>
+        </svg>
+      </button>
       <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle data-ripple>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -39,6 +44,7 @@
       </button>
     </div>
     <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
+      <button class="mobile-search-button" type="button" data-search-open>Search university</button>
       <a href="/" data-nav-link>Home</a>
       <a href="/academics/" data-nav-link>Academics</a><a href="/curriculum/" data-nav-link aria-current="page">Curriculum</a><a href="/admissions/" data-nav-link>Admissions</a><a href="/research/" data-nav-link>Research</a><a href="/campus/" data-nav-link>Campus</a><a href="/contact/" data-nav-link>Contact</a>
     </nav>
@@ -91,98 +97,122 @@
               
               <article class="course-card" data-course-card data-syllabus-card="pu-101" data-domain="danube-systems" data-level="foundation" data-search="PU-101 Regional Evidence &amp; Pannonian Systems Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region. Danube Systems Foundation Faculty of Regional Systems Danube Evidence Studio Connected to PU's Danube Basin Civic Atlas, a living research map of municipal services, agricultural zones, wetland risks, and public data gaps. Build a regional evidence brief from public datasets and field notes. Read Serbian Danube planning documents with clear limits and assumptions. Present a map-backed civic question to a faculty review panel.">
                 <div class="course-meta"><span>PU-101</span><em>Foundation</em></div>
-                <h2>Regional Evidence &amp; Pannonian Systems</h2>
+                <h2><a href="/curriculum/pu-101/">Regional Evidence &amp; Pannonian Systems</a></h2>
                 <p>Students learn the geography, institutions, datasets, and civic questions that shape the Serbian Danube region.</p>
                 <div class="course-footer">
                   <span>Danube Systems</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="pu-101" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/pu-101/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="pu-101" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="agt-202" data-domain="climate-land" data-level="core-exploration" data-search="AGT-202 Remote Sensing for Climate-Smart Agriculture Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions. Climate &amp; Land Core Exploration Faculty of Climate and Land AgriTech Remote Sensing Lab Uses PU field plots near Novi Sad to compare Sentinel-2 vegetation indices, UAV imagery, and farmer-reported irrigation stress. Process remote sensing imagery into an agronomic interpretation. Compare satellite and UAV signals without overstating precision. Translate climate risk evidence into farm and policy recommendations.">
                 <div class="course-meta"><span>AGT-202</span><em>Core Exploration</em></div>
-                <h2>Remote Sensing for Climate-Smart Agriculture</h2>
+                <h2><a href="/curriculum/agt-202/">Remote Sensing for Climate-Smart Agriculture</a></h2>
                 <p>Interpreting crop vigor, field stress, irrigation signals, and UAV imagery for farm and policy decisions.</p>
                 <div class="course-footer">
                   <span>Climate &amp; Land</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="agt-202" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/agt-202/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="agt-202" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="wat-310" data-domain="danube-systems" data-level="lab-crucible" data-search="WAT-310 Groundwater Quality &amp; Irrigation Risk Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards. Danube Systems Lab Crucible Faculty of Environmental Engineering Water Futures Lab Feeds the Water Futures Lab's groundwater risk archive for irrigation communities along the Danube and Tisa corridors. Execute a defensible water sampling chain from field site to lab record. Interpret salinity, nitrate, and conductivity indicators for irrigation risk. Prepare public communication that is accurate without being alarmist.">
                 <div class="course-meta"><span>WAT-310</span><em>Lab Crucible</em></div>
-                <h2>Groundwater Quality &amp; Irrigation Risk</h2>
+                <h2><a href="/curriculum/wat-310/">Groundwater Quality &amp; Irrigation Risk</a></h2>
                 <p>Sampling protocols, salinity interpretation, aquifer mapping, and public communication for irrigation safeguards.</p>
                 <div class="course-footer">
                   <span>Danube Systems</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="wat-310" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/wat-310/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="wat-310" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="eco-220" data-domain="economics" data-level="core-exploration" data-search="ECO-220 Regional Economics &amp; Responsible Growth Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry. Economics Core Exploration School of Economics Regional Growth Observatory Supports the Regional Growth Observatory's work on logistics corridors, municipal finance stress, and circular bioeconomy investment. Model regional growth tradeoffs using transparent assumptions. Evaluate public finance and logistics constraints in cross-border industry. Write an investment memo that weighs growth, resilience, and social risk.">
                 <div class="course-meta"><span>ECO-220</span><em>Core Exploration</em></div>
-                <h2>Regional Economics &amp; Responsible Growth</h2>
+                <h2><a href="/curriculum/eco-220/">Regional Economics &amp; Responsible Growth</a></h2>
                 <p>Dean Huang Yu Fei's school examines logistics, public finance, circular bioeconomy, and cross-border industry.</p>
                 <div class="course-footer">
                   <span>Economics</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="eco-220" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/eco-220/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="eco-220" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="ant-240" data-domain="culture-society" data-level="core-exploration" data-search="ANT-240 Borderlands Ethnography &amp; Oral History Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history. Culture &amp; Society Core Exploration School of Society Borderlands Oral History Archive Contributes to PU's Borderlands Oral History Archive, preserving multilingual accounts of migration, labor, farming, and everyday civic life. Design an ethical interview protocol for sensitive regional histories. Connect oral testimony with archive material and public interpretation. Produce a respectful public history object with participant consent.">
                 <div class="course-meta"><span>ANT-240</span><em>Core Exploration</em></div>
-                <h2>Borderlands Ethnography &amp; Oral History</h2>
+                <h2><a href="/curriculum/ant-240/">Borderlands Ethnography &amp; Oral History</a></h2>
                 <p>Dean Chen Wei Hong introduces field interviews, ethics, archives, minority languages, and public history.</p>
                 <div class="course-footer">
                   <span>Culture &amp; Society</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="ant-240" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/ant-240/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="ant-240" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="dat-330" data-domain="public-data" data-level="lab-crucible" data-search="DAT-330 Open Data Studio for Public Dashboards Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation. Public Data Lab Crucible Faculty of Digital Civic Systems Civic Data Interface Lab Builds directly on PU's Civic Data Interface Lab research into accessible dashboards for municipal water, heat, and service access. Build a reproducible data pipeline with source notes and limitations. Design an accessible public dashboard for non-specialist residents. Test visual explanations with real users and revise based on evidence.">
                 <div class="course-meta"><span>DAT-330</span><em>Lab Crucible</em></div>
-                <h2>Open Data Studio for Public Dashboards</h2>
+                <h2><a href="/curriculum/dat-330/">Open Data Studio for Public Dashboards</a></h2>
                 <p>Reproducible notebooks, geospatial interfaces, uncertainty notes, and accessible visual explanation.</p>
                 <div class="course-footer">
                   <span>Public Data</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="dat-330" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/dat-330/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="dat-330" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="pol-360" data-domain="public-data" data-level="partner-studio" data-search="POL-360 Municipal Resilience Policy Clinic Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning. Public Data Partner Studio Faculty of Public Policy Municipal Resilience Clinic Works with partner municipalities to test how climate, infrastructure, and service-access evidence can be used in local planning cycles. Translate technical evidence into policy options for municipal partners. Compare heat, flood, water, and access risks across neighborhoods. Run a partner briefing that separates evidence, judgment, and recommendation.">
                 <div class="course-meta"><span>POL-360</span><em>Partner Studio</em></div>
-                <h2>Municipal Resilience Policy Clinic</h2>
+                <h2><a href="/curriculum/pol-360/">Municipal Resilience Policy Clinic</a></h2>
                 <p>Student teams translate field evidence into briefing notes for heat, flood, water, and service-access planning.</p>
                 <div class="course-footer">
                   <span>Public Data</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="pol-360" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/pol-360/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="pol-360" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
               <article class="course-card" data-course-card data-syllabus-card="cap-404" data-domain="all" data-level="partner-studio" data-search="CAP-404 Capstone Evidence Dossier A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response. All Domains Partner Studio Interfaculty Capstone Board Applied Research Commons The capstone converts a PU research or partner question into a documented public dossier with method transparency and stakeholder response. Frame a research question that can survive methodological review. Produce a public dossier with data, methods, limitations, and prototype evidence. Respond to partner critique with a revised, accountable final submission.">
                 <div class="course-meta"><span>CAP-404</span><em>Partner Studio</em></div>
-                <h2>Capstone Evidence Dossier</h2>
+                <h2><a href="/curriculum/cap-404/">Capstone Evidence Dossier</a></h2>
                 <p>A final public portfolio with research question, methods, limitations, dataset, prototype, and partner response.</p>
                 <div class="course-footer">
                   <span>All Domains</span>
-                  <button class="syllabus-link" type="button" data-syllabus-open="cap-404" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
-                    Explore Syllabus
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
-                  </button>
+                  <div class="course-actions">
+                    <a class="course-detail-link" href="/curriculum/cap-404/">View course</a>
+                    <button class="syllabus-link" type="button" data-syllabus-open="cap-404" aria-haspopup="dialog" aria-controls="course-syllabus-drawer">
+                      Explore Syllabus
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+                    </button>
+                  </div>
                 </div>
               </article>
             </div>
@@ -1228,7 +1258,7 @@
           <a href="/admissions/">Undergraduate entry</a>
           <a href="/admissions/">Graduate entry</a>
           <a href="/admissions/">International applicants</a>
-          <a href="/admissions/">Scholarships</a>
+          <a href="/tuition-scholarships/">Tuition &amp; scholarships</a>
           <a href="mailto:admissions@pu.edu.rs">Ask admissions</a>
         </nav>
       </div>
@@ -1237,9 +1267,9 @@
         <nav aria-label="Footer academic links">
           <a href="/curriculum/">Course Catalog</a>
           <a href="/academics/">Faculties</a>
-          <a href="/admissions/">Academic Calendar</a>
-          <a href="/campus/">Library Commons</a>
-          <a href="/campus/">Student support</a>
+          <a href="/calendar/">Academic Calendar</a>
+          <a href="/library/">Library Commons</a>
+          <a href="/student-life/">Student support</a>
         </nav>
       </div>
       <div>
@@ -1253,6 +1283,16 @@
         </nav>
       </div>
       <div>
+        <h2>University</h2>
+        <nav aria-label="Footer university links">
+          <a href="/accreditation/">Accreditation</a>
+          <a href="/governance/">Governance</a>
+          <a href="/policies/">Policies</a>
+          <a href="/student-life/">Student life</a>
+          <a href="/library/">Library</a>
+        </nav>
+      </div>
+      <div>
         <h2>Contact</h2>
         <p>Bulevar Pannonica 12, 21000 Novi Sad, Serbia</p>
         <p>+381 21 555 0198</p>
@@ -1263,11 +1303,31 @@
     <div class="container footer-bottom">
       <span>&copy; 2026 Pannonian University</span>
       <nav aria-label="Footer legal links">
-        <a href="/">Privacy Policy</a>
-        <a href="/">Accessibility</a>
+        <a href="/policies/">Privacy Policy</a>
+        <a href="/policies/">Accessibility</a>
         <a href="/sitemap.xml">Sitemap</a>
       </nav>
     </div>
   </footer>
+  <div class="site-search-shell" data-site-search hidden>
+    <div class="site-search-scrim" data-search-close aria-hidden="true"></div>
+    <section class="site-search-panel" role="dialog" aria-modal="true" aria-labelledby="site-search-title" tabindex="-1" data-search-panel>
+      <div class="site-search-topbar">
+        <div>
+          <span id="site-search-title">University search</span>
+          <small>Courses, faculties, notices, offices, and student information</small>
+        </div>
+        <button class="syllabus-close" type="button" data-search-close aria-label="Close search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <label class="site-search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"></path></svg>
+        <span class="sr-only">Search Pannonian University</span>
+        <input type="search" data-search-input autocomplete="off" placeholder="Search courses, faculty, notices, offices...">
+      </label>
+      <div class="site-search-results" data-search-results aria-live="polite"></div>
+    </section>
+  </div>
 </body>
 </html>
