@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const assetVersion = "20260608-cohortlock";
+const assetVersion = "20260608-consolecards";
 
 export function setupInteractions() {
   setupHeaderState();

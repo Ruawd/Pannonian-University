@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-cohortlock">
-  <script type="module" src="/assets/js/app.js?v=20260608-cohortlock"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-consolecards">
+  <script type="module" src="/assets/js/app.js?v=20260608-consolecards"></script>
 </head>
 <body data-page="research">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -96,57 +96,56 @@
       <section class="section research-map-section" data-reveal>
         <div class="container research-map-console" data-research-map>
           <div class="section-heading">
-            <p class="eyebrow">Interactive research map</p>
-            <h2>Five research nodes across the Pannonian evidence network.</h2>
+            <p class="eyebrow">Research evidence console</p>
+            <h2>Live research signals across the Pannonian evidence network.</h2>
             <p>Select a node to see the lead lab, current evidence signal, and the outputs students and faculty are building.</p>
           </div>
           <div class="research-map-layout">
-            <div class="research-map-board" role="tablist" aria-label="Pannonian research network">
-              <div class="research-map-shape" aria-hidden="true">
-                <span class="research-river river-main"></span>
-                <span class="research-river river-branch"></span>
-                <span class="research-land land-a"></span>
-                <span class="research-land land-b"></span>
+            <div class="research-map-board research-signal-board" role="tablist" aria-label="Pannonian research evidence signals">
+
+              <div class="signal-board-header">
+                <span>Evidence flow</span>
+                <strong>2026 field cycle</strong>
               </div>
-              
-              <button class="research-pin is-active" type="button" role="tab" aria-selected="true" aria-controls="research-node-danube-water" data-research-trigger="danube-water" style="--pin-x: 28%; --pin-y: 62%">
-                <span>Danube Water Futures</span>
-              </button>
-              <button class="research-pin" type="button" role="tab" aria-selected="false" aria-controls="research-node-agri-sensing" data-research-trigger="agri-sensing" style="--pin-x: 48%; --pin-y: 40%">
-                <span>AgriTech Remote Sensing</span>
-              </button>
-              <button class="research-pin" type="button" role="tab" aria-selected="false" aria-controls="research-node-wetland" data-research-trigger="wetland" style="--pin-x: 68%; --pin-y: 68%">
-                <span>Floodplain Biodiversity Observatory</span>
-              </button>
-              <button class="research-pin" type="button" role="tab" aria-selected="false" aria-controls="research-node-growth" data-research-trigger="growth" style="--pin-x: 58%; --pin-y: 52%">
-                <span>Regional Growth Observatory</span>
-              </button>
-              <button class="research-pin" type="button" role="tab" aria-selected="false" aria-controls="research-node-memory" data-research-trigger="memory" style="--pin-x: 36%; --pin-y: 32%">
-                <span>Borderlands Memory Project</span>
-              </button>
-            </div>
-            <div class="research-node-list" role="tablist" aria-label="Research nodes">
-              
-              <button class="research-node-button is-active" type="button" role="tab" aria-selected="true" aria-controls="research-node-danube-water" data-research-trigger="danube-water" data-ripple>
-                <span>Danube corridor</span>
-                <strong>Danube Water Futures</strong>
-              </button>
-              <button class="research-node-button" type="button" role="tab" aria-selected="false" aria-controls="research-node-agri-sensing" data-research-trigger="agri-sensing" data-ripple>
-                <span>Vojvodina field plots</span>
-                <strong>AgriTech Remote Sensing</strong>
-              </button>
-              <button class="research-node-button" type="button" role="tab" aria-selected="false" aria-controls="research-node-wetland" data-research-trigger="wetland" data-ripple>
-                <span>Wetland reserves</span>
-                <strong>Floodplain Biodiversity Observatory</strong>
-              </button>
-              <button class="research-node-button" type="button" role="tab" aria-selected="false" aria-controls="research-node-growth" data-research-trigger="growth" data-ripple>
-                <span>Danube logistics belt</span>
-                <strong>Regional Growth Observatory</strong>
-              </button>
-              <button class="research-node-button" type="button" role="tab" aria-selected="false" aria-controls="research-node-memory" data-research-trigger="memory" data-ripple>
-                <span>Multilingual settlements</span>
-                <strong>Borderlands Memory Project</strong>
-              </button>
+              <div class="signal-pipeline" aria-hidden="true">
+                <span>Intake</span>
+                <i></i>
+                <span>Verify</span>
+                <i></i>
+                <span>Brief</span>
+              </div>
+              <div class="research-signal-stack">
+                
+                <button class="research-signal-card is-active" type="button" role="tab" aria-selected="true" aria-controls="research-node-danube-water" data-research-trigger="danube-water" data-ripple>
+                  <span>01 / Field sampling</span>
+                  <strong>Danube Water Futures</strong>
+                  <small>36 verified samples</small>
+                </button>
+                <button class="research-signal-card" type="button" role="tab" aria-selected="false" aria-controls="research-node-agri-sensing" data-research-trigger="agri-sensing" data-ripple>
+                  <span>02 / Remote sensing</span>
+                  <strong>AgriTech Remote Sensing</strong>
+                  <small>18 imagery scenes</small>
+                </button>
+                <button class="research-signal-card" type="button" role="tab" aria-selected="false" aria-controls="research-node-wetland" data-research-trigger="wetland" data-ripple>
+                  <span>03 / Seasonal watch</span>
+                  <strong>Floodplain Biodiversity Observatory</strong>
+                  <small>11 protected-site references</small>
+                </button>
+                <button class="research-signal-card" type="button" role="tab" aria-selected="false" aria-controls="research-node-growth" data-research-trigger="growth" data-ripple>
+                  <span>04 / Scenario modeling</span>
+                  <strong>Regional Growth Observatory</strong>
+                  <small>4 policy scenarios</small>
+                </button>
+                <button class="research-signal-card" type="button" role="tab" aria-selected="false" aria-controls="research-node-memory" data-research-trigger="memory" data-ripple>
+                  <span>05 / Oral history</span>
+                  <strong>Borderlands Memory Project</strong>
+                  <small>18 interviews</small>
+                </button>
+              </div>
+              <div class="signal-board-footer">
+                <div><span>Active nodes</span><strong>5</strong></div>
+                <div><span>Public outputs</span><strong>15</strong></div>
+              </div>
             </div>
             <div class="research-node-detail">
               

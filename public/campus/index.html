@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-cohortlock">
-  <script type="module" src="/assets/js/app.js?v=20260608-cohortlock"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-consolecards">
+  <script type="module" src="/assets/js/app.js?v=20260608-consolecards"></script>
 </head>
 <body data-page="campus">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -63,56 +63,54 @@
       <section class="section campus-guide-section" data-reveal>
         <div class="container campus-guide" data-campus-guide>
           <div class="section-heading">
-            <p class="eyebrow">Campus guide</p>
-            <h2>Inspect the places students use every week.</h2>
+            <p class="eyebrow">Campus service console</p>
+            <h2>Check the desks students use every week.</h2>
             <p>Tap a location to see hours, services, and the office that can help before you arrive.</p>
           </div>
           <div class="campus-guide-layout">
-            <div class="campus-map-board" role="tablist" aria-label="Campus locations">
-              <span class="campus-path path-main" aria-hidden="true"></span>
-              <span class="campus-path path-cross" aria-hidden="true"></span>
-              <span class="campus-building building-a" aria-hidden="true"></span>
-              <span class="campus-building building-b" aria-hidden="true"></span>
-              <span class="campus-building building-c" aria-hidden="true"></span>
-              
-              <button class="campus-pin is-active" type="button" role="tab" aria-selected="true" aria-controls="campus-place-commons" data-campus-trigger="commons" style="--pin-x: 42%; --pin-y: 44%">
-                <span>Library Commons</span>
-              </button>
-              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-water-lab" data-campus-trigger="water-lab" style="--pin-x: 66%; --pin-y: 36%">
-                <span>Water Lab</span>
-              </button>
-              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-studio" data-campus-trigger="studio" style="--pin-x: 58%; --pin-y: 66%">
-                <span>Studio Court</span>
-              </button>
-              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-wellbeing" data-campus-trigger="wellbeing" style="--pin-x: 25%; --pin-y: 62%">
-                <span>Wellbeing</span>
-              </button>
-              <button class="campus-pin" type="button" role="tab" aria-selected="false" aria-controls="campus-place-visitor" data-campus-trigger="visitor" style="--pin-x: 31%; --pin-y: 28%">
-                <span>Visitor Desk</span>
-              </button>
-            </div>
-            <div class="campus-place-list" role="tablist" aria-label="Campus place list">
-              
-              <button class="campus-place-button is-active" type="button" role="tab" aria-selected="true" aria-controls="campus-place-commons" data-campus-trigger="commons" data-ripple>
-                <span>08:00-22:00</span>
-                <strong>Library Commons</strong>
-              </button>
-              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-water-lab" data-campus-trigger="water-lab" data-ripple>
-                <span>By lab schedule</span>
-                <strong>Water Lab</strong>
-              </button>
-              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-studio" data-campus-trigger="studio" data-ripple>
-                <span>09:00-20:00</span>
-                <strong>Studio Court</strong>
-              </button>
-              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-wellbeing" data-campus-trigger="wellbeing" data-ripple>
-                <span>09:00-17:00</span>
-                <strong>Wellbeing</strong>
-              </button>
-              <button class="campus-place-button" type="button" role="tab" aria-selected="false" aria-controls="campus-place-visitor" data-campus-trigger="visitor" data-ripple>
-                <span>09:00-15:00</span>
-                <strong>Visitor Desk</strong>
-              </button>
+            <div class="campus-map-board campus-service-board" role="tablist" aria-label="Campus service desks">
+
+              <div class="service-board-header">
+                <span>Today on campus</span>
+                <strong>Student services desk</strong>
+              </div>
+              <div class="service-clock-card">
+                <span>Core window</span>
+                <strong>09:00-17:00</strong>
+                <p>Visits, advising, wellbeing routing, and partner meetings are handled through the active desks below.</p>
+              </div>
+              <div class="campus-desk-stack">
+                
+                <button class="campus-desk-card is-active" type="button" role="tab" aria-selected="true" aria-controls="campus-place-commons" data-campus-trigger="commons" data-ripple>
+                  <span>08:00-22:00</span>
+                  <strong>Library Commons</strong>
+                  <small>Research consultations</small>
+                </button>
+                <button class="campus-desk-card" type="button" role="tab" aria-selected="false" aria-controls="campus-place-water-lab" data-campus-trigger="water-lab" data-ripple>
+                  <span>By lab schedule</span>
+                  <strong>Water Lab</strong>
+                  <small>Water sampling</small>
+                </button>
+                <button class="campus-desk-card" type="button" role="tab" aria-selected="false" aria-controls="campus-place-studio" data-campus-trigger="studio" data-ripple>
+                  <span>09:00-20:00</span>
+                  <strong>Studio Court</strong>
+                  <small>Team rooms</small>
+                </button>
+                <button class="campus-desk-card" type="button" role="tab" aria-selected="false" aria-controls="campus-place-wellbeing" data-campus-trigger="wellbeing" data-ripple>
+                  <span>09:00-17:00</span>
+                  <strong>Wellbeing</strong>
+                  <small>Counseling referral</small>
+                </button>
+                <button class="campus-desk-card" type="button" role="tab" aria-selected="false" aria-controls="campus-place-visitor" data-campus-trigger="visitor" data-ripple>
+                  <span>09:00-15:00</span>
+                  <strong>Visitor Desk</strong>
+                  <small>Admissions tours</small>
+                </button>
+              </div>
+              <div class="service-board-footer">
+                <div><span>Open desks</span><strong>5</strong></div>
+                <div><span>Primary inbox</span><strong>info@pu.edu.rs</strong></div>
+              </div>
             </div>
             <div class="campus-place-detail">
               

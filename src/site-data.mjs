@@ -387,6 +387,33 @@ function renderAdmissionsStepper() {
       </section>`;
 }
 
+function renderResearchSignalBoard(first) {
+  return `
+              <div class="signal-board-header">
+                <span>Evidence flow</span>
+                <strong>2026 field cycle</strong>
+              </div>
+              <div class="signal-pipeline" aria-hidden="true">
+                <span>Intake</span>
+                <i></i>
+                <span>Verify</span>
+                <i></i>
+                <span>Brief</span>
+              </div>
+              <div class="research-signal-stack">
+                ${researchMapNodes.map((node, index) => `
+                <button class="research-signal-card${node.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${node.id === first}" aria-controls="research-node-${html(node.id)}" data-research-trigger="${html(node.id)}" data-ripple>
+                  <span>${String(index + 1).padStart(2, "0")} / ${html(node.status)}</span>
+                  <strong>${html(node.label)}</strong>
+                  <small>${html(node.metric)}</small>
+                </button>`).join("")}
+              </div>
+              <div class="signal-board-footer">
+                <div><span>Active nodes</span><strong>${researchMapNodes.length}</strong></div>
+                <div><span>Public outputs</span><strong>${researchMapNodes.reduce((total, node) => total + node.outputs.length, 0)}</strong></div>
+              </div>`;
+}
+
 function renderResearchMap() {
   const first = researchMapNodes[0]?.id || "";
 
@@ -394,29 +421,13 @@ function renderResearchMap() {
       <section class="section research-map-section" data-reveal>
         <div class="container research-map-console" data-research-map>
           <div class="section-heading">
-            <p class="eyebrow">Interactive research map</p>
-            <h2>Five research nodes across the Pannonian evidence network.</h2>
+            <p class="eyebrow">Research evidence console</p>
+            <h2>Live research signals across the Pannonian evidence network.</h2>
             <p>Select a node to see the lead lab, current evidence signal, and the outputs students and faculty are building.</p>
           </div>
           <div class="research-map-layout">
-            <div class="research-map-board" role="tablist" aria-label="Pannonian research network">
-              <div class="research-map-shape" aria-hidden="true">
-                <span class="research-river river-main"></span>
-                <span class="research-river river-branch"></span>
-                <span class="research-land land-a"></span>
-                <span class="research-land land-b"></span>
-              </div>
-              ${researchMapNodes.map((node) => `
-              <button class="research-pin${node.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${node.id === first}" aria-controls="research-node-${html(node.id)}" data-research-trigger="${html(node.id)}" style="--pin-x: ${html(node.x)}; --pin-y: ${html(node.y)}">
-                <span>${html(node.label)}</span>
-              </button>`).join("")}
-            </div>
-            <div class="research-node-list" role="tablist" aria-label="Research nodes">
-              ${researchMapNodes.map((node) => `
-              <button class="research-node-button${node.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${node.id === first}" aria-controls="research-node-${html(node.id)}" data-research-trigger="${html(node.id)}" data-ripple>
-                <span>${html(node.region)}</span>
-                <strong>${html(node.label)}</strong>
-              </button>`).join("")}
+            <div class="research-map-board research-signal-board" role="tablist" aria-label="Pannonian research evidence signals">
+${renderResearchSignalBoard(first)}
             </div>
             <div class="research-node-detail">
               ${researchMapNodes.map((node) => `
@@ -439,6 +450,31 @@ function renderResearchMap() {
           </div>
         </div>
       </section>`;
+}
+
+function renderCampusServiceBoard(first) {
+  return `
+              <div class="service-board-header">
+                <span>Today on campus</span>
+                <strong>Student services desk</strong>
+              </div>
+              <div class="service-clock-card">
+                <span>Core window</span>
+                <strong>09:00-17:00</strong>
+                <p>Visits, advising, wellbeing routing, and partner meetings are handled through the active desks below.</p>
+              </div>
+              <div class="campus-desk-stack">
+                ${campusPlaces.map((place) => `
+                <button class="campus-desk-card${place.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${place.id === first}" aria-controls="campus-place-${html(place.id)}" data-campus-trigger="${html(place.id)}" data-ripple>
+                  <span>${html(place.hours)}</span>
+                  <strong>${html(place.label)}</strong>
+                  <small>${html(place.services[0])}</small>
+                </button>`).join("")}
+              </div>
+              <div class="service-board-footer">
+                <div><span>Open desks</span><strong>${campusPlaces.length}</strong></div>
+                <div><span>Primary inbox</span><strong>${html(site.emails.general)}</strong></div>
+              </div>`;
 }
 
 function renderCommandCenter() {
@@ -505,28 +541,13 @@ function renderCampusGuide() {
       <section class="section campus-guide-section" data-reveal>
         <div class="container campus-guide" data-campus-guide>
           <div class="section-heading">
-            <p class="eyebrow">Campus guide</p>
-            <h2>Inspect the places students use every week.</h2>
+            <p class="eyebrow">Campus service console</p>
+            <h2>Check the desks students use every week.</h2>
             <p>Tap a location to see hours, services, and the office that can help before you arrive.</p>
           </div>
           <div class="campus-guide-layout">
-            <div class="campus-map-board" role="tablist" aria-label="Campus locations">
-              <span class="campus-path path-main" aria-hidden="true"></span>
-              <span class="campus-path path-cross" aria-hidden="true"></span>
-              <span class="campus-building building-a" aria-hidden="true"></span>
-              <span class="campus-building building-b" aria-hidden="true"></span>
-              <span class="campus-building building-c" aria-hidden="true"></span>
-              ${campusPlaces.map((place) => `
-              <button class="campus-pin${place.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${place.id === first}" aria-controls="campus-place-${html(place.id)}" data-campus-trigger="${html(place.id)}" style="--pin-x: ${html(place.x)}; --pin-y: ${html(place.y)}">
-                <span>${html(place.label)}</span>
-              </button>`).join("")}
-            </div>
-            <div class="campus-place-list" role="tablist" aria-label="Campus place list">
-              ${campusPlaces.map((place) => `
-              <button class="campus-place-button${place.id === first ? " is-active" : ""}" type="button" role="tab" aria-selected="${place.id === first}" aria-controls="campus-place-${html(place.id)}" data-campus-trigger="${html(place.id)}" data-ripple>
-                <span>${html(place.hours)}</span>
-                <strong>${html(place.label)}</strong>
-              </button>`).join("")}
+            <div class="campus-map-board campus-service-board" role="tablist" aria-label="Campus service desks">
+${renderCampusServiceBoard(first)}
             </div>
             <div class="campus-place-detail">
               ${campusPlaces.map((place) => `
