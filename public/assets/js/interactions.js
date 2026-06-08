@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const assetVersion = "20260608-luodean";
+const assetVersion = "20260608-researchlayout";
 
 export function setupInteractions() {
   setupHeaderState();

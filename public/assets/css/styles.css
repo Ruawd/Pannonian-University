@@ -2236,21 +2236,17 @@ h3 {
     "field observatory"
     "field studio";
   gap: 1rem;
-  align-items: stretch;
+  align-items: start;
 }
 
 .research-photo.large {
   grid-area: field;
-  min-height: 640px;
-  display: flex;
-  flex-direction: column;
+  align-self: start;
 }
 
 .research-photo.large img {
-  flex: 1;
-  min-height: 0;
-  height: 100%;
-  aspect-ratio: auto;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .visual-research-grid > .research-photo:not(.large) {
