@@ -1598,16 +1598,12 @@ const corePages = [
       ${renderResearchMap()}
 
       <section class="section visual-research-section" data-reveal>
-        <div class="container visual-research-grid">
-          <figure class="research-photo large">
-            ${responsiveImage("research-fieldwork.jpg", { alt: "Pannonian University researchers collecting soil and crop data in a Vojvodina field", sizes: "(min-width: 980px) 58vw, 100vw" })}
-            <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
-          </figure>
-          <div class="observatory-panel" aria-label="Pannonian Observatory research dashboard">
+        <div class="container observatory-board">
+          <div class="observatory-copy-panel" aria-label="Pannonian Observatory research dashboard">
             <div class="observatory-header">
               <p class="eyebrow">Pannonian Observatory</p>
-              <h2>One regional evidence system, four live research lenses.</h2>
-              <p>Designed for public dashboards, faculty studios, and partner briefs across the Danube corridor.</p>
+              <h2>Regional evidence moves from field notes to public dashboards.</h2>
+              <p>Designed for faculty studios and partner briefs across the Danube corridor, the observatory keeps field sampling, remote sensing, and public explanation in the same working view.</p>
             </div>
             <div class="signal-grid">
               <div class="signal-card">
@@ -1639,11 +1635,42 @@ const corePages = [
               <span class="basin-node node-b"></span>
               <span class="basin-node node-c"></span>
             </div>
+            <div class="observatory-brief-list" aria-label="Current observatory outputs">
+              <div><span>Evidence desk</span><strong>12 active partner briefs</strong></div>
+              <div><span>Field stations</span><strong>07 basin monitoring points</strong></div>
+              <div><span>Next release</span><strong>Water dashboard methods note</strong></div>
+            </div>
           </div>
-          <figure class="research-photo">
-            ${responsiveImage("research-data-studio.jpg", { alt: "Pannonian University research team reviewing river basin and climate dashboards" })}
-            <figcaption>Data studio reviews connect field samples, satellite imagery, and municipal planning questions.</figcaption>
-          </figure>
+          <div class="observatory-media-panel">
+            <figure class="observatory-photo observatory-photo-main">
+              ${responsiveImage("research-fieldwork.jpg", { alt: "Pannonian University researchers collecting soil and crop data in a Vojvodina field", sizes: "(min-width: 980px) 54vw, 100vw" })}
+              <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
+            </figure>
+            <div class="observatory-lower-row">
+              <figure class="observatory-photo observatory-photo-studio">
+                ${responsiveImage("research-data-studio.jpg", { alt: "Pannonian University research team reviewing river basin and climate dashboards", sizes: "(min-width: 980px) 28vw, 100vw" })}
+                <figcaption>Data studio reviews connect samples, satellite imagery, and planning questions.</figcaption>
+              </figure>
+              <div class="field-method-panel" aria-label="Field evidence workflow">
+                <div class="field-method-copy">
+                  <p class="eyebrow">Field protocol</p>
+                  <h3>Sample, verify, brief.</h3>
+                  <p>Teams move from field observations to lab notes, methods review, and partner-facing evidence in one studio cycle.</p>
+                </div>
+                <div class="method-flow" aria-hidden="true">
+                  <span>Collect</span>
+                  <i></i>
+                  <span>Verify</span>
+                  <i></i>
+                  <span>Publish</span>
+                </div>
+                <dl class="method-stat-list">
+                  <div><dt>Sample chain</dt><dd>Soil, water, crop notes</dd></div>
+                  <div><dt>Review rhythm</dt><dd>Weekly evidence desk</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

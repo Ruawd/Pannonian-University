@@ -2229,37 +2229,186 @@ h3 {
   background: var(--paper);
 }
 
-.visual-research-grid {
+.observatory-board {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.72fr);
-  grid-template-areas:
-    "field observatory"
-    "field studio";
+  grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr);
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 
-.research-photo.large {
-  grid-area: field;
-  align-self: start;
+.observatory-copy-panel,
+.observatory-media-panel,
+.observatory-lower-row {
+  display: grid;
+  gap: 1rem;
 }
 
-.research-photo.large img {
+.observatory-copy-panel {
+  align-content: start;
+  overflow: hidden;
+  padding: 1.35rem;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(216, 182, 96, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(31, 111, 100, 0.11), rgba(255, 253, 248, 0.82)),
+    var(--surface);
+  box-shadow: 0 10px 28px rgba(32, 35, 38, 0.06);
+}
+
+.observatory-brief-list {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.observatory-brief-list div {
+  display: grid;
+  grid-template-columns: minmax(118px, 0.42fr) minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(31, 111, 100, 0.14);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.62);
+}
+
+.observatory-brief-list span {
+  color: var(--brick);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.observatory-brief-list strong {
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.observatory-media-panel {
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: start;
+}
+
+.observatory-lower-row {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.86fr);
+}
+
+.observatory-photo {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 10px 28px rgba(32, 35, 38, 0.06);
+}
+
+.observatory-photo picture {
+  display: block;
+}
+
+.observatory-photo img {
+  width: 100%;
   height: auto;
+  object-fit: cover;
+}
+
+.observatory-photo-main img {
   aspect-ratio: 16 / 9;
 }
 
-.visual-research-grid > .research-photo:not(.large) {
-  grid-area: studio;
+.observatory-photo-studio img {
+  aspect-ratio: 4 / 3;
 }
 
-.observatory-panel {
-  grid-area: observatory;
-  overflow: hidden;
-  padding: 1.25rem;
+.observatory-photo-studio picture {
+  flex: 1;
+  min-height: 0;
+}
+
+.observatory-photo-studio img {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.observatory-photo figcaption {
+  padding: 0.85rem 1rem 1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.field-method-panel {
+  display: grid;
+  align-content: space-between;
+  gap: 0.95rem;
+  padding: 1.05rem;
+  border: 1px solid rgba(143, 58, 47, 0.14);
+  border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(31, 111, 100, 0.1), rgba(216, 182, 96, 0.12)),
+    linear-gradient(135deg, rgba(143, 58, 47, 0.08), rgba(31, 111, 100, 0.1)),
     var(--surface);
+  box-shadow: 0 10px 28px rgba(32, 35, 38, 0.06);
+}
+
+.field-method-copy h3 {
+  margin-bottom: 0.55rem;
+  font-size: 1.34rem;
+}
+
+.field-method-copy p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.method-flow {
+  display: grid;
+  grid-template-columns: auto minmax(34px, 1fr) auto minmax(34px, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.method-flow span {
+  color: var(--teal-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.method-flow i {
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal), var(--wheat));
+}
+
+.method-stat-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid rgba(143, 58, 47, 0.14);
+}
+
+.method-stat-list div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(143, 58, 47, 0.14);
+}
+
+.method-stat-list dt {
+  color: var(--brick);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.method-stat-list dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .observatory-header h2 {
@@ -4285,7 +4434,7 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   .research-map-layout,
   .campus-guide-layout,
   .research-layout,
-  .visual-research-grid,
+  .observatory-board,
   .campus-grid,
   .contact-grid {
     grid-template-columns: 1fr;
@@ -4335,24 +4484,6 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   .research-signal-stack,
   .campus-desk-stack {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .visual-research-grid {
-    grid-template-areas:
-      "field"
-      "observatory"
-      "studio";
-  }
-
-  .research-photo.large {
-    grid-row: auto;
-    min-height: auto;
-  }
-
-  .research-photo.large img {
-    flex: auto;
-    height: auto;
-    aspect-ratio: 16 / 9;
   }
 
   .research-lead {
@@ -4472,6 +4603,7 @@ html[data-nav-direction="back"]::view-transition-new(root) {
     .research-node-list,
     .research-node-meta,
     .campus-place-list,
+    .observatory-lower-row,
     .course-grid,
     .module-grid,
   .evidence-grid,
@@ -4581,6 +4713,34 @@ html[data-nav-direction="back"]::view-transition-new(root) {
 
   .cohort-project {
     min-height: auto;
+  }
+
+  .field-method-panel {
+    min-height: auto;
+    padding: 1.1rem;
+  }
+
+  .field-method-copy h3 {
+    font-size: 1.45rem;
+  }
+
+  .method-flow {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .method-flow i {
+    width: 100%;
+  }
+
+  .method-stat-list div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .observatory-brief-list div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 
   .result-count {

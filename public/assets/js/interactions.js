@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const assetVersion = "20260608-researchlayout";
+const assetVersion = "20260608-researchbento";
 
 export function setupInteractions() {
   setupHeaderState();

@@ -1,5 +1,5 @@
-import { setupPageTransitions } from "./transitions.js?v=20260608-researchlayout";
-import { setupInteractions } from "./interactions.js?v=20260608-researchlayout";
+import { setupPageTransitions } from "./transitions.js?v=20260608-researchbento";
+import { setupInteractions } from "./interactions.js?v=20260608-researchbento";
 
 setupInteractions();
 setupPageTransitions();

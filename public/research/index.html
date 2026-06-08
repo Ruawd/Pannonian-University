@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#8f3a2f">
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-researchlayout">
-  <script type="module" src="/assets/js/app.js?v=20260608-researchlayout"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260608-researchbento">
+  <script type="module" src="/assets/js/app.js?v=20260608-researchbento"></script>
 </head>
 <body data-page="research">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -230,20 +230,12 @@
       </section>
 
       <section class="section visual-research-section" data-reveal>
-        <div class="container visual-research-grid">
-          <figure class="research-photo large">
-            <picture>
-          <source type="image/avif" srcset="/assets/img/research-fieldwork-640.avif 640w, /assets/img/research-fieldwork-1120.avif 1120w, /assets/img/research-fieldwork-1672.avif 1672w" sizes="(min-width: 980px) 58vw, 100vw">
-          <source type="image/webp" srcset="/assets/img/research-fieldwork-640.webp 640w, /assets/img/research-fieldwork-1120.webp 1120w, /assets/img/research-fieldwork-1672.webp 1672w" sizes="(min-width: 980px) 58vw, 100vw">
-          <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Pannonian University researchers collecting soil and crop data in a Vojvodina field" loading="lazy" decoding="async">
-        </picture>
-            <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
-          </figure>
-          <div class="observatory-panel" aria-label="Pannonian Observatory research dashboard">
+        <div class="container observatory-board">
+          <div class="observatory-copy-panel" aria-label="Pannonian Observatory research dashboard">
             <div class="observatory-header">
               <p class="eyebrow">Pannonian Observatory</p>
-              <h2>One regional evidence system, four live research lenses.</h2>
-              <p>Designed for public dashboards, faculty studios, and partner briefs across the Danube corridor.</p>
+              <h2>Regional evidence moves from field notes to public dashboards.</h2>
+              <p>Designed for faculty studios and partner briefs across the Danube corridor, the observatory keeps field sampling, remote sensing, and public explanation in the same working view.</p>
             </div>
             <div class="signal-grid">
               <div class="signal-card">
@@ -275,15 +267,50 @@
               <span class="basin-node node-b"></span>
               <span class="basin-node node-c"></span>
             </div>
+            <div class="observatory-brief-list" aria-label="Current observatory outputs">
+              <div><span>Evidence desk</span><strong>12 active partner briefs</strong></div>
+              <div><span>Field stations</span><strong>07 basin monitoring points</strong></div>
+              <div><span>Next release</span><strong>Water dashboard methods note</strong></div>
+            </div>
           </div>
-          <figure class="research-photo">
-            <picture>
-          <source type="image/avif" srcset="/assets/img/research-data-studio-640.avif 640w, /assets/img/research-data-studio-1120.avif 1120w, /assets/img/research-data-studio-1672.avif 1672w" sizes="(min-width: 980px) 50vw, 100vw">
-          <source type="image/webp" srcset="/assets/img/research-data-studio-640.webp 640w, /assets/img/research-data-studio-1120.webp 1120w, /assets/img/research-data-studio-1672.webp 1672w" sizes="(min-width: 980px) 50vw, 100vw">
+          <div class="observatory-media-panel">
+            <figure class="observatory-photo observatory-photo-main">
+              <picture>
+          <source type="image/avif" srcset="/assets/img/research-fieldwork-640.avif 640w, /assets/img/research-fieldwork-1120.avif 1120w, /assets/img/research-fieldwork-1672.avif 1672w" sizes="(min-width: 980px) 54vw, 100vw">
+          <source type="image/webp" srcset="/assets/img/research-fieldwork-640.webp 640w, /assets/img/research-fieldwork-1120.webp 1120w, /assets/img/research-fieldwork-1672.webp 1672w" sizes="(min-width: 980px) 54vw, 100vw">
+          <img src="/assets/img/research-fieldwork.jpg" width="1672" height="941" alt="Pannonian University researchers collecting soil and crop data in a Vojvodina field" loading="lazy" decoding="async">
+        </picture>
+              <figcaption>Climate-smart agriculture fieldwork near irrigation channels in the Pannonian lowlands.</figcaption>
+            </figure>
+            <div class="observatory-lower-row">
+              <figure class="observatory-photo observatory-photo-studio">
+                <picture>
+          <source type="image/avif" srcset="/assets/img/research-data-studio-640.avif 640w, /assets/img/research-data-studio-1120.avif 1120w, /assets/img/research-data-studio-1672.avif 1672w" sizes="(min-width: 980px) 28vw, 100vw">
+          <source type="image/webp" srcset="/assets/img/research-data-studio-640.webp 640w, /assets/img/research-data-studio-1120.webp 1120w, /assets/img/research-data-studio-1672.webp 1672w" sizes="(min-width: 980px) 28vw, 100vw">
           <img src="/assets/img/research-data-studio.jpg" width="1672" height="941" alt="Pannonian University research team reviewing river basin and climate dashboards" loading="lazy" decoding="async">
         </picture>
-            <figcaption>Data studio reviews connect field samples, satellite imagery, and municipal planning questions.</figcaption>
-          </figure>
+                <figcaption>Data studio reviews connect samples, satellite imagery, and planning questions.</figcaption>
+              </figure>
+              <div class="field-method-panel" aria-label="Field evidence workflow">
+                <div class="field-method-copy">
+                  <p class="eyebrow">Field protocol</p>
+                  <h3>Sample, verify, brief.</h3>
+                  <p>Teams move from field observations to lab notes, methods review, and partner-facing evidence in one studio cycle.</p>
+                </div>
+                <div class="method-flow" aria-hidden="true">
+                  <span>Collect</span>
+                  <i></i>
+                  <span>Verify</span>
+                  <i></i>
+                  <span>Publish</span>
+                </div>
+                <dl class="method-stat-list">
+                  <div><dt>Sample chain</dt><dd>Soil, water, crop notes</dd></div>
+                  <div><dt>Review rhythm</dt><dd>Weekly evidence desk</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
