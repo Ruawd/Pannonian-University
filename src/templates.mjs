@@ -1,7 +1,7 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260608-chenportrait";
+const assetVersion = "20260608-cohortlock";
 
 export function renderPage(page, pages) {
   const canonicalPath = page.href || "/";

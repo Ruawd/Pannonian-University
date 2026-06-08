@@ -1562,7 +1562,7 @@ h3 {
   text-align: left;
   cursor: pointer;
   box-shadow: 0 8px 22px rgba(32, 35, 38, 0.04);
-  transition: transform 180ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
+  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
 }
 
 .cohort-item strong {
@@ -1590,7 +1590,6 @@ h3 {
 
 .cohort-item:hover,
 .cohort-item.is-active {
-  transform: translateY(-2px);
   border-color: rgba(143, 58, 47, 0.42);
   background: var(--surface);
   box-shadow: 0 14px 34px rgba(32, 35, 38, 0.09);
@@ -1605,7 +1604,7 @@ h3 {
 }
 
 .cohort-detail-shell {
-  min-height: 520px;
+  min-height: 764px;
   overflow: hidden;
   border: 1px solid rgba(143, 58, 47, 0.12);
   border-radius: var(--radius);
@@ -1616,20 +1615,24 @@ h3 {
 }
 
 .cohort-detail {
-  min-height: 520px;
-  display: flex;
-  flex-direction: column;
+  min-height: 764px;
+  display: grid;
+  grid-template-rows: 9.4rem 210px auto minmax(168px, 1fr);
+  gap: 1.35rem;
   padding: 2rem;
 }
 
 .cohort-detail.is-active {
-  animation: detailIn 320ms var(--ease) both;
+  animation: detailIn 220ms var(--ease) both;
 }
 
 .cohort-quote {
   position: relative;
   max-width: 780px;
-  margin-bottom: 2rem;
+  min-height: 9.4rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.64rem;
@@ -1648,10 +1651,11 @@ h3 {
 }
 
 .cohort-person {
+  min-height: 210px;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .cohort-person h3 {
@@ -1665,7 +1669,8 @@ h3 {
 }
 
 .cohort-project {
-  margin-top: auto;
+  min-height: 168px;
+  margin-top: 0;
   padding: 1.2rem;
   border: 1px solid rgba(143, 58, 47, 0.12);
   border-radius: var(--radius);
@@ -1704,7 +1709,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
-  margin: 0 0 1.35rem;
+  margin: 0;
 }
 
 .profile-inspector-grid div {
@@ -4098,11 +4103,9 @@ h3 {
 @keyframes detailIn {
   from {
     opacity: 0;
-    transform: translateX(14px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
 
@@ -4529,6 +4532,11 @@ html[data-nav-direction="back"]::view-transition-new(root) {
     padding: 1.15rem;
   }
 
+  .cohort-detail {
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+
   .console-header strong {
     font-size: 1.55rem;
   }
@@ -4543,7 +4551,18 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   }
 
   .cohort-quote {
+    min-height: auto;
+    display: block;
     font-size: 1.24rem;
+  }
+
+  .cohort-person {
+    min-height: 140px;
+    margin-bottom: 0;
+  }
+
+  .cohort-project {
+    min-height: auto;
   }
 
   .result-count {

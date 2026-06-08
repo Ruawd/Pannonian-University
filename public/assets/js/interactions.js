@@ -1,5 +1,5 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const assetVersion = "20260608-chenportrait";
+const assetVersion = "20260608-cohortlock";
 
 export function setupInteractions() {
   setupHeaderState();
