@@ -1817,9 +1817,9 @@ h3 {
 
 .faculty-explorer {
   display: grid;
-  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.32fr);
+  grid-template-columns: minmax(240px, 0.66fr) minmax(0, 1.44fr);
   gap: 1rem;
-  align-items: stretch;
+  align-items: start;
 }
 
 .faculty-rail {
@@ -1931,7 +1931,7 @@ h3 {
 }
 
 .faculty-detail-frame {
-  min-height: 676px;
+  min-height: 560px;
 }
 
 .admissions-step-detail {
@@ -2144,6 +2144,160 @@ h3 {
   padding: 0.65rem 0.9rem;
   font-weight: 900;
   text-decoration: none;
+}
+
+@media (min-width: 981px) {
+  .faculty-explorer-section .section-heading {
+    max-width: 860px;
+    margin-bottom: 1.35rem;
+  }
+
+  .faculty-explorer-section .section-heading h2 {
+    font-size: 2.12rem;
+  }
+
+  .faculty-rail {
+    gap: 0.5rem;
+  }
+
+  .faculty-tab {
+    min-height: 68px;
+    gap: 0.12rem;
+    padding: 0.68rem 0.85rem;
+  }
+
+  .faculty-tab span {
+    font-size: 0.72rem;
+  }
+
+  .faculty-tab strong {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.94rem;
+    line-height: 1.08;
+  }
+
+  .faculty-tab small {
+    font-size: 0.82rem;
+    line-height: 1.16;
+  }
+
+  .faculty-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.86fr);
+    grid-template-areas:
+      "top top"
+      "title title"
+      "summary summary"
+      "inspector inspector"
+      "tags tags"
+      "labs footer";
+    gap: 0.72rem 1rem;
+    align-content: start;
+    padding: 1.28rem 1.45rem;
+  }
+
+  .faculty-detail-top {
+    grid-area: top;
+  }
+
+  .faculty-detail h3 {
+    grid-area: title;
+    max-width: 980px;
+    margin: 0.08rem 0 0;
+    font-size: clamp(2.35rem, 3.9vw, 2.95rem);
+    line-height: 0.98;
+  }
+
+  .faculty-detail > p {
+    grid-area: summary;
+    max-width: 920px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .faculty-inspector-grid {
+    grid-area: inspector;
+    gap: 0.74rem;
+    margin: 0.16rem 0 0;
+  }
+
+  .faculty-inspector-grid div {
+    min-height: 132px;
+    padding: 0.86rem 0.9rem;
+  }
+
+  .faculty-inspector-grid strong {
+    margin-block: 0.2rem;
+    font-size: 1rem;
+    line-height: 1.24;
+  }
+
+  .faculty-inspector-grid p {
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .faculty-tags {
+    grid-area: tags;
+    gap: 0.42rem;
+    margin: 0.12rem 0 0;
+  }
+
+  .faculty-tags span {
+    min-height: 29px;
+    padding: 0.18rem 0.58rem;
+    font-size: 0.9rem;
+    line-height: 1.1;
+  }
+
+  .faculty-lab-list {
+    grid-area: labs;
+    grid-template-columns: 1fr;
+    gap: 0;
+    align-content: start;
+  }
+
+  .faculty-lab-list div {
+    min-height: 58px;
+    padding-top: 0.52rem;
+  }
+
+  .faculty-lab-list strong {
+    font-size: 0.96rem;
+    line-height: 1.25;
+  }
+
+  .faculty-detail-footer {
+    grid-area: footer;
+    align-content: start;
+    align-items: start;
+    margin-top: 0;
+    border-top: 0;
+    border-left: 1px solid rgba(143, 58, 47, 0.14);
+    padding-top: 0;
+    padding-left: 1rem;
+  }
+
+  .faculty-detail-footer p {
+    max-width: none;
+    font-size: 0.94rem;
+    line-height: 1.42;
+  }
+
+  .faculty-detail-actions {
+    justify-content: flex-start;
+    gap: 0.46rem;
+  }
+
+  .faculty-detail-footer a {
+    min-height: 40px;
+    padding: 0.54rem 0.72rem;
+    font-size: 0.88rem;
+  }
 }
 
 .media-split {
