@@ -489,6 +489,9 @@ function setupPanelSwitchers({ rootSelector, triggerSelector, panelSelector, get
     root.dataset.switcherReady = "true";
     const triggers = [...root.querySelectorAll(triggerSelector)];
     const panels = [...root.querySelectorAll(panelSelector)];
+    panels.forEach((panel) => {
+      panel.hidden = false;
+    });
 
     triggers.forEach((trigger, index) => {
       trigger.addEventListener("click", () => activate(getTriggerId(trigger)));
@@ -507,8 +510,9 @@ function setupPanelSwitchers({ rootSelector, triggerSelector, panelSelector, get
 
       panels.forEach((panel) => {
         const active = getPanelId(panel) === id;
-        panel.hidden = !active;
         panel.classList.toggle("is-active", active);
+        panel.setAttribute("aria-hidden", String(!active));
+        panel.inert = !active;
       });
     }
   });

@@ -766,7 +766,7 @@ h3 {
 .command-button.is-active,
 .campus-place-button:hover,
 .campus-place-button.is-active {
-  transform: translateY(-2px);
+  transform: none;
   border-color: rgba(143, 58, 47, 0.42);
   background: var(--surface);
   box-shadow: 0 14px 34px rgba(32, 35, 38, 0.09);
@@ -817,6 +817,8 @@ h3 {
 .campus-place-detail {
   min-width: 0;
   overflow: hidden;
+  display: grid;
+  align-items: stretch;
   border: 1px solid rgba(143, 58, 47, 0.12);
   border-radius: var(--radius);
   background:
@@ -825,17 +827,38 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.command-panel-frame {
+  min-height: 338px;
+}
+
 .command-panel,
 .campus-place-panel {
+  grid-area: 1 / 1;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.55rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(14px, 0, 0) scale(0.992);
+  transition:
+    opacity 180ms var(--ease),
+    transform 280ms var(--ease-spring),
+    visibility 0s linear 260ms;
 }
 
 .command-panel.is-active,
 .campus-place-panel.is-active {
-  animation: inspectorIn 320ms var(--ease-spring) both;
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity 180ms var(--ease),
+    transform 280ms var(--ease-spring);
+  animation: none;
 }
 
 .campus-place-detail {
@@ -852,7 +875,7 @@ h3 {
 }
 
 .campus-place-panel.is-active {
-  animation: detailIn 220ms var(--ease) both;
+  animation: none;
 }
 
 .command-panel h3,
@@ -1834,7 +1857,7 @@ h3 {
 .admissions-flow-step.is-active,
 .research-node-button:hover,
 .research-node-button.is-active {
-  transform: translateY(-2px);
+  transform: none;
   border-color: rgba(143, 58, 47, 0.42);
   background: var(--surface);
   box-shadow: 0 14px 34px rgba(32, 35, 38, 0.09);
@@ -1897,6 +1920,8 @@ h3 {
 .research-node-detail {
   min-width: 0;
   overflow: hidden;
+  display: grid;
+  align-items: stretch;
   border: 1px solid rgba(143, 58, 47, 0.12);
   border-radius: var(--radius);
   background:
@@ -1905,17 +1930,42 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.faculty-detail-frame {
+  min-height: 676px;
+}
+
+.admissions-step-detail {
+  min-height: 422px;
+}
+
 .faculty-detail,
 .admissions-detail-panel,
 .research-node-panel {
+  grid-area: 1 / 1;
   min-height: 100%;
   padding: 1.55rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(14px, 0, 0) scale(0.992);
+  transition:
+    opacity 180ms var(--ease),
+    transform 280ms var(--ease-spring),
+    visibility 0s linear 260ms;
 }
 
 .faculty-detail.is-active,
 .admissions-detail-panel.is-active,
 .research-node-panel.is-active {
-  animation: inspectorIn 320ms var(--ease-spring) both;
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity 180ms var(--ease),
+    transform 280ms var(--ease-spring);
+  animation: none;
 }
 
 .research-node-detail {
@@ -1932,7 +1982,7 @@ h3 {
 }
 
 .research-node-panel.is-active {
-  animation: detailIn 220ms var(--ease) both;
+  animation: none;
 }
 
 .faculty-detail-top,
@@ -4661,6 +4711,8 @@ html[data-nav-direction="back"]::view-transition-new(root) {
   .command-panel,
   .cohort-detail-shell,
   .cohort-detail,
+  .faculty-detail-frame,
+  .admissions-step-detail,
   .research-node-detail,
   .research-node-panel,
   .campus-place-detail,

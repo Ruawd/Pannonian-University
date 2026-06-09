@@ -1,7 +1,7 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260608-researchbento";
+const assetVersion = "20260609-stable-switchers";
 
 export function renderPage(page, pages) {
   const canonicalPath = page.href || "/";
