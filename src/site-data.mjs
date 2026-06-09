@@ -1251,6 +1251,11 @@ const corePages = [
                 <span>Professor of Physics</span>
                 <small>Lab: Quantum Materials</small>
               </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-weng" data-cohort-trigger="weng" data-ripple>
+                <strong>Weng Zhong Yang</strong>
+                <span>Professor of Mathematics</span>
+                <small>Lab: Applied Modelling</small>
+              </button>
               <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-milena" data-cohort-trigger="milena" data-ripple>
                 <strong>Milena Kovac</strong>
                 <span>Director, Water Futures Lab</span>
@@ -1367,6 +1372,34 @@ const corePages = [
                   <strong>Quantum Materials and Measurement Lab</strong>
                   <p>Condensed matter physics, optics, environmental sensing instrumentation, and rigorous lab methods for engineering and life-science students.</p>
                   <a href="mailto:liu.junye@${site.domain}">liu.junye@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-weng" class="cohort-detail" role="tabpanel" data-cohort-detail="weng" hidden>
+                <p class="cohort-quote">"Mathematics gives students a way to test intuition before a model becomes a policy, a system, or an instrument."</p>
+                <div class="cohort-person">
+                  ${responsiveImage("weng-zhong-yang-portrait.jpg", {
+                    alt: "Weng Zhong Yang, Professor of Mathematics",
+                    className: "person-photo",
+                    width: 960,
+                    height: 1200,
+                    widths: [360, 720, 960],
+                    sizes: "(max-width: 680px) 112px, 168px"
+                  })}
+                  <div>
+                    <h3>Weng Zhong Yang</h3>
+                    <p>Professor of Mathematics</p>
+                  </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Tue 15:00-17:00</strong></div>
+                  <div><span>Course</span><strong>MAT-260 Applied Mathematical Modelling</strong></div>
+                  <div><span>Research Output</span><strong>Regional risk model notebooks</strong></div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Applied Modelling and Decision Systems Group</strong>
+                  <p>Differential equations, optimization, uncertainty analysis, and mathematical modelling for water, transport, finance, and public data studios.</p>
+                  <a href="mailto:weng.zhongyang@${site.domain}">weng.zhongyang@${site.domain}</a>
                 </div>
               </article>
               <article id="profile-milena" class="cohort-detail" role="tabpanel" data-cohort-detail="milena" hidden>
@@ -2003,6 +2036,7 @@ const corePages = [
             <article><span>Faculty of Society</span><strong><a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a></strong><p>Dean Chen Wei Hong's office supports society faculty advising, ethnographic methods, and heritage-fieldwork inquiries.</p></article>
             <article><span>School of Economics</span><strong><a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a></strong><p>Dean Huang Yu Fei's office supports economics advising, applied finance studios, and industry partnership questions.</p></article>
             <article><span>School of Computer Science</span><strong><a href="mailto:luo.zichao@${site.domain}">luo.zichao@${site.domain}</a></strong><p>Dean Luo Zi Chao's office supports computing advising, AI systems studios, secure software projects, and data-platform inquiries.</p></article>
+            <article><span>Department of Mathematics</span><strong><a href="mailto:weng.zhongyang@${site.domain}">weng.zhongyang@${site.domain}</a></strong><p>Professor Weng Zhong Yang supports mathematical modelling, optimization, uncertainty analysis, and quantitative-methods advising.</p></article>
           </div>
         </div>
       </section>

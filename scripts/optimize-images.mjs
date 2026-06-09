@@ -12,7 +12,8 @@ const images = [
   { file: "chen-wei-hong-portrait.jpg", widths: [360, 720, 960] },
   { file: "huang-yu-fei-portrait.jpg", widths: [360, 720, 960] },
   { file: "liu-jun-ye-portrait.jpg", widths: [360, 720, 960] },
-  { file: "luo-zi-chao-portrait.jpg", widths: [360, 720, 960] }
+  { file: "luo-zi-chao-portrait.jpg", widths: [360, 720, 960] },
+  { file: "weng-zhong-yang-portrait.jpg", widths: [360, 720, 960] }
 ];
 
 await mkdir(imageDir, { recursive: true });
