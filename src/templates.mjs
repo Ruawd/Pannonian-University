@@ -1,7 +1,7 @@
 import { site } from "./site-data.mjs";
 
 const baseUrl = `https://${site.domain}`;
-const assetVersion = "20260609-weng-math";
+const assetVersion = "20260609-icon-lines";
 
 export function renderPage(page, pages) {
   const canonicalPath = page.href || "/";
