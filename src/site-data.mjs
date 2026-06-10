@@ -1246,6 +1246,11 @@ const corePages = [
                 <span>Dean, School of Computer Science</span>
                 <small>Office: Human-Centered AI</small>
               </button>
+              <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-luo-hong-lin" data-cohort-trigger="luo-hong-lin" data-ripple>
+                <strong>Luo Hong Lin</strong>
+                <span>Professor of Industrial Engineering</span>
+                <small>Lab: Manufacturing Systems</small>
+              </button>
               <button class="cohort-item" type="button" role="tab" aria-selected="false" aria-controls="profile-liu" data-cohort-trigger="liu" data-ripple>
                 <strong>Liu Jun Ye</strong>
                 <span>Professor of Physics</span>
@@ -1344,6 +1349,34 @@ const corePages = [
                   <strong>Human-Centered AI and Systems Lab</strong>
                   <p>Auditable AI, secure software services, civic data interfaces, and reproducible systems for public-sector partners.</p>
                   <a href="mailto:luo.zichao@${site.domain}">luo.zichao@${site.domain}</a>
+                </div>
+              </article>
+              <article id="profile-luo-hong-lin" class="cohort-detail" role="tabpanel" data-cohort-detail="luo-hong-lin" hidden>
+                <p class="cohort-quote">"Industrial engineering turns messy operations into systems students can measure, improve, and explain."</p>
+                <div class="cohort-person">
+                  ${responsiveImage("luo-hong-lin-portrait.jpg", {
+                    alt: "Luo Hong Lin, Professor of Industrial Engineering",
+                    className: "person-photo",
+                    width: 960,
+                    height: 1200,
+                    widths: [360, 720, 960],
+                    sizes: "(max-width: 680px) 112px, 168px"
+                  })}
+                  <div>
+                    <h3>Luo Hong Lin</h3>
+                    <p>Professor of Industrial Engineering</p>
+                  </div>
+                </div>
+                <div class="profile-inspector-grid">
+                  <div><span>Office Hours</span><strong>Thu 10:00-12:00</strong></div>
+                  <div><span>Course</span><strong>IEN-280 Manufacturing Systems</strong></div>
+                  <div><span>Research Output</span><strong>Production performance dashboards</strong></div>
+                </div>
+                <div class="cohort-project">
+                  <span>Active project profile</span>
+                  <strong>Manufacturing Systems and Operations Lab</strong>
+                  <p>Production planning, quality control, supply-chain modelling, human factors, and operations analytics for regional manufacturers and public infrastructure partners.</p>
+                  <a href="mailto:luo.honglin@${site.domain}">luo.honglin@${site.domain}</a>
                 </div>
               </article>
               <article id="profile-liu" class="cohort-detail" role="tabpanel" data-cohort-detail="liu" hidden>
@@ -2036,6 +2069,7 @@ const corePages = [
             <article><span>Faculty of Society</span><strong><a href="mailto:chen.weihong@${site.domain}">chen.weihong@${site.domain}</a></strong><p>Dean Chen Wei Hong's office supports society faculty advising, ethnographic methods, and heritage-fieldwork inquiries.</p></article>
             <article><span>School of Economics</span><strong><a href="mailto:huang.yufei@${site.domain}">huang.yufei@${site.domain}</a></strong><p>Dean Huang Yu Fei's office supports economics advising, applied finance studios, and industry partnership questions.</p></article>
             <article><span>School of Computer Science</span><strong><a href="mailto:luo.zichao@${site.domain}">luo.zichao@${site.domain}</a></strong><p>Dean Luo Zi Chao's office supports computing advising, AI systems studios, secure software projects, and data-platform inquiries.</p></article>
+            <article><span>Industrial Engineering</span><strong><a href="mailto:luo.honglin@${site.domain}">luo.honglin@${site.domain}</a></strong><p>Professor Luo Hong Lin supports manufacturing systems, operations analytics, quality control, and industrial engineering studios.</p></article>
             <article><span>Department of Mathematics</span><strong><a href="mailto:weng.zhongyang@${site.domain}">weng.zhongyang@${site.domain}</a></strong><p>Professor Weng Zhong Yang supports mathematical modelling, optimization, uncertainty analysis, and quantitative-methods advising.</p></article>
           </div>
         </div>
